@@ -1,0 +1,11 @@
+Model Information:
+* title:	Star Citizen Workflow to Sketchfab  - Decals 3
+* source:	https://sketchfab.com/3d-models/star-citizen-workflow-to-sketchfab-decals-3-47e272a9c055405c82d2a6f54f2f178c
+* author:	re1monsen (https://sketchfab.com/re1monsen)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Star Citizen Workflow to Sketchfab  - Decals 3" (https://sketchfab.com/3d-models/star-citizen-workflow-to-sketchfab-decals-3-47e272a9c055405c82d2a6f54f2f178c) by re1monsen (https://sketchfab.com/re1monsen) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
