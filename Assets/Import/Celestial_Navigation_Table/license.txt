@@ -1,0 +1,11 @@
+Model Information:
+* title:	Celestial Navigation Table
+* source:	https://sketchfab.com/3d-models/celestial-navigation-table-dc1a2e3bac3943db9b68d080e25a0aa8
+* author:	Inditrion Dradnon (https://sketchfab.com/dradnon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Celestial Navigation Table" (https://sketchfab.com/3d-models/celestial-navigation-table-dc1a2e3bac3943db9b68d080e25a0aa8) by Inditrion Dradnon (https://sketchfab.com/dradnon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
