@@ -1,0 +1,11 @@
+Model Information:
+* title:	Hi-Poly Sci-Fi Storage Crate  
+* source:	https://sketchfab.com/3d-models/hi-poly-sci-fi-storage-crate-a759d9e4d1a84d919a7891de52273c56
+* author:	mathew1 (https://sketchfab.com/mathew1)
+
+Model License:
+* license type:	CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
+* requirements:	Author must be credited. No commercial use. Modified versions must have the same license.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Hi-Poly Sci-Fi Storage Crate  " (https://sketchfab.com/3d-models/hi-poly-sci-fi-storage-crate-a759d9e4d1a84d919a7891de52273c56) by mathew1 (https://sketchfab.com/mathew1) licensed under CC-BY-NC-SA-4.0 (http://creativecommons.org/licenses/by-nc-sa/4.0/)
