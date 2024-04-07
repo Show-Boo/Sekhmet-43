@@ -1,0 +1,11 @@
+Model Information:
+* title:	Simple Box Of Tissues
+* source:	https://sketchfab.com/3d-models/simple-box-of-tissues-48cc6254f3704f49a4701cf8c094eab9
+* author:	Fine_poultry (https://sketchfab.com/Fine_poultry)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Simple Box Of Tissues" (https://sketchfab.com/3d-models/simple-box-of-tissues-48cc6254f3704f49a4701cf8c094eab9) by Fine_poultry (https://sketchfab.com/Fine_poultry) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
