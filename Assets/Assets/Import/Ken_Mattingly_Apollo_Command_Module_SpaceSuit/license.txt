@@ -1,0 +1,11 @@
+Model Information:
+* title:	Ken Mattingly Apollo Command Module SpaceSuit
+* source:	https://sketchfab.com/3d-models/ken-mattingly-apollo-command-module-spacesuit-2b697c4577e34347a204b48498085030
+* author:	David Wigforss (https://sketchfab.com/dwigfor)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Ken Mattingly Apollo Command Module SpaceSuit" (https://sketchfab.com/3d-models/ken-mattingly-apollo-command-module-spacesuit-2b697c4577e34347a204b48498085030) by David Wigforss (https://sketchfab.com/dwigfor) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

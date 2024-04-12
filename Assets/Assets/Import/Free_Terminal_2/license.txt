@@ -1,0 +1,11 @@
+Model Information:
+* title:	Free Terminal 2
+* source:	https://sketchfab.com/3d-models/free-terminal-2-a3e11e8742074411a4bd642a2ee3c92a
+* author:	Inditrion Dradnon (https://sketchfab.com/dradnon)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Free Terminal 2" (https://sketchfab.com/3d-models/free-terminal-2-a3e11e8742074411a4bd642a2ee3c92a) by Inditrion Dradnon (https://sketchfab.com/dradnon) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

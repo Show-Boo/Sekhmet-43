@@ -1,0 +1,11 @@
+Model Information:
+* title:	SciFi Cylinder Canisters
+* source:	https://sketchfab.com/3d-models/scifi-cylinder-canisters-27c4732f619b4b458638e0405708d4c9
+* author:	Billy Jackman (https://sketchfab.com/billyjackman3d)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "SciFi Cylinder Canisters" (https://sketchfab.com/3d-models/scifi-cylinder-canisters-27c4732f619b4b458638e0405708d4c9) by Billy Jackman (https://sketchfab.com/billyjackman3d) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

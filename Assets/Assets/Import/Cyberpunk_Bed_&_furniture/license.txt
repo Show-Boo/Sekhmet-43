@@ -1,0 +1,11 @@
+Model Information:
+* title:	Cyberpunk Bed & furniture
+* source:	https://sketchfab.com/3d-models/cyberpunk-bed-furniture-3e985b063a4340ef945333350a041045
+* author:	isdragonalex (https://sketchfab.com/isdragonalex)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Cyberpunk Bed & furniture" (https://sketchfab.com/3d-models/cyberpunk-bed-furniture-3e985b063a4340ef945333350a041045) by isdragonalex (https://sketchfab.com/isdragonalex) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,11 @@
+Model Information:
+* title:	cessna skyhawk Cockpit
+* source:	https://sketchfab.com/3d-models/cessna-skyhawk-cockpit-94737a2ea27c4b97a17b5f3c2d53ef07
+* author:	Shady Tex (https://sketchfab.com/ShadyTex4u)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "cessna skyhawk Cockpit" (https://sketchfab.com/3d-models/cessna-skyhawk-cockpit-94737a2ea27c4b97a17b5f3c2d53ef07) by Shady Tex (https://sketchfab.com/ShadyTex4u) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
