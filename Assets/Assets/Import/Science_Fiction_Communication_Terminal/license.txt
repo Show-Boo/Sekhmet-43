@@ -1,0 +1,11 @@
+Model Information:
+* title:	Science Fiction Communication Terminal
+* source:	https://sketchfab.com/3d-models/science-fiction-communication-terminal-dac5f36ae9a747f8b59abc02137a4749
+* author:	gauvain_boiche (https://sketchfab.com/gauvain_boiche)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Science Fiction Communication Terminal" (https://sketchfab.com/3d-models/science-fiction-communication-terminal-dac5f36ae9a747f8b59abc02137a4749) by gauvain_boiche (https://sketchfab.com/gauvain_boiche) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

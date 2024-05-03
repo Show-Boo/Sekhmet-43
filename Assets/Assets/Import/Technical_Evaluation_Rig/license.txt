@@ -1,0 +1,11 @@
+Model Information:
+* title:	Technical Evaluation Rig
+* source:	https://sketchfab.com/3d-models/technical-evaluation-rig-0e9a398b83d540f68238e69aa5c3c401
+* author:	Vaportrash (https://sketchfab.com/vaportrash)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Technical Evaluation Rig" (https://sketchfab.com/3d-models/technical-evaluation-rig-0e9a398b83d540f68238e69aa5c3c401) by Vaportrash (https://sketchfab.com/vaportrash) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

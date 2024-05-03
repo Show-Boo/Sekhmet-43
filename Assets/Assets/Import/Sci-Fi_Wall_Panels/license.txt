@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci-Fi Wall Panels
+* source:	https://sketchfab.com/3d-models/sci-fi-wall-panels-c49641fafe59469cb60bb32bc8dec1e6
+* author:	Shawn Moore 3D Solutions (https://sketchfab.com/Shawn.Moore)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci-Fi Wall Panels" (https://sketchfab.com/3d-models/sci-fi-wall-panels-c49641fafe59469cb60bb32bc8dec1e6) by Shawn Moore 3D Solutions (https://sketchfab.com/Shawn.Moore) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

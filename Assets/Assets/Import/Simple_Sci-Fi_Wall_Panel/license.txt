@@ -1,0 +1,11 @@
+Model Information:
+* title:	Simple Sci-Fi Wall Panel
+* source:	https://sketchfab.com/3d-models/simple-sci-fi-wall-panel-651ea9453d614cf6abfa7b0c09b57417
+* author:	Mizuchi Sensei (https://sketchfab.com/FatFreeBeefCake)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Simple Sci-Fi Wall Panel" (https://sketchfab.com/3d-models/simple-sci-fi-wall-panel-651ea9453d614cf6abfa7b0c09b57417) by Mizuchi Sensei (https://sketchfab.com/FatFreeBeefCake) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

@@ -1,0 +1,8 @@
+Model Information:
+* title:	Sci-fi crate
+* source:	https://sketchfab.com/3d-models/sci-fi-crate-b141da3d1ddf4ef18f5be58f85019887
+* author:	vaulted.dev (https://sketchfab.com/vaulted.dev)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
