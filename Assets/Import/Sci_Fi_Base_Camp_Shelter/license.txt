@@ -1,0 +1,11 @@
+Model Information:
+* title:	Sci Fi Base Camp Shelter
+* source:	https://sketchfab.com/3d-models/sci-fi-base-camp-shelter-b5721b9435884684a994e16db20821e0
+* author:	Cosimo_ (https://sketchfab.com/Cosimo_)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Sci Fi Base Camp Shelter" (https://sketchfab.com/3d-models/sci-fi-base-camp-shelter-b5721b9435884684a994e16db20821e0) by Cosimo_ (https://sketchfab.com/Cosimo_) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
