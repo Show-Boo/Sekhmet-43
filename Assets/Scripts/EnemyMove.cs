@@ -15,25 +15,36 @@ public class Enemy : MonoBehaviour
     NavMeshAgent nav;
     Animator anim;
      
-    public Transform target;
+    public Transform target; //player의 위치
+    public bool isWander;
     public bool isChase;
     public bool isAttack;
+
     public BoxCollider meleeArea;
 
-    void Awake()
+    //gpt
+    public float chaseRange = 10f;//플레이어를 쫓기 시작할 거리
+    public float wanderRadius = 20f;//배회할 반경
+    public float wanderTimer = 5f; //배회할 시간 간격
+
+    private float timer;
+
+    void Awake()//시작할때 처음만
     {
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         mat = GetComponentInChildren<MeshRenderer>().material;
-        nav = GetComponent<NavMeshAgent>();
+        nav = GetComponent<NavMeshAgent>(); //agent
         anim = GetComponent<Animator>();
 
-        Invoke("ChaseStart", 2);//chasestart 2초 후에
+        Invoke("WanderStart", 2);//chasestart 2초 후에
+
+        timer = wanderTimer;//gpt
     }
 
-    void FreezeVelocity()
+    void FreezeVelocity()//1
     {
-        if(isChase)
+        if(isWander || isAttack)
         {
             rigid.angularVelocity = Vector3.zero;//enemy와 player 충돌시 속도 변화 방지
             rigid.velocity = Vector3.zero;
@@ -41,27 +52,77 @@ public class Enemy : MonoBehaviour
         
     }
 
-    void ChaseStart()
+    void WanderStart()//첫 실행
     {
-        isChase = true;
+        isWander = true;
 
-        anim.SetBool("IsWalk", true);
+        anim.SetBool("IsWander", true);//->wander 동작 실행
+
     }
+
     void Update()
     {
+        
+        /*
         if (nav.enabled)//이게 뭔소린지 모르겠음..
         {
-            nav.SetDestination(target.position);//추적 게시
-            nav.isStopped = !isChase;
+            nav.isStopped = !isChase;//따라가기 멈춤
+        }
+        */
+        
+        
+        float distanceToPlayer = Vector3.Distance(target.position, transform.position);
+
+        if (distanceToPlayer <= chaseRange)
+        {
+            // 플레이어 추적->chase
+            nav.SetDestination(target.position);
+            isChase = true;
+            anim.SetBool("IsWalk", true);
+            
+
+            Targerting();//쫓기
+            FreezeVelocity();
+
+        }
+
+        else
+        {
+            // 배회 로직
+            timer += Time.deltaTime;
+
+            isChase = false;
+
+            nav.speed = 1.5f;//이동시간 바꿔주기
+
+            if (timer >= wanderTimer)
+            {
+                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+                nav.SetDestination(newPos);
+                timer = 0;
+            }
         }
 
     }
 
-    void Targerting()
+    public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
+    {
+        Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
+        randDirection += origin;
+        NavMeshHit navHit;
+        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+        return navHit.position;
+    }
+
+    void Targerting()//1->반복
     {
         float targetRadius = 0.7f;
         float targetRange = 1.4f;
+
+        nav.speed = 3f;
+
         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player"));
+        
         if (rayHits.Length > 0 && !isAttack)
         {
             StartCoroutine(Attack());
@@ -73,6 +134,7 @@ public class Enemy : MonoBehaviour
         //정지
         isChase =false;
         isAttack = true;
+        nav.isStopped = true;
         //animation 호출
         anim.SetBool("IsAttack",true);
         //delay 주기
@@ -83,20 +145,26 @@ public class Enemy : MonoBehaviour
 
         //delay 주기
         yield return new WaitForSeconds(1f);
+        //공격범위비활성화
         meleeArea.enabled = false;
 
-        //정지
+        //정지풀기
         isChase = true;
         isAttack = false;
+        nav.isStopped = false;
+
         //animation 호출
         anim.SetBool("IsAttack", false);
 
     }
-    void FixedUpdate()
+    /*
+    void FixedUpdate() //매 초마다 update
     {
         Targerting();
         FreezeVelocity();
     }
+    */
+
 }
 
 
