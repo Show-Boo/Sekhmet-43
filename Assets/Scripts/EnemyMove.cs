@@ -59,8 +59,8 @@ public class Enemy : MonoBehaviour
 
     void Targerting()
     {
-        float targetRadius = 1.5f;
-        float targetRange = 3f;
+        float targetRadius = 0.7f;
+        float targetRange = 1.4f;
         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player"));
         if (rayHits.Length > 0 && !isAttack)
         {
