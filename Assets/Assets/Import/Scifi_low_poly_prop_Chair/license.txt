@@ -1,0 +1,11 @@
+Model Information:
+* title:	Scifi low poly prop Chair
+* source:	https://sketchfab.com/3d-models/scifi-low-poly-prop-chair-122e6f18e8c249e480ceed5a6dd3552e
+* author:	sawcisson (https://sketchfab.com/sawcisson)
+
+Model License:
+* license type:	CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)
+* requirements:	Author must be credited. No commercial use.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Scifi low poly prop Chair" (https://sketchfab.com/3d-models/scifi-low-poly-prop-chair-122e6f18e8c249e480ceed5a6dd3552e) by sawcisson (https://sketchfab.com/sawcisson) licensed under CC-BY-NC-4.0 (http://creativecommons.org/licenses/by-nc/4.0/)

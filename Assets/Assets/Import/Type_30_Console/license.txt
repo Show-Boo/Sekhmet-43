@@ -1,0 +1,11 @@
+Model Information:
+* title:	Type 30 Console
+* source:	https://sketchfab.com/3d-models/type-30-console-191ab38b296b478cbd30010bd13cf1a3
+* author:	themighty808 (https://sketchfab.com/themighty808)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Type 30 Console" (https://sketchfab.com/3d-models/type-30-console-191ab38b296b478cbd30010bd13cf1a3) by themighty808 (https://sketchfab.com/themighty808) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)

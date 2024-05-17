@@ -1,0 +1,11 @@
+Model Information:
+* title:	CCTV Rack
+* source:	https://sketchfab.com/3d-models/cctv-rack-c45f6e81753548bb9e25cf3e88793f3d
+* author:	HippoStance (https://sketchfab.com/hippostance)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "CCTV Rack" (https://sketchfab.com/3d-models/cctv-rack-c45f6e81753548bb9e25cf3e88793f3d) by HippoStance (https://sketchfab.com/hippostance) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
