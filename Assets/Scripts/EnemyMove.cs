@@ -25,8 +25,10 @@ public class Enemy : MonoBehaviour
     //gpt
     public float chaseRange = 10f;//플레이어를 쫓기 시작할 거리
     public float wanderRadius = 20f;//배회할 반경
-    public float wanderTimer = 5f; //배회할 시간 간격
+    public float wanderTimer; //배회할 시간 간격
 
+    public float minWanderTimer = 3f; // 최소 배회 시간
+    public float maxWanderTimer = 8f; // 최대 배회 시간
     private float timer;
 
     void Awake()//시작할때 처음만
@@ -39,7 +41,7 @@ public class Enemy : MonoBehaviour
 
         Invoke("WanderStart", 2);//chasestart 2초 후에
 
-        timer = wanderTimer;//gpt
+        timer = minWanderTimer;//gpt
     }
 
     void FreezeVelocity()//1
@@ -93,30 +95,39 @@ public class Enemy : MonoBehaviour
 
             isChase = false;
 
-            nav.speed = 1.5f;//이동시간 바꿔주기
+            nav.speed = 0.8f;//이동시간 바꿔주기
 
             if (timer >= wanderTimer)
             {
                 Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
                 nav.SetDestination(newPos);
+                SetRandomWanderTimer();
                 timer = 0;
+
             }
         }
 
+    }
+
+    void SetRandomWanderTimer()
+    {
+        wanderTimer = UnityEngine.Random.Range(minWanderTimer, maxWanderTimer);
     }
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
         Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
         randDirection += origin;
+
         NavMeshHit navHit;
         NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
+
         return navHit.position;
     }
 
     void Targerting()//1->반복
     {
-        float targetRadius = 0.7f;
+        float targetRadius = 0.5f;
         float targetRange = 1.4f;
 
         nav.speed = 3f;
