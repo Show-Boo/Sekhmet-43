@@ -10,6 +10,7 @@ TagManager:
   - Equipment
   - Enemy
   - AttackZone
+  - HidingSpot
   layers:
   - Default
   - TransparentFX

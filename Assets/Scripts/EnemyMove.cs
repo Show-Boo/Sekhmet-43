@@ -31,6 +31,7 @@ public class Enemy : MonoBehaviour
     public float maxWanderTimer = 8f; // 최대 배회 시간
     private float timer;
 
+    private PlayerController playerController; // 스크립트 받아오기
     void Awake()//시작할때 처음만
     {
         rigid = GetComponent<Rigidbody>();
@@ -39,6 +40,8 @@ public class Enemy : MonoBehaviour
         nav = GetComponent<NavMeshAgent>(); //agent
         anim = GetComponent<Animator>();
 
+        playerController = target.GetComponent<PlayerController>();
+        
         Invoke("WanderStart", 2);//chasestart 2초 후에
 
         timer = minWanderTimer;//gpt
@@ -65,17 +68,10 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         
-        /*
-        if (nav.enabled)//이게 뭔소린지 모르겠음..
-        {
-            nav.isStopped = !isChase;//따라가기 멈춤
-        }
-        */
-        
-        
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
-
-        if (distanceToPlayer <= chaseRange)
+        
+        
+        if (distanceToPlayer <= chaseRange && !playerController.isHiding)
         {
             // 플레이어 추적->chase
             nav.SetDestination(target.position);
@@ -94,6 +90,7 @@ public class Enemy : MonoBehaviour
             timer += Time.deltaTime;
 
             isChase = false;
+            anim.SetBool("IsWalk", false);
 
             nav.speed = 0.8f;//이동시간 바꿔주기
 
