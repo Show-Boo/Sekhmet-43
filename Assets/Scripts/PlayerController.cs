@@ -5,63 +5,58 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
 
-    public bool isHiding = false;
-    private Collider currentHidingSpot = null; //공간 추적
-    public float enterDistance = 3f; // 공간 근처에서 얼마나 가까워야 하는지 설정
-    private Vector3 originalPosition; // 숨기 전 플레이어 위치 저장
+    public Transform deskTransform; // 책상 Transform
+    public Collider deskFloorCollider; // 책상 아래 바닥 Collider
+    public Collider underDeskCollider; // 책상 아래 위치에 설정된 Box Collider
+    public float underDeskOffset = 1.0f; // 책상 아래로 이동할 때의 오프셋
+    public bool isUnderDesk = false;
+
+    private Vector3 originalPosition;
+
+
+
+    void Start()
+    {
+        // 시작 시 책상 아래 Collider를 비활성화
+        underDeskCollider.gameObject.SetActive(false);
+    }
 
     void Update()
     {
-        if (currentHidingSpot != null && Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R))
         {
-            if (!isHiding)
+            if (isUnderDesk)
             {
-                EnterHidingSpot();
+                // 원래 위치로 돌아가기
+                transform.position = originalPosition;
+                isUnderDesk = false;
+
+                // 책상 아래 Collider 비활성화
+                underDeskCollider.gameObject.SetActive(false);
+
+                // 책상 아래 바닥 Collider 활성화
+                deskFloorCollider.enabled = true;
             }
+
             else
             {
-                ExitHidingSpot();
+                // 원래 위치 저장
+                originalPosition = transform.position;
+
+                // 책상 아래 바닥 Collider 비활성화
+                deskFloorCollider.enabled = false;
+
+                // 책상 아래 Collider 활성화
+                underDeskCollider.gameObject.SetActive(true);
+
+                // 플레이어를 책상 아래로 이동
+                Vector3 underDeskPosition = new Vector3(deskTransform.position.x, transform.position.y, deskTransform.position.z);
+                transform.position = underDeskPosition - deskTransform.forward * underDeskOffset;
+
+                isUnderDesk = true;
             }
         }
     }
 
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.CompareTag("HidingSpot"))
-        {
-            currentHidingSpot = other;
-        }
-    }
-
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.CompareTag("HidingSpot"))
-        {
-            if (currentHidingSpot == other)
-            {
-                currentHidingSpot = null;
-            }
-        }
-    }
-
-    private void EnterHidingSpot()
-    {
-        if (currentHidingSpot != null)
-        {
-            Vector3 hidingSpotPosition = currentHidingSpot.transform.position;
-            float distanceToHidingSpot = Vector3.Distance(transform.position, hidingSpotPosition);
-            if (distanceToHidingSpot <= enterDistance)
-            {
-                originalPosition = transform.position; // 현재 플레이어 위치 저장
-                transform.position = hidingSpotPosition; // 플레이어 위치 이동
-                isHiding = true;
-            }
-        }
-    }
-
-    private void ExitHidingSpot()
-    {
-        transform.position = originalPosition; // 플레이어를 원래 위치로 이동
-        isHiding = false;
-    }
 }
+

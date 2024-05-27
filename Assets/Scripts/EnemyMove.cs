@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         nav = GetComponent<NavMeshAgent>(); //agent
         anim = GetComponent<Animator>();
 
-        playerController = target.GetComponent<PlayerController>();
+        playerController = target.GetComponent<PlayerController>();//다른 스크립트에서 가져오기
         
         Invoke("WanderStart", 2);//chasestart 2초 후에
 
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         
         
-        if (distanceToPlayer <= chaseRange && !playerController.isHiding)
+        if (distanceToPlayer <= chaseRange && !playerController.isUnderDesk)
         {
             // 플레이어 추적->chase
             nav.SetDestination(target.position);
@@ -165,14 +165,7 @@ public class Enemy : MonoBehaviour
         anim.SetBool("IsAttack", false);
 
     }
-    /*
-    void FixedUpdate() //매 초마다 update
-    {
-        Targerting();
-        FreezeVelocity();
-    }
-    */
-
+   
 }
 
 
