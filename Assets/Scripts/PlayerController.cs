@@ -6,8 +6,9 @@ public class PlayerController : MonoBehaviour
 {
 
     public Transform deskTransform; // 책상 Transform
-    public Collider deskFloorCollider; // 책상 아래 바닥 Collider
-    public Collider underDeskCollider; // 책상 아래 위치에 설정된 Box Collider
+    public Transform Y;
+    public MeshCollider deskFloorCollider; // 책상 아래 바닥 Collider
+    public BoxCollider underDeskCollider; // 책상 아래 위치에 설정된 Box Collider
     public float underDeskOffset = 1.0f; // 책상 아래로 이동할 때의 오프셋
     public bool isUnderDesk = false;
 
@@ -50,7 +51,7 @@ public class PlayerController : MonoBehaviour
                 underDeskCollider.gameObject.SetActive(true);
 
                 // 플레이어를 책상 아래로 이동
-                Vector3 underDeskPosition = new Vector3(deskTransform.position.x, transform.position.y, deskTransform.position.z);
+                Vector3 underDeskPosition = new Vector3(deskTransform.position.x, Y.position.y + 0.7f, deskTransform.position.z);
                 transform.position = underDeskPosition - deskTransform.forward * underDeskOffset;
 
                 isUnderDesk = true;
