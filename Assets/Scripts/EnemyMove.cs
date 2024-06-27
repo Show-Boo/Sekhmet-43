@@ -31,7 +31,7 @@ public class Enemy : MonoBehaviour
     public float maxWanderTimer = 8f; // 최대 배회 시간
     private float timer;
 
-    private Player playerController; // 스크립트 받아오기
+    private PlayerHiding playerController; // 스크립트 받아오기
     void Awake()//시작할때 처음만
     {
         rigid = GetComponent<Rigidbody>();
@@ -40,7 +40,7 @@ public class Enemy : MonoBehaviour
         nav = GetComponent<NavMeshAgent>(); //agent
         anim = GetComponent<Animator>();
 
-        playerController = target.GetComponent<Player>();//다른 스크립트에서 가져오기
+        playerController = target.GetComponent<PlayerHiding>();//다른 스크립트에서 가져오기
         
         Invoke("WanderStart", 2);//chasestart 2초 후에
 
@@ -71,7 +71,7 @@ public class Enemy : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         
         
-        if (distanceToPlayer <= chaseRange && !playerController.isUnderDesk)
+        if (distanceToPlayer <= chaseRange && playerController.isPlayer1Active)
         {
             // 플레이어 추적->chase
             nav.SetDestination(target.position);
