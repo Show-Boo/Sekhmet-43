@@ -127,7 +127,7 @@ public class Enemy : MonoBehaviour
         float targetRadius = 0.5f;
         float targetRange = 1.4f;
 
-        nav.speed = 3f;
+        nav.speed = 6f;
 
         RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player"));
         
