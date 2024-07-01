@@ -14,6 +14,11 @@ public class MyDoorController : MonoBehaviour
 
     public void PlayAnimation()
     {
+        if (doorAnim == null)
+        {
+            Debug.LogError("Animator component not found on door object.");
+            return;
+        }
         if (!doorOpen)
         {
             doorAnim.Play("DoorOpen", 0, 0.0f);
