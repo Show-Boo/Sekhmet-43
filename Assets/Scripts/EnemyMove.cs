@@ -25,7 +25,7 @@ public class Enemy : MonoBehaviour
     public BoxCollider meleeArea;
 
     //gpt
-    public float chaseRange = 10f;//플레이어를 쫓기 시작할 거리
+    public float chaseRange = 15f;//플레이어를 쫓기 시작할 거리
     public float wanderRadius = 20f;//배회할 반경
     public float wanderTimer; //배회할 시간 간격
 
@@ -33,9 +33,12 @@ public class Enemy : MonoBehaviour
     public float maxWanderTimer = 8f; // 최대 배회 시간
     private float timer;
 
-    private float deadRange = 5f; // 숨어도 쫓는 거리
+    private float deadRange = 8f; // 숨어도 쫓는 거리
 
     private PlayerHiding playerController; // 스크립트 받아오기
+
+    public Camera ActivatedCamera;
+
     void Awake()//시작할때 처음만
     {
         rigid = GetComponent<Rigidbody>();
@@ -76,10 +79,9 @@ public class Enemy : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         
         
-        //쫓는 거리보다 작아질때, 1일때 -> 쫓기. 2면 쫓기 멈춤.. 근데 일정거리보다 가까워진다? 2여도 죽음
+        //쫓는 거리보다 작아질때&&1일때 -> 쫓기. 2면 쫓기 멈춤.. 근데 일정거리보다 가까워진다? 2여도 죽음
         if (distanceToPlayer <= chaseRange && (playerController.isPlayer1Active||isDead))
         {
-            
             // 플레이어 추적->chase
             nav.SetDestination(target.position);
             isChase = true;
@@ -91,11 +93,13 @@ public class Enemy : MonoBehaviour
             if (distanceToPlayer<= deadRange)//쫓는 동안 가까이에 있는지?
             {
                 isDead = true;
+                target = ActivatedCamera.transform;
+                //타겟 바꿔주기
             }
 
             else
             {
-                isDead=false;
+                isDead = false;
             }
 
         }
@@ -109,7 +113,7 @@ public class Enemy : MonoBehaviour
             isChase = false;
             anim.SetBool("IsWalk", false);
 
-            nav.speed = 0.8f;//이동시간 바꿔주기
+            nav.speed = 1.0f;//이동시간 바꿔주기
 
             if (timer >= wanderTimer)
             {
@@ -183,11 +187,6 @@ public class Enemy : MonoBehaviour
 
     }
    
-
-    void Dead()
-    {
-
-    }
 }
 
 
