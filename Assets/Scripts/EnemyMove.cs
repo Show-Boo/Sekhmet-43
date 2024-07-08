@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.AI;
@@ -19,6 +20,7 @@ public class Enemy : MonoBehaviour
     public bool isWander;
     public bool isChase;
     public bool isAttack;
+    public bool isDead = false;
 
     public BoxCollider meleeArea;
 
@@ -30,6 +32,8 @@ public class Enemy : MonoBehaviour
     public float minWanderTimer = 3f; // 최소 배회 시간
     public float maxWanderTimer = 8f; // 최대 배회 시간
     private float timer;
+
+    private float deadRange = 5f; // 숨어도 쫓는 거리
 
     private PlayerHiding playerController; // 스크립트 받아오기
     void Awake()//시작할때 처음만
@@ -52,6 +56,7 @@ public class Enemy : MonoBehaviour
         if(isWander || isAttack)
         {
             rigid.angularVelocity = Vector3.zero;//enemy와 player 충돌시 속도 변화 방지
+
             rigid.velocity = Vector3.zero;
         }
         
@@ -71,21 +76,33 @@ public class Enemy : MonoBehaviour
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
         
         
-        if (distanceToPlayer <= chaseRange && playerController.isPlayer1Active)
+        //쫓는 거리보다 작아질때, 1일때 -> 쫓기. 2면 쫓기 멈춤.. 근데 일정거리보다 가까워진다? 2여도 죽음
+        if (distanceToPlayer <= chaseRange && (playerController.isPlayer1Active||isDead))
         {
+            
             // 플레이어 추적->chase
             nav.SetDestination(target.position);
             isChase = true;
             anim.SetBool("IsWalk", true);
             
-
             Targerting();//쫓기
             FreezeVelocity();
+
+            if (distanceToPlayer<= deadRange)//쫓는 동안 가까이에 있는지?
+            {
+                isDead = true;
+            }
+
+            else
+            {
+                isDead=false;
+            }
 
         }
 
         else
         {
+            
             // 배회 로직
             timer += Time.deltaTime;
 
@@ -166,6 +183,11 @@ public class Enemy : MonoBehaviour
 
     }
    
+
+    void Dead()
+    {
+
+    }
 }
 
 
