@@ -67,7 +67,7 @@ public class DoorRaycast : MonoBehaviour
                     }
                     else
                     {
-                        Debug.LogError("MyDoorController component not found on object: " + hit.collider.name);
+                        Debug.Log("MyDoorController component not found on object: " + hit.collider.name);
                        
                     }
                 }

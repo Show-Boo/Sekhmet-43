@@ -3,6 +3,12 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+//Todo 1. 활성화 된 hiding 카메라만 움직이기
+//Todo 2. 숨었다가 복귀
+//3. 근거리에서는 숨어도 공격
+//4. 좀비 시작 직후에는 움직이지 않게
+//5.
+
 public class PlayerHiding : MonoBehaviour
 {
     //public Transform[] objects;
@@ -72,33 +78,46 @@ public class PlayerHiding : MonoBehaviour
             SwitchCamera();
         }
         */
-
-        Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
-
-        RaycastHit hit;
-
-        if (Physics.Raycast(ray, out hit, checkDistance, layerMask))
+        if (isPlayer1Active)
         {
-            // 일정 거리 내로 들어오는 객체가 감지되면
-            if (hit.collider.CompareTag(interactableTag))
+            Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+
+            RaycastHit hit;
+
+            if (Physics.Raycast(ray, out hit, checkDistance, layerMask))
             {
-                Debug.Log("Interactable object within range: " + hit.collider.name);
-
-                CurrentCamera = hit.collider.GetComponentInChildren<Camera>();
-
-                if (CurrentCamera != null && Input.GetKeyDown(KeyCode.Q))
+                // 일정 거리 내로 들어오는 객체가 감지되면
+                if (hit.collider.CompareTag(interactableTag))
                 {
-                    // Q키가 눌리면 카메라 전환
-                    SwitchCamera();
+                    Debug.Log("Interactable object within range: " + hit.collider.name);
+
+                    CurrentCamera = hit.collider.GetComponentInChildren<Camera>();
+
+                    if (CurrentCamera != null && Input.GetKeyDown(KeyCode.Q))
+                    {
+                        // Q키가 눌리면 카메라 전환
+                        SwitchCamera();
+                    }
+                    else if (CurrentCamera == null)
+                    {
+                        Debug.Log("There is no Camera");
+                    }
                 }
             }
-        }
 
+            else
+            {
+                // 일정 거리 내에 감지된 객체가 없을 때
+                Debug.Log("No interactable object within range.");
+            }
+        }
         else
         {
-            // 일정 거리 내에 감지된 객체가 없을 때
-            Debug.Log("No interactable object within range.");
+            if (Input.GetKeyDown(KeyCode.Q)) { 
+                SwitchCamera();
+            }
         }
+        
     }
 
     void SwitchCamera()
@@ -126,28 +145,22 @@ public class PlayerHiding : MonoBehaviour
             // Player2 카메라 활성화, Player1 카메라 비활성화
             CurrentCamera.gameObject.SetActive(true);//활성화부터 시켜주기.. 이유는 모르겠는데 그래야 렌더링 가능
             playerCamera.gameObject.SetActive(false);
-
-            foreach (var enemyMoveScript in enemyMove)
-            {
-                enemyMoveScript.ActivatedCamera = CurrentCamera;//enemy의 타켓 바꿔주기
-            }
-
         }
         else
         {
             // Player1 카메라 활성화, Player2 카메라 비활성화
             playerCamera.gameObject.SetActive(true);
             CurrentCamera.gameObject.SetActive(false);
+        }
 
-            foreach (var enemyMoveScript in enemyMove)
-            {
-                enemyMoveScript.ActivatedCamera = CurrentCamera;
-            }
-
+        foreach (var enemyMoveScript in enemyMove)
+        {
+            enemyMoveScript.ActivatedCamera = CurrentCamera;//enemy의 타켓 바꿔주기
         }
 
         // 활성화된 플레이어 상태 업데이트
         isPlayer1Active = !isPlayer1Active;
+
         Debug.Log("isPlayer1Active: " + isPlayer1Active);
 
     }
