@@ -1,7 +1,5 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Runtime.CompilerServices;
-using UnityEditorInternal;
 using UnityEngine;
 
 public class RotateDoor : MonoBehaviour
@@ -27,7 +25,7 @@ public class RotateDoor : MonoBehaviour
         StartRotation = transform.rotation.eulerAngles;
         Forward = transform.right;
     }
-    
+
     public void Open(Vector3 UserPosition)
     {
         if (!IsOpen)
@@ -36,7 +34,6 @@ public class RotateDoor : MonoBehaviour
             if (AnimationCoroutine != null)
             {
                 StopCoroutine(AnimationCoroutine);
-
             }
 
             if (IsRotatingDoor)
@@ -46,7 +43,6 @@ public class RotateDoor : MonoBehaviour
                 AnimationCoroutine = StartCoroutine(DoRotationOpen(dot));
             }
         }
-
     }
 
     private IEnumerator DoRotationOpen(float ForwardAmount)
@@ -65,19 +61,22 @@ public class RotateDoor : MonoBehaviour
 
         IsOpen = true;
         float time = 0;
-        while(time < 1)
+        while (time < 1)
         {
             transform.rotation = Quaternion.Slerp(startRotation, endRotation, time);
             yield return null;
             time += Time.deltaTime * Speed;
         }
+
+        Debug.Log("Door opened");
     }
 
     public void Close()
     {
         if (IsOpen)
         {
-            if(AnimationCoroutine != null)
+            Debug.Log("Closing door");
+            if (AnimationCoroutine != null)
             {
                 StopCoroutine(AnimationCoroutine);
             }
@@ -87,9 +86,8 @@ public class RotateDoor : MonoBehaviour
                 AnimationCoroutine = StartCoroutine(DoRotationClose());
             }
         }
-
-        
     }
+
     private IEnumerator DoRotationClose()
     {
         Quaternion startRotation = transform.rotation;
@@ -104,7 +102,7 @@ public class RotateDoor : MonoBehaviour
             yield return null;
             time += Time.deltaTime * Speed;
         }
+
+        Debug.Log("Door closed");
     }
 }
-
-
