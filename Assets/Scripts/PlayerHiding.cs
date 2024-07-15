@@ -51,6 +51,7 @@ public class PlayerHiding : MonoBehaviour
         HidePlayerCamera.gameObject.SetActive(false);
         HidePlayer2Camera.gameObject.SetActive(false);
         */
+
         enemyMove = FindObjectsOfType<Enemy>();
     }
 
@@ -97,10 +98,14 @@ public class PlayerHiding : MonoBehaviour
                     {
                         // Q키가 눌리면 카메라 전환
                         SwitchCamera();
+
                     }
+
                     else if (CurrentCamera == null)
                     {
+
                         Debug.Log("There is no Camera");
+
                     }
                 }
             }
@@ -110,10 +115,14 @@ public class PlayerHiding : MonoBehaviour
                 // 일정 거리 내에 감지된 객체가 없을 때
                 Debug.Log("No interactable object within range.");
             }
+
+
         }
+
         else
         {
             if (Input.GetKeyDown(KeyCode.Q)) { 
+
                 SwitchCamera();
             }
         }
@@ -145,18 +154,31 @@ public class PlayerHiding : MonoBehaviour
             // Player2 카메라 활성화, Player1 카메라 비활성화
             CurrentCamera.gameObject.SetActive(true);//활성화부터 시켜주기.. 이유는 모르겠는데 그래야 렌더링 가능
             playerCamera.gameObject.SetActive(false);
+
+            foreach (var enemyMoveScript in enemyMove)
+            {
+                enemyMoveScript.ActivatedCamera = CurrentCamera;//enemy의 타켓 바꿔주기
+            }
         }
+
         else
         {
             // Player1 카메라 활성화, Player2 카메라 비활성화
             playerCamera.gameObject.SetActive(true);
             CurrentCamera.gameObject.SetActive(false);
-        }
 
+            foreach (var enemyMoveScript in enemyMove)
+            {
+                enemyMoveScript.ActivatedCamera = playerCamera;//enemy의 타켓 바꿔주기
+            }
+
+        }
+        /*
         foreach (var enemyMoveScript in enemyMove)
         {
             enemyMoveScript.ActivatedCamera = CurrentCamera;//enemy의 타켓 바꿔주기
         }
+        */
 
         // 활성화된 플레이어 상태 업데이트
         isPlayer1Active = !isPlayer1Active;
