@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.18028331, g: 0.2257133, b: 0.3069217, a: 1}
+  m_IndirectSpecularColor: {r: 0.18028378, g: 0.22571412, b: 0.30692285, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -10789,7 +10789,6 @@ GameObject:
   - component: {fileID: 1188944332}
   - component: {fileID: 1188944337}
   - component: {fileID: 1188944336}
-  - component: {fileID: 1188944335}
   - component: {fileID: 1188944334}
   - component: {fileID: 1188944333}
   m_Layer: 7
@@ -10860,30 +10859,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1188944335
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1188944331}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd4b5609babab3342a18957f914373b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2097321723}
-  isWander: 0
-  isChase: 0
-  isAttack: 0
-  isDead: 0
-  meleeArea: {fileID: 0}
-  chaseRange: 15
-  wanderRadius: 20
-  wanderTimer: 0
-  minWanderTimer: 3
-  maxWanderTimer: 8
-  ActivatedCamera: {fileID: 0}
 --- !u!54 &1188944336
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -17050,7 +17025,6 @@ GameObject:
   - component: {fileID: 1919121738}
   - component: {fileID: 1919121743}
   - component: {fileID: 1919121742}
-  - component: {fileID: 1919121741}
   - component: {fileID: 1919121740}
   - component: {fileID: 1919121739}
   m_Layer: 7
@@ -17121,30 +17095,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &1919121741
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1919121737}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fd4b5609babab3342a18957f914373b8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  target: {fileID: 2097321723}
-  isWander: 0
-  isChase: 0
-  isAttack: 0
-  isDead: 0
-  meleeArea: {fileID: 0}
-  chaseRange: 15
-  wanderRadius: 20
-  wanderTimer: 0
-  minWanderTimer: 3
-  maxWanderTimer: 8
-  ActivatedCamera: {fileID: 0}
 --- !u!136 &1919121742
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -19260,12 +19210,13 @@ GameObject:
   - component: {fileID: 7440375765327404499}
   - component: {fileID: 8662394616707804622}
   - component: {fileID: 7180438555288257660}
+  - component: {fileID: 8662394616707804623}
   m_Layer: 3
   m_Name: Laboratory_Door_1
   m_TagString: door
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 2147483647
+  m_StaticEditorFlags: 0
   m_IsActive: 1
 --- !u!33 &533884224690773207
 MeshFilter:
@@ -19790,6 +19741,23 @@ MeshCollider:
   m_Convex: 1
   m_CookingOptions: 30
   m_Mesh: {fileID: -6426003024304883108, guid: 734d32782ce411044a1a22bf5ecf5064, type: 3}
+--- !u!114 &8662394616707804623
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 232781921203210893}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ea9c01153042231439ca7316f664d035, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotatePoint: {fileID: 1411630207}
+  door: {fileID: 232781921203210893}
+  rotationAngle: 90
+  rotationDuration: 2
+  openDoorText: {fileID: 0}
 --- !u!4 &9215890938650367219
 Transform:
   m_ObjectHideFlags: 0
