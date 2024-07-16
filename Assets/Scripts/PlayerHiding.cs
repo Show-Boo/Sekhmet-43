@@ -24,7 +24,8 @@ public class PlayerHiding : MonoBehaviour
     //private Camera HidePlayer2Camera;
 
     private Camera CurrentCamera;
-    
+    private Camera previousCamera; // 이전 카메라를 저장할 변수
+
     //public float switchDistance = 5.0f; // 거리 임계값
     public bool isPlayer1Active = true; // 현재 활성화된 플레이어 여부
 
@@ -93,6 +94,10 @@ public class PlayerHiding : MonoBehaviour
                     Debug.Log("Interactable object within range: " + hit.collider.name);
 
                     CurrentCamera = hit.collider.GetComponentInChildren<Camera>();
+                    if (CurrentCamera != null) {
+                        Debug.Log("CurrentCamera: " + CurrentCamera.name);
+                    }
+
 
                     if (CurrentCamera != null && Input.GetKeyDown(KeyCode.Q))
                     {
@@ -112,6 +117,7 @@ public class PlayerHiding : MonoBehaviour
 
             else
             {
+                CurrentCamera = null;
                 // 일정 거리 내에 감지된 객체가 없을 때
                 Debug.Log("No interactable object within range.");
             }
@@ -119,10 +125,11 @@ public class PlayerHiding : MonoBehaviour
 
         }
 
-        else
+        else if (!isPlayer1Active)
         {
             if (Input.GetKeyDown(KeyCode.Q)) { 
 
+                CurrentCamera = previousCamera;
                 SwitchCamera();
             }
         }
@@ -159,11 +166,15 @@ public class PlayerHiding : MonoBehaviour
             {
                 enemyMoveScript.ActivatedCamera = CurrentCamera;//enemy의 타켓 바꿔주기
             }
+
+            previousCamera = CurrentCamera;
+
         }
 
-        else
+        else if (!isPlayer1Active)
         {
             // Player1 카메라 활성화, Player2 카메라 비활성화
+            
             playerCamera.gameObject.SetActive(true);
             CurrentCamera.gameObject.SetActive(false);
 
@@ -181,6 +192,7 @@ public class PlayerHiding : MonoBehaviour
         */
 
         // 활성화된 플레이어 상태 업데이트
+
         isPlayer1Active = !isPlayer1Active;
 
         Debug.Log("isPlayer1Active: " + isPlayer1Active);
