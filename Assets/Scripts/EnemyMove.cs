@@ -8,7 +8,7 @@ using UnityEngine.AI;
 using UnityEngine.UI;
 
 //요원(agent=enemy)에게 목적지를 알려줘서 목적지로 이동.
-public class Enemy : MonoBehaviour
+public class EnemyMove : MonoBehaviour
 {
     Rigidbody rigid;
     BoxCollider boxCollider;
@@ -145,7 +145,7 @@ public class Enemy : MonoBehaviour
 
     void Targerting()//1->반복
     {
-        float targetRadius = 0.5f;
+        float targetRadius = 0.7f;
         float targetRange = 1.4f;
 
         nav.speed = 6f;

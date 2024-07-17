@@ -5,6 +5,7 @@ using static UnityEngine.GraphicsBuffer;
 
 public class HidePlayerMovement : MonoBehaviour
 {
+    private bool isActive = false;
 
     private float rotationX = 0;
 
@@ -14,6 +15,16 @@ public class HidePlayerMovement : MonoBehaviour
     public Transform target;
 
     public PlayerHiding playerController; // 스크립트 받아오기
+
+    void OnEnable()//카메라가 활성화 되어있을때만
+    {
+        isActive = true;
+    }
+
+    void OnDisable()
+    {
+        isActive = false;
+    }
 
     // Start is called before the first frame update
     void Start()
@@ -25,7 +36,7 @@ public class HidePlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (!playerController.isPlayer1Active)
+        if (!playerController.isPlayer1Active && isActive)
         {
             rotationX += -Input.GetAxis("Mouse Y") * lookSpeed;
             rotationX = Mathf.Clamp(rotationX, -lookXLimit, lookXLimit);
