@@ -145,8 +145,8 @@ public class EnemyMove : MonoBehaviour
 
     void Targerting()//1->นÝบน
     {
-        float targetRadius = 0.7f;
-        float targetRange = 1.4f;
+        float targetRadius = 0.5f;
+        float targetRange = 1.0f;
 
         nav.speed = 6f;
 

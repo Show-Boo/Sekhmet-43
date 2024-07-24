@@ -135,9 +135,10 @@ public class PlayerHiding : MonoBehaviour
 
             if (previousCamera != null)
             {
-                previousCamera.gameObject.SetActive(false);
 
+                previousCamera.gameObject.SetActive(false);
                 Debug.Log("Switched to PlayerCamera.");
+
             }
 
             foreach (var enemyMoveScript in enemyMove)
