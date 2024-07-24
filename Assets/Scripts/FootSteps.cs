@@ -4,9 +4,9 @@ using UnityEngine;
 
 public class FootstepScript : MonoBehaviour
 {
-    public AudioSource footstep;
-    public AudioClip footstepClip; // 발소리 오디오 클립
-    public float stepInterval = 0.5f; // 발소리 재생 간격
+    public AudioSource footstepSource; // 발소리를 재생하는 AudioSource
+    public AudioClip footstepClip; // 발소리 AudioClip
+    public float stepInterval = 0.3f; // 발소리 재생 간격
     private float stepTimer;
     private CharacterController characterController;
 
@@ -15,7 +15,7 @@ public class FootstepScript : MonoBehaviour
         stepTimer = stepInterval;
         characterController = GetComponent<CharacterController>();
 
-        if (footstep == null)
+        if (footstepSource == null)
         {
             Debug.LogError("AudioSource가 설정되지 않았습니다.");
         }
@@ -29,12 +29,12 @@ public class FootstepScript : MonoBehaviour
         {
             Debug.LogError("FootstepClip이 설정되지 않았습니다.");
         }
+
+        footstepSource.loop = false; // 발소리를 반복 재생하지 않도록 설정
     }
 
     void Update()
     {
-        Debug.Log("Velocity: " + characterController.velocity.magnitude); // 플레이어 속도 확인용 로그
-
         // 플레이어가 움직이는지 확인
         if (IsPlayerMoving())
         {
@@ -47,9 +47,7 @@ public class FootstepScript : MonoBehaviour
         }
         else
         {
-            // 플레이어가 멈춘 경우 타이머를 리셋하고 발소리 중지
-            stepTimer = stepInterval;
-            StopFootstep();
+            stepTimer = 0; // 플레이어가 멈춘 경우 타이머를 리셋
         }
     }
 
@@ -61,19 +59,7 @@ public class FootstepScript : MonoBehaviour
 
     void PlayFootstep()
     {
-        if (!footstep.isPlaying)
-        {
-            Debug.Log("발소리 재생");
-            footstep.PlayOneShot(footstepClip);
-        }
-    }
-
-    void StopFootstep()
-    {
-        if (footstep.isPlaying)
-        {
-            Debug.Log("발소리 중지");
-            footstep.Stop();
-        }
+        Debug.Log("발소리 재생");
+        footstepSource.PlayOneShot(footstepClip);
     }
 }
