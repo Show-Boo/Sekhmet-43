@@ -11,8 +11,10 @@ using UnityEngine;
 //5. 같은 위치로 두번 이상 숨을 수 있게 : 카메라 비활성화 되어도 접근하게 or 비활성화 안되게,,,,,,,,,,,,,,,,,, -> done
 
 
-//0717 : 책상 밑 보고 q 누르면 옷장에 숨어짐,,감지는 잘 함, 돌아가는 것도 안됨, -> 초기에 모든 카메라가 활성화되어있는 탓인듯 -> 비활성화로 해결함
-//      : 
+//0717 : 책상 밑 보고 q 누르면 옷장에 숨어짐,,감지는 잘 함, 돌아가는 것도 안됨, -> 초기에 모든 카메라가 활성화되어있는 탓인듯 -> 초기 비활성화로 해결함
+// : 옷장만 no rendering camera 라고 뜸..흑흑
+// : 카메라 옆의 체크박스를 체크했더니 문제 해결ㅎㅎ
+
 public class PlayerHiding : MonoBehaviour
 {
     private Camera CurrentCamera;
@@ -104,17 +106,26 @@ public class PlayerHiding : MonoBehaviour
         if (isPlayer1Active)
         {
             // 다른 오브젝트의 카메라를 활성화하고 플레이어 카메라를 비활성화
+            if (CurrentCamera != null)
+            {
+                CurrentCamera.gameObject.SetActive(true);
+                
 
-            CurrentCamera.gameObject.SetActive(true);
+                Debug.Log("Switched to CurrentCamera: " + CurrentCamera.name);
+            }
 
             playerCamera.gameObject.SetActive(false);
 
             foreach (var enemyMoveScript in enemyMove)
             {
+
                 enemyMoveScript.ActivatedCamera = CurrentCamera;
+
             }
 
+            
             previousCamera = CurrentCamera;
+
         }
         else
         {
@@ -125,6 +136,8 @@ public class PlayerHiding : MonoBehaviour
             if (previousCamera != null)
             {
                 previousCamera.gameObject.SetActive(false);
+
+                Debug.Log("Switched to PlayerCamera.");
             }
 
             foreach (var enemyMoveScript in enemyMove)
