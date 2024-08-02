@@ -22,6 +22,8 @@ public class PlayerHiding : MonoBehaviour
 
     public bool isPlayer1Active = true; // 현재 활성화된 플레이어 여부
 
+    public Ray playerRay; //player에서 나오는 Ray
+
     private EnemyMove[] enemyMove;
 
     //Raycast
@@ -41,10 +43,11 @@ public class PlayerHiding : MonoBehaviour
     {
         if (isPlayer1Active)
         {
-            Ray ray = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+            playerRay = playerCamera.ScreenPointToRay(new Vector3(Screen.width / 2, Screen.height / 2));
+
             RaycastHit hit;
 
-            if (Physics.Raycast(ray, out hit, checkDistance, layerMask))
+            if (Physics.Raycast(playerRay, out hit, checkDistance, layerMask))
             {
                 // 일정 거리 내로 들어오는 객체가 감지되면
                 if (hit.collider.CompareTag(interactableTag))
