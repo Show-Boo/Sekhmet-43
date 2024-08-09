@@ -28,7 +28,7 @@ public class PlayerHiding : MonoBehaviour
 
     //Raycast
     public Camera playerCamera; // 플레이어의 카메라
-    public float checkDistance = 5.0f; // 체크할 거리
+    public float checkDistance = 0.5f; // 체크할 거리
     public LayerMask layerMask; // 충돌을 감지할 레이어 마스크
     public string interactableTag = "InteractiveObject"; // 상호작용할 태그
 
@@ -165,6 +165,8 @@ public class PlayerHiding : MonoBehaviour
             Gizmos.color = Color.red;
             Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, playerCamera.nearClipPlane));
             Gizmos.DrawRay(rayOrigin, playerCamera.transform.forward * checkDistance);
+
+            Debug.Log("checkdistance is " + checkDistance);
 
         }
     }

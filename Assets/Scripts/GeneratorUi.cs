@@ -11,7 +11,7 @@ public class GeneratorController : MonoBehaviour
     //2. 카메라 고정
     //3. 다 고쳐지면 발전기 뱅글뱅글 돌기 ->done
     //4. 빛도 깜빡이다가 돌아오기 -> 일요일까지 done
-    //5. 괴물에셋 사고 바꿔넣기
+    //5. 괴물에셋 사고 바꿔넣기 -> done
 
     public RectTransform redBar; // 빨간 막대 UI의 RectTransform
     public RectTransform whiteBar; // 하얀 막대 UI의 RectTransform
@@ -73,12 +73,14 @@ public class GeneratorController : MonoBehaviour
 
         RaycastHit hit;
         
-        if (Physics.Raycast(ray, out hit, Mathf.Infinity, generatorLayer))
+        if (Physics.Raycast(ray, out hit, playerHiding.checkDistance, generatorLayer))
         {
+            Debug.Log("checkdistance is " + playerHiding.checkDistance);
+
             isHoveringGenerator = true;
             crosshair.color = crosshairHoverColor;
 
-            if (Input.GetMouseButton(0))//ButtonDown은 눌리는 순간 true인듯
+            if (Input.GetMouseButton(0))//ButtonDown은 눌리는 순간만 true인듯
             {
                 isHolding = true;
                 //progressBarBackground.gameObject.SetActive(true);
