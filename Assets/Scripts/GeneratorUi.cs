@@ -75,7 +75,7 @@ public class GeneratorController : MonoBehaviour
         
         if (Physics.Raycast(ray, out hit, playerHiding.checkDistance, generatorLayer))
         {
-            Debug.Log("checkdistance is " + playerHiding.checkDistance);
+            //Debug.Log("checkdistance is " + playerHiding.checkDistance);
 
             isHoveringGenerator = true;
             crosshair.color = crosshairHoverColor;
