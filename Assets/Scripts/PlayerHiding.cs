@@ -2,7 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using UnityEngine.UI;
 //Todo 1. 활성화 된 hiding 카메라만 움직이기 -> done
 //Todo 2. 숨었다가 복귀 -> done
 //3. 근거리에서는 숨어도 공격 -> done 근데 player 공격중일때는 숨은 쪽으로 안옴
@@ -17,6 +17,9 @@ using UnityEngine;
 
 public class PlayerHiding : MonoBehaviour
 {
+
+    public int playerRoomID = -1;
+
     private Camera CurrentCamera;
     private Camera previousCamera; // 이전 카메라를 저장할 변수
 
@@ -32,11 +35,27 @@ public class PlayerHiding : MonoBehaviour
     public LayerMask layerMask; // 충돌을 감지할 레이어 마스크
     public string interactableTag = "InteractiveObject"; // 상호작용할 태그
 
+    public Image crosshair;
+
+    public Color crosshairNormalColor = Color.white;
+    public Color crosshairHoverColor = Color.red;
+
+    public AudioClip soundClip; // 재생할 소리
+    private AudioSource audioSource;
+
+    public bool isBeating = false;
     void Start()
     {
         enemyMove = FindObjectsOfType<EnemyMove>();
 
         previousCamera = playerCamera;
+
+        // AudioSource 컴포넌트를 가져옵니다.
+        audioSource = GetComponent<AudioSource>();
+        // 소리 클립을 설정합니다.
+        audioSource.clip = soundClip;
+        // Play On Awake 옵션을 끕니다 (게임 시작 시 자동 재생 방지)
+        audioSource.playOnAwake = false;
     }
 
     void Update()
@@ -55,6 +74,7 @@ public class PlayerHiding : MonoBehaviour
                     Debug.Log("Interactable object within range: " + hit.collider.name);
 
                     CurrentCamera = hit.collider.GetComponentInChildren<Camera>(true); // true 설정하면 비활성화된 객체도 감지
+                    crosshair.color = crosshairHoverColor;
 
                     if (CurrentCamera != null)
                     {
@@ -64,6 +84,7 @@ public class PlayerHiding : MonoBehaviour
                         {
                             // Q키가 눌리면 카메라 전환
                             SwitchCamera();
+                            crosshair.color = crosshairNormalColor;
                         }
                     }
 
@@ -95,6 +116,11 @@ public class PlayerHiding : MonoBehaviour
                     Debug.LogError("Previous camera is null!");
                 }
             }
+        }
+
+        if (isBeating)
+        {
+            PlaySound();
         }
     }
 
@@ -170,4 +196,15 @@ public class PlayerHiding : MonoBehaviour
 
         }
     }
+
+    void PlaySound()
+    {
+        // 소리가 이미 재생 중이 아니면 재생합니다.
+        if (!audioSource.isPlaying)
+        {
+            audioSource.Play();
+        }
+    }
+
+
 }
