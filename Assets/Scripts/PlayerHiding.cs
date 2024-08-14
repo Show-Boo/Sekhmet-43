@@ -78,7 +78,7 @@ public class PlayerHiding : MonoBehaviour
 
                     if (CurrentCamera != null)
                     {
-                        Debug.Log("CurrentCamera: " + CurrentCamera.name);
+                        //Debug.Log("CurrentCamera: " + CurrentCamera.name);
 
                         if (Input.GetKeyDown(KeyCode.Q))
                         {
@@ -90,7 +90,7 @@ public class PlayerHiding : MonoBehaviour
 
                     else//두번째부터는 카메라 감지를 못함..왜???????? -> 비활성화 된 카메라는 찾아내지 못함
                     {
-                        Debug.Log("There is no Camera on the interactable object.");
+                        //Debug.Log("There is no Camera on the interactable object.");
                     }
                 }
             }
@@ -99,10 +99,10 @@ public class PlayerHiding : MonoBehaviour
             {
                 CurrentCamera = null;
                 // 일정 거리 내에 감지된 객체가 없을 때
-                Debug.Log("No interactable object within range.");
+                //Debug.Log("No interactable object within range.");
             }
         }
-        else
+        else//숨고나서
         {
             if (Input.GetKeyDown(KeyCode.Q))
             {
@@ -132,31 +132,32 @@ public class PlayerHiding : MonoBehaviour
             return;
         }
 
-        if (isPlayer1Active)
+        if (isPlayer1Active)//숨기전
         {
             // 다른 오브젝트의 카메라를 활성화하고 플레이어 카메라를 비활성화
             if (CurrentCamera != null)
             {
                 CurrentCamera.gameObject.SetActive(true);
                 
-
-                Debug.Log("Switched to CurrentCamera: " + CurrentCamera.name);
+                //Debug.Log("Switched to CurrentCamera: " + CurrentCamera.name);
             }
 
             playerCamera.gameObject.SetActive(false);
 
+            
             foreach (var enemyMoveScript in enemyMove)
             {
 
                 enemyMoveScript.ActivatedCamera = CurrentCamera;
 
             }
+            
 
             
             previousCamera = CurrentCamera;
 
         }
-        else
+        else//숨었을때
         {
             // 플레이어 카메라를 활성화하고 다른 오브젝트의 카메라를 비활성화
 
@@ -169,11 +170,12 @@ public class PlayerHiding : MonoBehaviour
                 Debug.Log("Switched to PlayerCamera.");
 
             }
-
+            
             foreach (var enemyMoveScript in enemyMove)
             {
                 enemyMoveScript.ActivatedCamera = playerCamera;
             }
+            
 
             previousCamera = playerCamera;
         }
@@ -181,7 +183,7 @@ public class PlayerHiding : MonoBehaviour
         // 활성화된 플레이어 상태 업데이트
         isPlayer1Active = !isPlayer1Active;
 
-        Debug.Log("isPlayer1Active: " + isPlayer1Active);
+        //Debug.Log("isPlayer1Active: " + isPlayer1Active);
     }
 
     void OnDrawGizmos()
@@ -192,7 +194,7 @@ public class PlayerHiding : MonoBehaviour
             Vector3 rayOrigin = playerCamera.ViewportToWorldPoint(new Vector3(0.5f, 0.5f, playerCamera.nearClipPlane));
             Gizmos.DrawRay(rayOrigin, playerCamera.transform.forward * checkDistance);
 
-            Debug.Log("checkdistance is " + checkDistance);
+            //Debug.Log("checkdistance is " + checkDistance);
 
         }
     }
