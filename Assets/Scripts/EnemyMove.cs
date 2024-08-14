@@ -104,7 +104,7 @@ public class EnemyMove : MonoBehaviour
             if (nav.CalculatePath(target.position, path)) // 이게 안되면 유효한 길이 없는거임
             {
 
-                Debug.Log("1");
+                
                 // 경로 길이 계산
                 float pathLength = GetPathLength(path);
 
@@ -112,7 +112,7 @@ public class EnemyMove : MonoBehaviour
                 if (pathLength <= chaseRange && (playerController.isPlayer1Active || isDead))
                 {
                     // 플레이어 추적->chase
-                    Debug.Log("2");
+                    
                     nav.SetDestination(target.position);
                     isChase = true;
                     anim.SetBool("IsWalk", true);
@@ -124,8 +124,8 @@ public class EnemyMove : MonoBehaviour
                     {
                         isDead = true;
                         target = ActivatedCamera.transform; //-> 같은 방에 있으면 활성화된 카메라를 타깃으로
-                        Debug.Log(target);
-                        Debug.Log("isDead");
+                        //Debug.Log(target);
+                        
                         
                     }
                     else//같은 방에 없다? -> 그냥 player의 위치를 타깃으로
