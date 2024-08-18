@@ -12,6 +12,7 @@ public class Room : MonoBehaviour
         {
             // 플레이어가 방에 들어옴
             PlayerHiding player = other.GetComponent<PlayerHiding>();
+
             if (player != null)
             {
                 player.playerRoomID = roomID;
@@ -25,6 +26,8 @@ public class Room : MonoBehaviour
             {
                 enemy.EnemyRoomID = roomID;
             }
+
+            Debug.Log("EnemyTag");
         }
     }
 }
