@@ -85,6 +85,8 @@ public class EnemyMove : MonoBehaviour
     {
         isWander = true;
 
+        FreezeVelocity();
+
         anim.SetBool("IsWander", true);//->wander 동작 실행
 
     }
@@ -96,7 +98,7 @@ public class EnemyMove : MonoBehaviour
         
         
         //쫓는 거리보다 작아질때&&1일때 -> 쫓기. 2면 쫓기 멈춤.. 근데 일정거리보다 가까워진다? 2여도 죽음
-        if (distanceToPlayer <= (chaseRange + 1.0f) ) //직선거리가 얼마 이하일때 거리 계산 시작
+        if (distanceToPlayer <= 16.0f ) //직선거리가 얼마 이하일때 거리 계산 시작
         {
             //경로계산시작
             NavMeshPath path = new NavMeshPath();//새로운 객체 생성
@@ -140,7 +142,8 @@ public class EnemyMove : MonoBehaviour
                     // 배회 로직
                     //timer += Time.deltaTime;
 
-                    //isChase = false;
+                    //isChase = false; -> 밑 로직을 한 번만 수행하려는 노력
+
                     anim.SetBool("IsWalk", false);
 
                     nav.speed = 1.5f;//걷는 속도 바꿔주기
@@ -178,11 +181,12 @@ public class EnemyMove : MonoBehaviour
         }
         return length;
     }
-
+    /*
     void SetRandomWanderTimer()
     {
         wanderTimer = UnityEngine.Random.Range(minWanderTimer, maxWanderTimer);
     }
+    */
 
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
     {
@@ -208,7 +212,7 @@ public class EnemyMove : MonoBehaviour
 
         playerController.isBeating = true;
         
-        if (distanceToTarget < 2.0f && distanceToTarget > 0)
+        if (distanceToTarget < 2.0f)
         {
             StartCoroutine(Attack());
         }
@@ -216,6 +220,8 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator Attack()
     {
+
+        Debug.Log("Attack");
         //정지
         isChase =false;
         isAttack = true;
@@ -224,7 +230,7 @@ public class EnemyMove : MonoBehaviour
         anim.SetBool("IsAttack",true);
         //delay 주기
         yield return new WaitForSeconds(0.2f);
-
+        Debug.Log("meleeArea enabled");
         //공격범위활성화
         meleeArea.enabled = true;
 
@@ -232,6 +238,7 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(1f);
         //공격범위비활성화
         meleeArea.enabled = false;
+        Debug.Log("meleeArea unabled");
 
         //정지풀기
         isChase = true;
@@ -241,9 +248,8 @@ public class EnemyMove : MonoBehaviour
         //animation 호출
         anim.SetBool("IsAttack", false);
 
+        Debug.Log("end Attack");
     }
-
-    
 
 }
 
