@@ -664,7 +664,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   videoPlayer: {fileID: 2018397323}
-  backgroundMusic: {fileID: 0}
   timeToStop: 10
 --- !u!1 &1459285912
 GameObject:

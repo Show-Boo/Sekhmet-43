@@ -2,50 +2,30 @@ using UnityEngine;
 
 public class PlayVideo : MonoBehaviour
 {
-    public GameObject videoPlayer;
-    public AudioSource backgroundMusic;
-    public int timeToStop;
-    private bool videoPlayed = false;
-    private bool musicPaused = false; // 배경 음악 일시 정지 여부를 추적하는 변수
+    public GameObject videoPlayer; // 비디오 플레이어 오브젝트
+    public int timeToStop; // 비디오를 중지할 시간
+    private bool videoPlayed = false; // 비디오가 재생되었는지 여부를 추적하는 변수
 
-    // Use this for initialization
     void Start()
     {
-        videoPlayer.SetActive(false);
+        videoPlayer.SetActive(false); // 비디오 플레이어를 비활성화 상태로 시작
     }
 
-    // Update is called once per frame
     void OnTriggerEnter(Collider player)
     {
+        // 플레이어가 트리거에 진입하고, 비디오가 아직 재생되지 않았을 때
         if (player.gameObject.tag == "Player" && !videoPlayed)
         {
-            // 배경 음악 일시 정지
-            if (backgroundMusic.isPlaying)
-            {
-                backgroundMusic.Pause();
-                musicPaused = true;
-            }
-
-            videoPlayer.SetActive(true);
-            Invoke("StopVideo", timeToStop);
-
-            videoPlayed = true;
+            videoPlayer.SetActive(true); // 비디오 플레이어 활성화
+            Invoke("StopVideo", timeToStop); // 일정 시간 후 비디오 중지 함수 호출
+            videoPlayed = true; // 비디오가 재생되었음을 기록
         }
     }
 
     // 비디오 중지 함수
     void StopVideo()
     {
-        videoPlayer.SetActive(false);
-        // 배경 음악 다시 재생
-        if (musicPaused)
-        {
-            backgroundMusic.UnPause(); // 배경 음악 재개
-            musicPaused = false;
-        }
-        else
-        {
-            backgroundMusic.Play(); // 배경 음악 재생
-        }
+        videoPlayer.SetActive(false); // 비디오 플레이어 비활성화
+        // 추가적으로, 필요시 게임 화면으로 돌아가는 로직을 여기에 추가할 수 있음
     }
 }
