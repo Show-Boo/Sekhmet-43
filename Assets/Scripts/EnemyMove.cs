@@ -102,11 +102,22 @@ public class EnemyMove : MonoBehaviour
         {
             isDead = false; //걍 wander
             //target = ActivatedCamera.transform; //-> 같은 방에 있으면 활성화된 카메라를 타깃으로
-            //Debug.Log(target);
+            
         }//->wandering만 함ㅁ..
         else//일반적인 경우 -> 걍 active된 애 찾아서 죽임
         {
-            isDead = true;
+            if (isDead == false)
+            {
+                if (playerController.isPlayer1Active)
+                {
+                    isDead = true;
+                }
+            }
+            else
+            {
+                isDead = true;
+            }
+            
             //target = player.transform;
         }
 
@@ -119,8 +130,9 @@ public class EnemyMove : MonoBehaviour
             Debug.Log("1");
 
             NavMeshPath path = new NavMeshPath();//새로운 객체 생성
+            nav.CalculatePath(target.position, path);
 
-            if (nav.CalculatePath(target.position, path)) // 이게 안되면 유효한 길이 없는거임. bake된 길 위에 player가 있어야함
+            if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. bake된 길 위에 player가 있어야함
             {
 
                 // 경로 길이 계산
@@ -152,11 +164,12 @@ public class EnemyMove : MonoBehaviour
                     Debug.Log(isChase);
                     nav.speed = 1.5f;//걷는 속도 바꿔주기
 
+
+                    float distanceThreshold = 2.0f; //근방에 도달하면 complete
+
                     //if (timer >= wanderTimer)
                     if (isChase)
                     {
-                        
-
                         isChase = false;
                         Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
                         destination = newPos;
@@ -166,12 +179,18 @@ public class EnemyMove : MonoBehaviour
                         //timer = 0;
                     }
 
-                    if (destination == transform.position)//도착했을때
+                    NavMeshPath pathToDestination = new NavMeshPath();
+                    nav.CalculatePath(target.position, pathToDestination);
+
+                    if ((Vector3.Distance(destination, transform.position) <= distanceThreshold) || (pathToDestination.status != NavMeshPathStatus.PathComplete))//근방에 도달했는지? 또는 destination으로의 길이 없다면
                     {
+                        
                         Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
                         destination = newPos;
                         nav.SetDestination(destination);
                     }
+
+                    Debug.Log(Vector3.Distance(destination, transform.position));
                 }
             }
         }
