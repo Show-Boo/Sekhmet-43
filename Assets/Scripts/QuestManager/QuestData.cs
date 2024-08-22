@@ -1,15 +1,20 @@
-using System;
+using System.Collections.Generic;
 using UnityEngine;
 
-[Serializable]
 public class Quest
 {
-    public string questName;
-    public string description;
-    public GameObject[] activationTriggers;   // 퀘스트 시작 시 활성화할 트리거 박스들
-    public GameObject[] deactivationTriggers; // 퀘스트 완료 시 비활성화할 트리거 박스들
-    public Action onStart;                    // 퀘스트 시작 시 호출될 이벤트
-    public Action onComplete;                 // 퀘스트 완료 시 호출될 이벤트
-    public string videoPath;                  // 퀘스트와 연결된 동영상 파일 경로
-    public bool isCompleted;
+    public int questID;  // 퀘스트 ID
+    public string questName;  // 퀘스트 이름
+    public string description;  // 퀘스트 설명
+    public bool isCompleted;  // 퀘스트 완료 여부
+
+    // 요구 사항들 (예: 특정 아이템 수집, 특정 장소 도달 등)
+    public List<string> objectives = new List<string>();
+
+    public void CompleteQuest()
+    {
+        isCompleted = true;
+        Debug.Log("Quest " + questName + " completed!");
+        // 보상 지급 또는 다음 퀘스트 활성화 코드 추가
+    }
 }

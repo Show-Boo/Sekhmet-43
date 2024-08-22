@@ -1,96 +1,60 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.UI;
-using UnityEngine.Video;
 
 public class QuestManager : MonoBehaviour
 {
-    public List<Quest> quests;
-    public Text questUIText;
-    public VideoPlayer videoPlayer;
-    private int currentQuestIndex = 0;
+    public List<Quest> quests = new List<Quest>();
+    public static QuestManager instance;
 
-    void Start()
-    {
-        StartQuest(currentQuestIndex);
-    }
+    public GameObject cutscene1;  // cutscene1 오브젝트 참조
 
-    public void StartQuest(int questIndex)
+    private void Awake()
     {
-        if (questIndex < quests.Count)
+        if (instance == null)
         {
-            Quest currentQuest = quests[questIndex];
-            questUIText.text = currentQuest.description;
-
-            // 필요한 트리거 박스 활성화
-            foreach (var trigger in currentQuest.activationTriggers)
-            {
-                trigger.SetActive(true);
-            }
-
-            // 동영상 재생
-            videoPlayer.url = currentQuest.videoPath;
-            videoPlayer.Play();
-
-            currentQuest.onStart?.Invoke();
+            instance = this;
+        }
+        else
+        {
+            Destroy(gameObject);
         }
     }
 
-    public void CompleteCurrentQuest()
+    public void AddQuest(Quest quest)
     {
-        if (currentQuestIndex < quests.Count)
+        quests.Add(quest);
+    }
+
+    public void CompleteObjective(int questID, string objective)
+    {
+        Quest quest = quests.Find(q => q.questID == questID);
+        if (quest != null && quest.objectives.Contains(objective))
         {
-            Quest currentQuest = quests[currentQuestIndex];
-            currentQuest.isCompleted = true;
+            quest.objectives.Remove(objective);
+            Debug.Log("Objective " + objective + " completed for Quest " + quest.questName);
 
-            // 완료 시 불필요한 트리거 비활성화
-            foreach (var trigger in currentQuest.deactivationTriggers)
+            // 모든 요구사항이 완료되었는지 확인
+            if (quest.objectives.Count == 0)
             {
-                trigger.SetActive(false);
-            }
+                quest.CompleteQuest();
 
-            currentQuest.onComplete?.Invoke();
-            currentQuestIndex++;
-            StartQuest(currentQuestIndex);
+                // 퀘스트 1이 완료되면 cutscene1 오브젝트를 활성화
+                if (questID == 1 && cutscene1 != null)
+                {
+                    cutscene1.SetActive(true);
+                    Debug.Log("cutscene1 has been activated.");
+                }
+            }
         }
     }
-}
 
-public class GameSetup : MonoBehaviour
-{
-    public QuestManager questManager;
-
-    void Start()
+    public void StartQuest(int questID)
     {
-        SetupQuests();
-        questManager.StartQuest(0); // 첫 퀘스트 시작
-    }
-
-    void SetupQuests()
-    {
-        // 퀘스트 1 설정
-        Quest quest1 = new Quest
+        Quest quest = quests.Find(q => q.questID == questID);
+        if (quest != null && !quest.isCompleted)
         {
-            questName = "퀘스트 1",
-            description = "지하 2층 연구실로 향하세요",
-            activationTriggers = new GameObject[] { GameObject.Find("Quest1Trigger") },
-            deactivationTriggers = new GameObject[] { },
-            videoPath = "Assets/Video/Cutscene1.mp4",
-            onComplete = () => { Debug.Log("퀘스트 1 완료"); }
-        };
-
-        // 퀘스트 2 설정
-        Quest quest2 = new Quest
-        {
-            questName = "퀘스트 2",
-            description = "지하 1층 방을 수색하여 연구 물품을 찾으세요",
-            activationTriggers = new GameObject[] { GameObject.Find("Quest2Trigger") },
-            deactivationTriggers = new GameObject[] { GameObject.Find("Quest1Trigger") },
-            videoPath = "Assets/Video/Cutscene2.mp4",
-            onComplete = () => { Debug.Log("퀘스트 2 완료"); }
-        };
-
-        questManager.quests.Add(quest1);
-        questManager.quests.Add(quest2);
+            Debug.Log("Starting Quest " + quest.questName);
+            // 퀘스트 시작에 대한 로직 추가 (예: 퀘스트 UI 업데이트)
+        }
     }
 }
