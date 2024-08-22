@@ -1,0 +1,11 @@
+Model Information:
+* title:	Fire Alarm Control Panel
+* source:	https://sketchfab.com/3d-models/fire-alarm-control-panel-813c052b25fd4471a254f2fe742a1ce4
+* author:	bigtree3d (https://sketchfab.com/bigtree3d)
+
+Model License:
+* license type:	CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
+* requirements:	Author must be credited. Commercial use is allowed.
+
+If you use this 3D model in your project be sure to copy paste this credit wherever you share it:
+This work is based on "Fire Alarm Control Panel" (https://sketchfab.com/3d-models/fire-alarm-control-panel-813c052b25fd4471a254f2fe742a1ce4) by bigtree3d (https://sketchfab.com/bigtree3d) licensed under CC-BY-4.0 (http://creativecommons.org/licenses/by/4.0/)
