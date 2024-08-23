@@ -127,7 +127,7 @@ public class EnemyMove : MonoBehaviour
         {
             //경로계산시작
 
-            Debug.Log("1");
+            //Debug.Log("1");
 
             NavMeshPath path = new NavMeshPath();//새로운 객체 생성
             nav.CalculatePath(target.position, path);
