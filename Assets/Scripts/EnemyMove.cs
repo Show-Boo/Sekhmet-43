@@ -30,11 +30,6 @@ public class EnemyMove : MonoBehaviour
     public float chaseRange = 15f;//플레이어를 쫓기 시작할 거리
 
     public float wanderRadius = 20f;//배회할 반경
-    public float wanderTimer; //배회할 시간 간격
-
-    //public float minWanderTimer = 3f; // 최소 배회 시간
-    //public float maxWanderTimer = 8f; // 최대 배회 시간
-    //private float timer;
 
     private float deadRange = 8f; // 숨어도 쫓는 거리->같은 방에 있는지 여부로 update
     public int EnemyRoomID = -1; //적이 있는 방의 id. room 스크립트에서 update할거임
@@ -98,9 +93,12 @@ public class EnemyMove : MonoBehaviour
         
         float distanceToPlayer = Vector3.Distance(target.position, transform.position);
 
+        //isDeadtrue로 시작
+
         if (EnemyRoomID != playerController.playerRoomID && !playerController.isPlayer1Active)//enemy랑 다른 방에서 숨으면 
         {
             isDead = false; //걍 wander
+            
             //target = ActivatedCamera.transform; //-> 같은 방에 있으면 활성화된 카메라를 타깃으로
             
         }//->wandering만 함ㅁ..
@@ -110,7 +108,7 @@ public class EnemyMove : MonoBehaviour
             {
                 if (playerController.isPlayer1Active)
                 {
-                    isDead = true;
+                    isDead = true;//isDead 돌리는 case
                 }
             }
             else
@@ -121,10 +119,12 @@ public class EnemyMove : MonoBehaviour
             //target = player.transform;
         }
 
+        Debug.Log("isDead : " + isDead);
+
 
         //쫓는 거리보다 작아질때&&1일때 -> 쫓기. 2면 쫓기 멈춤.. 근데 일정거리보다 가까워진다? 2여도 죽음
-        if (distanceToPlayer <= 16.0f ) //직선거리가 얼마 이하일때 거리 계산 시작
-        {
+        //if (distanceToPlayer <= 16.0f ) //직선거리가 얼마 이하일때 거리 계산 시작..근데 이러면 다른 층일때 문제가..
+        //{
             //경로계산시작
 
             //Debug.Log("1");
@@ -132,69 +132,85 @@ public class EnemyMove : MonoBehaviour
             NavMeshPath path = new NavMeshPath();//새로운 객체 생성
             nav.CalculatePath(target.position, path);
 
-            if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. bake된 길 위에 player가 있어야함
+        if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. bake된 길 위에 player가 있어야함
+        {
+
+            // 경로 길이 계산
+            float pathLength = GetPathLength(path);
+
+            // 경로 길이가 추적 범위 이내라면 플레이어를 쫓아감
+            if (pathLength <= chaseRange && isDead)//player1을 쫓는 경우
             {
+                // 플레이어 추적->chase
 
-                // 경로 길이 계산
-                float pathLength = GetPathLength(path);
+                nav.SetDestination(target.position);
+                isChase = true;
+                anim.SetBool("IsWalk", true);
 
-                // 경로 길이가 추적 범위 이내라면 플레이어를 쫓아감
-                if (pathLength <= chaseRange && isDead)
-                {
-                    // 플레이어 추적->chase
-                    
-                    nav.SetDestination(target.position);
-                    isChase = true;
-                    anim.SetBool("IsWalk", true);
-
-                    Targerting();//쫓기
-                    FreezeVelocity();
-                }
-                else //그냥 배회 로직. 랜덤 위치 설정 -> 이동 반복 isDead가 false인 경우..
-                {
-                    //Debug.Log("Is wander");
-                    // 배회 로직
-                    //timer += Time.deltaTime;
-
-                    //isChase = false; -> 밑 로직을 한 번만 수행하려는 노력
-
-                    anim.SetBool("IsWalk", false);
-
-                    //Debug.Log("2");
-                    Debug.Log(isChase);
-                    nav.speed = 1.5f;//걷는 속도 바꿔주기
-
-
-                    float distanceThreshold = 2.0f; //근방에 도달하면 complete
-
-                    //if (timer >= wanderTimer)
-                    if (isChase)
-                    {
-                        isChase = false;
-                        Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-                        destination = newPos;
-                        nav.SetDestination(destination);
-                        
-                        //SetRandomWanderTimer(); // 새로운 타이머 설정
-                        //timer = 0;
-                    }
-
-                    NavMeshPath pathToDestination = new NavMeshPath();
-                    nav.CalculatePath(target.position, pathToDestination);
-
-                    if ((Vector3.Distance(destination, transform.position) <= distanceThreshold) || (pathToDestination.status != NavMeshPathStatus.PathComplete))//근방에 도달했는지? 또는 destination으로의 길이 없다면
-                    {
-                        
-                        Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
-                        destination = newPos;
-                        nav.SetDestination(destination);
-                    }
-
-                    Debug.Log(Vector3.Distance(destination, transform.position));
-                }
+                Targerting();//쫓기
+                FreezeVelocity();
+            }
+            else//isDead가 false인 경우
+            {
+                Wandering();
             }
         }
+        
+        /*}
+        }
+        else
+        {
+            Wandering();
+        }
+        */
     }
+
+    void Wandering()
+    {
+         //그냥 배회 로직. 랜덤 위치 설정 -> 이동 반복 isDead가 false인 경우..
+        
+            //Debug.Log("Is wander");
+            // 배회 로직
+            //timer += Time.deltaTime;
+
+            //isChase = false; -> 밑 로직을 한 번만 수행하려는 노력
+
+            anim.SetBool("IsWalk", false);
+
+            //Debug.Log("2");
+            //Debug.Log(isChase);
+            nav.speed = 1.5f;//걷는 속도 바꿔주기
+
+
+            float distanceThreshold = 2.0f; //근방에 도달하면 complete
+
+            //if (timer >= wanderTimer)
+            if (isChase)
+            {
+                isChase = false;
+                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+                destination = newPos;
+                nav.SetDestination(destination);
+
+                //SetRandomWanderTimer(); // 새로운 타이머 설정
+                //timer = 0;
+            }
+
+            NavMeshPath pathToDestination = new NavMeshPath();
+            nav.CalculatePath(target.position, pathToDestination);
+
+            if ((Vector3.Distance(destination, transform.position) <= distanceThreshold) || (pathToDestination.status != NavMeshPathStatus.PathComplete))//근방에 도달했는지? 또는 destination으로의 길이 없다면
+            {
+
+                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
+                destination = newPos;
+                nav.SetDestination(destination);
+            }
+
+            Debug.Log(Vector3.Distance(destination, transform.position));
+        
+    }
+
 
     float GetPathLength(NavMeshPath path)
     {
@@ -233,14 +249,10 @@ public class EnemyMove : MonoBehaviour
         //RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player")); //Player 객체에 속하는 애들까지의 거리 측정
         //객체가 여러개라면 []여기에 정보저장 
         
-        if (isDead)
-        {
-            target = ActivatedCamera.transform;
-        }
-        else
-        {
-            target = player.transform;
-        }
+        
+        target = ActivatedCamera.transform;
+        
+        
 
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
