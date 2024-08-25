@@ -57,6 +57,7 @@ public class EnemyMove : MonoBehaviour
         
 
         Invoke("WanderStart", 2);//chasestart 2초 후에
+
         rigid.velocity = Vector3.zero; // 이동속도 멈추기
 
         //timer = minWanderTimer;//gpt
@@ -82,7 +83,7 @@ public class EnemyMove : MonoBehaviour
         isWander = true;
 
         //FreezeVelocity();
-
+        
         
         anim.SetBool("IsWander", true);//->wander 동작 실행
 
@@ -119,9 +120,9 @@ public class EnemyMove : MonoBehaviour
             //target = player.transform;
         }
 
-        Debug.Log("isDead : " + isDead);
+        //Debug.Log("isDead : " + isDead);
 
-
+        //-----------------------------------------------------------------------------------------------------------------------------------
         //쫓는 거리보다 작아질때&&1일때 -> 쫓기. 2면 쫓기 멈춤.. 근데 일정거리보다 가까워진다? 2여도 죽음
         //if (distanceToPlayer <= 16.0f ) //직선거리가 얼마 이하일때 거리 계산 시작..근데 이러면 다른 층일때 문제가..
         //{
@@ -150,12 +151,22 @@ public class EnemyMove : MonoBehaviour
                 Targerting();//쫓기
                 FreezeVelocity();
             }
-            else//isDead가 false인 경우
+            else//isDead가 false인 경우, player가 유효한 길 위에 있는 경우
             {
                 Wandering();
             }
         }
         
+        if (distanceToPlayer<= 10.0f)
+        {
+            playerController.HeartBeatPlaying = true;
+            Debug.Log("distance to player is less then 10.0");
+        }
+        else
+        {
+            playerController.HeartBeatPlaying = false;
+            Debug.Log("distance to player is more then 10.0");
+        }
         /*}
         }
         else
@@ -207,7 +218,7 @@ public class EnemyMove : MonoBehaviour
                 nav.SetDestination(destination);
             }
 
-            Debug.Log(Vector3.Distance(destination, transform.position));
+            //Debug.Log(Vector3.Distance(destination, transform.position));
         
     }
 
@@ -244,16 +255,12 @@ public class EnemyMove : MonoBehaviour
        // float targetRadius = 1.0f;
         //float targetRange = 1.5f;
 
-        nav.speed = 4f; // 쫓는 속도 6이면 player보다 빠름
+        nav.speed = 3f; // 쫓는 속도 6이면 player보다 빠름
 
         //RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player")); //Player 객체에 속하는 애들까지의 거리 측정
         //객체가 여러개라면 []여기에 정보저장 
-        
-        
         target = ActivatedCamera.transform;
-        
-        
-
+      
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
 
         playerController.isBeating = true;

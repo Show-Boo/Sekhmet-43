@@ -40,10 +40,12 @@ public class PlayerHiding : MonoBehaviour
     public Color crosshairNormalColor = Color.white;
     public Color crosshairHoverColor = Color.red;
 
-    public AudioClip soundClip; // 재생할 소리
+    public AudioClip soundClip; // 재생할 소리 받아옴
     private AudioSource audioSource;
 
     public bool isBeating = false;
+
+    public bool HeartBeatPlaying = false;
     void Start()
     {
         enemyMove = FindObjectsOfType<EnemyMove>();
@@ -120,8 +122,21 @@ public class PlayerHiding : MonoBehaviour
 
         if (isBeating)
         {
-            PlaySound();
+            //PlaySound();
         }
+
+        if (HeartBeatPlaying)
+        {
+            PlaySound();
+            Debug.Log("Play");
+        }
+        else
+        {
+            endSound();
+
+            Debug.Log("end");
+        }
+
     }
 
     void SwitchCamera()
@@ -206,6 +221,11 @@ public class PlayerHiding : MonoBehaviour
         {
             audioSource.Play();
         }
+    }
+
+    void endSound()
+    {
+        audioSource.Stop();
     }
 
 
