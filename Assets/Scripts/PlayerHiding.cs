@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 //Todo 1. 활성화 된 hiding 카메라만 움직이기 -> done
@@ -28,6 +29,8 @@ public class PlayerHiding : MonoBehaviour
     public Ray playerRay; //player에서 나오는 Ray
 
     private EnemyMove[] enemyMove;
+
+    public GameObject player;
 
     //Raycast
     public Camera playerCamera; // 플레이어의 카메라
@@ -110,7 +113,7 @@ public class PlayerHiding : MonoBehaviour
             {
                 if (previousCamera != null)
                 {
-                    CurrentCamera = previousCamera;
+                    CurrentCamera = previousCamera;//이전 -> 현재 카메라로 넣어주기
                     SwitchCamera();
                 }
                 else
@@ -153,12 +156,15 @@ public class PlayerHiding : MonoBehaviour
             if (CurrentCamera != null)
             {
                 CurrentCamera.gameObject.SetActive(true);
-                
+                AudioListener newListener = CurrentCamera.GetComponent<AudioListener>();//리스너
+                newListener.enabled = true;
                 //Debug.Log("Switched to CurrentCamera: " + CurrentCamera.name);
             }
-
+            AudioListener nowListener = playerCamera.GetComponent<AudioListener>();
             playerCamera.gameObject.SetActive(false);
-
+            player.SetActive(false);
+            nowListener.enabled = false;
+            
             
             foreach (var enemyMoveScript in enemyMove)
             {
@@ -172,18 +178,23 @@ public class PlayerHiding : MonoBehaviour
             previousCamera = CurrentCamera;
 
         }
-        else//숨었을때
+        else//숨었을때Q가 눌리면
         {
             // 플레이어 카메라를 활성화하고 다른 오브젝트의 카메라를 비활성화
 
             playerCamera.gameObject.SetActive(true);
+            player.SetActive(true);
+
+            AudioListener newListener = playerCamera.GetComponent<AudioListener>();//리스너
+            newListener.enabled = true;
 
             if (previousCamera != null)
             {
 
                 previousCamera.gameObject.SetActive(false);
-                Debug.Log("Switched to PlayerCamera.");
-
+                //Debug.Log("Switched to PlayerCamera.");
+                AudioListener nowListener = previousCamera.GetComponent<AudioListener>();
+                nowListener.enabled = false;
             }
             
             foreach (var enemyMoveScript in enemyMove)
