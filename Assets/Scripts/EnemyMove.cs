@@ -41,6 +41,12 @@ public class EnemyMove : MonoBehaviour
     public Camera ActivatedCamera;
 
     public Vector3 destination;
+
+    public AudioClip soundClip; // 재생할 소리 받아옴
+    private AudioSource audioSource;
+
+    public bool playedSound = false;//소리를 울렸었는지
+
     void Awake()//시작할때 처음만
     {
         target = player.transform;
@@ -65,6 +71,14 @@ public class EnemyMove : MonoBehaviour
         destination = target.position; //걍 초기값 설정
 
         ActivatedCamera =  player.GetComponentInChildren<Camera>();
+
+        // AudioSource 컴포넌트를 가져옵니다.
+        audioSource = GetComponent<AudioSource>();
+        // 소리 클립을 설정합니다.
+        audioSource.clip = soundClip;
+        // Play On Awake 옵션을 끕니다 (게임 시작 시 자동 재생 방지)
+        audioSource.playOnAwake = false;
+
     }
 
     void FreezeVelocity()//1
@@ -150,6 +164,8 @@ public class EnemyMove : MonoBehaviour
 
                 Targerting();//쫓기
                 FreezeVelocity();
+                PlaySound();//한 번만 울리게
+
             }
             else//isDead가 false인 경우, player가 유효한 길 위에 있는 경우
             {
@@ -194,6 +210,7 @@ public class EnemyMove : MonoBehaviour
             //isChase = false; -> 밑 로직을 한 번만 수행하려는 노력
 
             anim.SetBool("IsWalk", false);
+        playedSound = false;
 
             //Debug.Log("2");
             //Debug.Log(isChase);
@@ -203,7 +220,7 @@ public class EnemyMove : MonoBehaviour
             float distanceThreshold = 2.0f; //근방에 도달하면 complete
 
             //if (timer >= wanderTimer)
-            if (isChase)
+            if (isChase)//처음 쫓기 시작하는 경우
             {
                 isChase = false;
                 Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, -1);
@@ -225,6 +242,8 @@ public class EnemyMove : MonoBehaviour
             }
 
             //Debug.Log(Vector3.Distance(destination, transform.position));
+
+
         
     }
 
@@ -308,6 +327,20 @@ public class EnemyMove : MonoBehaviour
         anim.SetBool("IsAttack", false);
 
         Debug.Log("end Attack");
+    }
+
+    void PlaySound()
+    {
+        // 소리가 틀어진 적 없다면 틀어짐
+        if (!playedSound)
+        {
+            audioSource.Play();
+        }
+    }
+
+    void endSound()
+    {
+        audioSource.Stop();
     }
 
 }
