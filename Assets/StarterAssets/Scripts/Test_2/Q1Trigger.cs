@@ -12,7 +12,4 @@ public class Q1Trigger : MonoBehaviour
             questManager.CompleteObjective(0); // 첫 번째 퀘스트 완료.
         }
     }
-
-
-
 }
