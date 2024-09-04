@@ -45,7 +45,7 @@ public class QManager : MonoBehaviour
                 StartQ(currentQIndex);
             }
         }
-        else
+        else//퀘스트가 끝난 경우에 이 오류로 빠질수도..?아마..
         {
             Debug.LogWarning($"Quest {questIndex} cannot be completed yet. Complete the current quest first.");
         }

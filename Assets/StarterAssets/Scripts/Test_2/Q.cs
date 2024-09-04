@@ -14,10 +14,10 @@ public class Q : MonoBehaviour
     public bool isActive = false;  // 퀘스트 활성화 여부
     public bool isCompleted = false;  // 퀘스트 완료 여부
 
-    public VideoPlayer videoPlayer;
+    //public VideoPlayer videoPlayer;
     //public PlayerController playerController;
     public CutSceneController cutsceneController;
-    public int cutsceneIndex=0;
+    public int cutsceneIndex = 0;
 
     
 
@@ -34,7 +34,7 @@ public class Q : MonoBehaviour
         {
             Debug.Log($"{questName} cutscene has been activated.");
             cutsceneController.PlayCutscene(cutsceneIndex);
-            cutsceneIndex++;
+            cutsceneIndex++;//컷씬이 있는 경우에만 index++
         }
 
         isCompleted = true;
