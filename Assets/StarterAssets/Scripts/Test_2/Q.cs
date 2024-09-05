@@ -19,6 +19,8 @@ public class Q : MonoBehaviour
     public CutSceneController cutsceneController;
     public int cutsceneIndex = 0;
 
+    public GameObject cube;
+
     public virtual void UpdateQuest()
     {
         // 이 함수는 특정 퀘스트가 활성화된 동안 매 프레임마다 호출됩니다.
@@ -38,7 +40,12 @@ public class Q : MonoBehaviour
 
         isCompleted = true;
         isActive = false;
+        NextQuest();
         Debug.Log($"{questName} completed!");
     }
 
+    public virtual void NextQuest()//다음 퀘스트를 위해 오브젝트들 활성화/비활성화하는 코드!! 오버라이드 가능
+    {
+        cube.SetActive(true);
+    }
 }
