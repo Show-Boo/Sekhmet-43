@@ -15,20 +15,20 @@ public class CutSceneController : MonoBehaviour
     {
         foreach (var videoPlayer in videoPlayers)
         {
-            // 각각의 비디오 플레이어에 이벤트 등록
-            //videoPlayer.started += DisablePlayerControl;
+            // 각각의 비디오 플레이어에 이벤트 등록. 연결해준다는 개념으로 생각하면 됨
+            videoPlayer.started += DisablePlayerControl;
             videoPlayer.loopPointReached += EnablePlayerControl;
         }
     }
 
     void DisablePlayerControl(VideoPlayer vp)
     {
-        playerController.enabled = false;
+        playerController.enabled = false;//컷씬 시작하면 player 멈춰주기
     }
 
     void EnablePlayerControl(VideoPlayer vp)
     {
-        playerController.enabled = true;
+        playerController.enabled = true;//컷씬 끝나면 player 이동 가능하게 해주기
         videoPlayers[nowIndex].enabled = false;
     }
 
