@@ -9,6 +9,7 @@ public class QuestManager : MonoBehaviour
     public Q_ParentClass[] Quest;//퀘스트배열
     private int currentQuestIndex = 0;//현재 진행중인 퀘스트 인덱스
 
+    
     void Start()
     {
         StartQuest(currentQuestIndex);
@@ -33,11 +34,11 @@ public class QuestManager : MonoBehaviour
         }
     }
 
-    public void CompleteObjective(int questIndex)
+    public void CompleteObjective()
     {
-        if (questIndex == currentQuestIndex && Quest[questIndex].isActive)
+        if (Quest[currentQuestIndex].isActive)
         {
-            Quest[questIndex].CompleteQuest();
+            Quest[currentQuestIndex].CompleteQuest();
             currentQuestIndex++;
 
             // 다음 퀘스트가 있다면 시작
@@ -46,9 +47,9 @@ public class QuestManager : MonoBehaviour
                 StartQuest(currentQuestIndex);
             }
         }
-        else//퀘스트가 끝난 경우에 이 오류로 빠질수도..?아마..
+        else//퀘스트가 끝난 경우에 이 오류로 빠질수도..?아마..아니야그럴리가없어
         {
-            Debug.LogWarning($"Quest {questIndex} cannot be completed yet. Complete the current quest first.");
+            Debug.LogWarning($"Quest {currentQuestIndex} cannot be completed yet. Complete the current quest first.");
         }
     }
     
