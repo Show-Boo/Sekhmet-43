@@ -10,7 +10,7 @@ public class Q : MonoBehaviour
     // Start is called before the first frame update
 
     public string questName;  // 퀘스트 이름
-    public virtual bool cutscene { get; set; } = true;  // 퀘스트 완료 시 재생될 컷씬이 있는지 여부
+    public virtual bool Cutscene { get; set; } = true;  // 퀘스트 완료 시 재생될 컷씬이 있는지 여부
     public bool isActive = false;  // 퀘스트 활성화 여부
     public bool isCompleted = false;  // 퀘스트 완료 여부
 
@@ -31,11 +31,11 @@ public class Q : MonoBehaviour
 
     public void CompleteQuest()//컷씬은 하나의 퀘스트가 끝나는 경우에 틀어짐
     {
-        if (cutscene ==true)//컷씬이 있는 경우만
+        if (Cutscene == true)//컷씬이 있는 경우만
         {
             Debug.Log($"{questName} cutscene has been activated.");
-            cutsceneController.PlayCutscene(cutsceneIndex);
-            cutsceneIndex++;//컷씬이 있는 경우에만 index++
+            cutsceneController.PlayCutscene();
+            //cutsceneIndex++;//컷씬이 있는 경우에만 index++
         }
 
         isCompleted = true;

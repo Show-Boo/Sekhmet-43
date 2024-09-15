@@ -10,7 +10,7 @@ public class CutSceneController : MonoBehaviour
     public PlayerMovement playerController; // PlayerMovement와 같은 플레이어 컨트롤러 스크립트를 연결합니다.
 
 
-    public int nowIndex;
+    public int nowIndex = 0;
     void Start()
     {
         foreach (var videoPlayer in videoPlayers)
@@ -32,14 +32,15 @@ public class CutSceneController : MonoBehaviour
         videoPlayers[nowIndex].enabled = false;
     }
 
-    public void PlayCutscene(int index)
+    public void PlayCutscene()
     {
-        if (index >= 0 && index < videoPlayers.Length)
+
+        if (nowIndex >= 0 && nowIndex < videoPlayers.Length)
         {
-            videoPlayers[index].Play();
+            videoPlayers[nowIndex].Play();
             Debug.Log("video play");
 
-            nowIndex = index;
+            nowIndex++;
 
         }
     }

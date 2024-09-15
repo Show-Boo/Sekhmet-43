@@ -25,7 +25,7 @@ public class ActionController : MonoBehaviour
         // 필요한 컴포넌트들이 할당되어 있는지 체크
         if (actionText == null)
         {
-            Debug.LogError("ActionText is not assigned in the inspector.");
+            Debug.Log("ActionText is not assigned in the inspector.");
         }
 
         if (theInventory == null)

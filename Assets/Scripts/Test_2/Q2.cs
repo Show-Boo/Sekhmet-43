@@ -5,7 +5,7 @@ using UnityEngine;
 public class Q2 : Q
 {
     public GameObject item;
-    public override bool cutscene { get; set; } = false;
+    public override bool Cutscene { get; set; } = false;
     public bool tagPlayer = false;
 
     public GameObject text;
