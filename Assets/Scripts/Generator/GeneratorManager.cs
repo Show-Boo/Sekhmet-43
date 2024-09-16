@@ -6,7 +6,7 @@ public class GeneratorManager : MonoBehaviour
 {
     public static GeneratorManager Instance { get; private set; }
 
-    private int fixedGeneratorCount = 0;
+    private int fixedGeneratorCount = 0; // 수리 완료된 발전기 수
     private int totalGenerators = 3; // 발전기의 총 수
     private bool hangarLightsOn = false;
 
@@ -18,8 +18,6 @@ public class GeneratorManager : MonoBehaviour
     public GameObject audioPlayer; // AudioPlayer 오브젝트를 참조할 변수
 
     private AudioSource audioSource;
-
-
 
     void Awake()
     {
@@ -50,41 +48,39 @@ public class GeneratorManager : MonoBehaviour
     public void RepairGenerator()
     {
         fixedGeneratorCount++;
-        
-        Debug.Log(fixedGeneratorCount);
+        Debug.Log($"수리된 발전기 수: {fixedGeneratorCount}/{totalGenerators}");
 
+        // 모든 발전기가 수리되었는지 체크
         if (fixedGeneratorCount >= totalGenerators && !hangarLightsOn)
         {
             hangarLightsOn = true;
             StartCoroutine(TurnOnHangarLights());
-
-            Debug.Log("Lights On");
-
+            TriggerFinalEvent(); // 모든 발전기가 수리되었을 때 실행할 메서드 호출
+            Debug.Log("모든 발전기가 완료되었습니다."); // 메시지 출력
             audioSource.Play();
         }
     }
 
+    private void TriggerFinalEvent()
+    {
+        // 모든 발전기가 수리되었을 때 발생할 이벤트를 여기에 작성
+        Debug.Log("모든 발전기가 작동합니다!"); // 예시로 로그 출력
+        // 예: 게임에서 특정 행동을 트리거하는 코드 추가
+        // 예를 들어, UI를 활성화하거나, 새로운 적이 등장하게 하거나 하는 등의 작업
+    }
+
     private IEnumerator TurnOnHangarLights()
     {
-        // 격납고에 불을 켜는 로직을 여기에 작성
         if (hangarLight != null)
         {
             hangarLight.SetActive(true); // 불을 켬
-            //Debug.Log("격납고에 불이 켜졌습니다!");
-
-            yield return new WaitForSeconds(0.5f); // 0.3초 대기
+            yield return new WaitForSeconds(0.5f); // 0.5초 대기
             hangarLight.SetActive(false); // 불을 끔
-            //Debug.Log("격납고에 불이 꺼졌습니다.");
-
-            yield return new WaitForSeconds(0.2f); // 0.5초 대기
+            yield return new WaitForSeconds(0.2f); // 0.2초 대기
             hangarLight.SetActive(true); // 불을 다시 켬
-            //Debug.Log("격납고에 불이 다시 켜졌습니다.");
-
-            yield return new WaitForSeconds(0.2f); // 0.3초 대기
+            yield return new WaitForSeconds(0.2f); // 0.2초 대기
             hangarLight.SetActive(false); // 불을 끔
-            //Debug.Log("격납고에 불이 꺼졌습니다.");
-
-            yield return new WaitForSeconds(0.2f); // 0.5초 대기
+            yield return new WaitForSeconds(0.2f); // 0.2초 대기
             hangarLight.SetActive(true); // 불을 다시 켬
             Debug.Log("격납고에 불이 다시 켜졌습니다.");
         }
@@ -94,4 +90,3 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 }
-
