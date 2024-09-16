@@ -9,6 +9,8 @@ public class Opening : MonoBehaviour
     public VideoPlayer OpeningVideo; // VideoPlayer 컴포넌트를 연결합니다.
     public PlayerMovement playerController;
 
+    public BoxCollider[] boxColliders;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -16,6 +18,14 @@ public class Opening : MonoBehaviour
         OpeningVideo.loopPointReached += EnablePlayerControl;
         OpeningVideo.Play();
         Debug.Log("opening video play");
+
+        foreach (BoxCollider B in boxColliders)
+        {
+            if (B.enabled)
+            {
+                B.enabled = false;  //박스들 비활성화
+            }
+        }
     }
 
     // Update is called once per frame

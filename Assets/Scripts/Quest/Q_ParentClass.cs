@@ -14,10 +14,8 @@ public class Q_ParentClass: MonoBehaviour
 
     public bool isActive = false;  // 퀘스트 활성화 여부
     public bool isCompleted = false;  // 퀘스트 완료 여부
-
     
     public CutSceneController cutsceneController;
-    public int cutsceneIndex;
 
     public virtual void UpdateQuest()
     {

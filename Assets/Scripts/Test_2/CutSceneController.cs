@@ -11,6 +11,7 @@ public class CutSceneController : MonoBehaviour
 
 
     public int nowIndex = 0;
+    public int previousIndex = 0;
     void Start()
     {
         foreach (var videoPlayer in videoPlayers)
@@ -29,7 +30,10 @@ public class CutSceneController : MonoBehaviour
     void EnablePlayerControl(VideoPlayer vp)
     {
         playerController.enabled = true;//컷씬 끝나면 player 이동 가능하게 해주기
-        videoPlayers[nowIndex].enabled = false;
+        
+        videoPlayers[previousIndex].enabled = false;
+
+        Debug.Log(previousIndex + "video end");
     }
 
     public void PlayCutscene()
@@ -39,6 +43,7 @@ public class CutSceneController : MonoBehaviour
         {
             videoPlayers[nowIndex].Play();
             Debug.Log("video play");
+            previousIndex = nowIndex;
 
             nowIndex++;
 

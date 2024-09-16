@@ -11,6 +11,7 @@ TagManager:
   - Enemy
   - AttackZone
   - HidingSpot
+  - ExcludeLight
   layers:
   - Default
   - TransparentFX

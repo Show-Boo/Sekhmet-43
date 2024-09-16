@@ -5,7 +5,7 @@ using UnityEngine;
 public class QuestManager : MonoBehaviour
 {
     //0913 여기 코드는 수정이 더 필요할듯
-    // Start is called before the first frame update
+    
     public Q_ParentClass[] Quest;//퀘스트배열
     private int currentQuestIndex = 0;//현재 진행중인 퀘스트 인덱스
 
