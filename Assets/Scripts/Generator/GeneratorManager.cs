@@ -7,7 +7,7 @@ public class GeneratorManager : MonoBehaviour
     public static GeneratorManager Instance { get; private set; }
 
     private int fixedGeneratorCount = 0;
-    private int totalGenerators = 1; // 발전기의 총 수
+    private int totalGenerators = 3; // 발전기의 총 수
     private bool hangarLightsOn = false;
 
     public GameObject hangarLight;
