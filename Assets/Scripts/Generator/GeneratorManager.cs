@@ -6,18 +6,19 @@ public class GeneratorManager : MonoBehaviour
 {
     public static GeneratorManager Instance { get; private set; }
 
-    private int fixedGeneratorCount = 0; // 수리 완료된 발전기 수
+    private int fixedGeneratorCount = 0;
     private int totalGenerators = 3; // 발전기의 총 수
     private bool hangarLightsOn = false;
 
     public GameObject hangarLight;
-
     public GameObject targetObject; // 회전시킬 대상 오브젝트
     public float rotationSpeed = 100f; // 회전 속도
-
     public GameObject audioPlayer; // AudioPlayer 오브젝트를 참조할 변수
 
     private AudioSource audioSource;
+
+    private HashSet<int> completedGenerators = new HashSet<int>(); // 완료된 발전기 ID를 추적
+
 
     void Awake()
     {
@@ -37,7 +38,38 @@ public class GeneratorManager : MonoBehaviour
         }
     }
 
-    private void Update()
+
+    public void RepairGenerator(int generatorId)
+    {
+        // 이미 완료된 발전기라면 무시
+        if (completedGenerators.Contains(generatorId))
+        {
+            Debug.Log("발전기 " + generatorId + "은(는) 이미 완료되었습니다.");
+            return;
+        }
+
+        // 발전기 수리 완료 처리
+        completedGenerators.Add(generatorId);
+        fixedGeneratorCount++;
+
+        Debug.Log("발전기 " + generatorId + " 완료 (" + fixedGeneratorCount + "/" + totalGenerators + ")");
+
+        // 모든 발전기가 완료되었는지 확인
+        if (fixedGeneratorCount >= totalGenerators)
+        {
+            Debug.Log("모든 발전기가 완료되었습니다.");
+            OnAllGeneratorsFixed();
+        }
+    }
+
+    private void OnAllGeneratorsFixed()
+    {
+        // 여기서 모든 발전기 완료 시 수행할 동작을 정의
+        Debug.Log("모든 발전기 수리가 완료되었습니다. 작업이 끝났습니다.");
+    }
+
+
+private void Update()
     {
         if (hangarLightsOn)
         {

@@ -28,6 +28,10 @@ public class GeneratorController : MonoBehaviour
     private AudioSource repairingAudioSource;
     private bool soundPlaying = false;
 
+    public int id; // 각 발전기에 고유 ID를 부여
+    public bool isComplete = false; // 발전기 완료 상태 추가
+    private bool progressComplete = false;
+
     void Start()
     {
         completeText.enabled = false;
@@ -40,7 +44,14 @@ public class GeneratorController : MonoBehaviour
             playerHiding = FindObjectOfType<PlayerHiding>();
         }
 
-        repairingAudioSource = repairingAudio.GetComponent<AudioSource>();
+        if (repairingAudio != null)
+        {
+            repairingAudioSource = repairingAudio.GetComponent<AudioSource>();
+        }
+        else
+        {
+            Debug.LogError("Repairing audio object is not assigned!");
+        }
     }
 
     void Update()
@@ -69,7 +80,7 @@ public class GeneratorController : MonoBehaviour
 
                         elapsedTime += Time.deltaTime;
 
-                        if (!soundPlaying)
+                        if (!soundPlaying && repairingAudioSource != null)
                         {
                             repairingAudioSource.Play();
                             soundPlaying = true;
@@ -82,8 +93,12 @@ public class GeneratorController : MonoBehaviour
                             HideBars();
                             CompleteProgress();
 
-                            GeneratorManager.Instance.RepairGenerator();
-                            repairingAudioSource.Stop();
+                            // 수리 완료 시 메서드 호출
+                            GeneratorManager.Instance.RepairGenerator(id);
+                            if (repairingAudioSource != null)
+                            {
+                                repairingAudioSource.Stop();
+                            }
                         }
                         else
                         {
@@ -102,7 +117,10 @@ public class GeneratorController : MonoBehaviour
                             redBar.sizeDelta = new Vector2(0, redBar.sizeDelta.y);
                             isHolding = false;
 
-                            repairingAudioSource.Stop();
+                            if (repairingAudioSource != null)
+                            {
+                                repairingAudioSource.Stop();
+                            }
                             soundPlaying = false;
                         }
                     }
@@ -122,7 +140,10 @@ public class GeneratorController : MonoBehaviour
                 redBar.sizeDelta = new Vector2(0, redBar.sizeDelta.y);
                 isHolding = false;
 
-                repairingAudioSource.Stop();
+                if (repairingAudioSource != null)
+                {
+                    repairingAudioSource.Stop();
+                }
                 soundPlaying = false;
             }
         }
@@ -130,18 +151,37 @@ public class GeneratorController : MonoBehaviour
 
     private void CompleteProgress()
     {
-        isFixed = true; // 개별 발전기 수리 완료 상태로 설정
+        progressComplete = true;
         isHolding = false;
-        completeText.enabled = true;
+
+        if (completeText != null)
+        {
+            completeText.enabled = true;
+
+            // 3초 후에 메시지를 비활성화
+            Invoke("HideCompleteMessage", 3f);
+        }
+        else
+        {
+            Debug.LogError("CompleteText is not assigned!");
+        }
+
+        // 마우스 커서 다시 보이도록 설정
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
 
-        Invoke("HideCompleteMessage", 3f);
+        // GeneratorManager에 발전기 수리 완료를 알림
+        GeneratorManager.Instance.RepairGenerator(id);
+
+        Debug.Log("발전기 " + id + "가 수리되었습니다.");
     }
 
     private void HideCompleteMessage()
     {
-        completeText.enabled = false;
+        if (completeText != null)
+        {
+            completeText.enabled = false;
+        }
     }
 
     private void HideBars()

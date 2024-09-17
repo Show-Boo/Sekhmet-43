@@ -2102,6 +2102,8 @@ MonoBehaviour:
     m_Bits: 1024
   playerHiding: {fileID: 1000703532}
   repairingAudio: {fileID: 29069498}
+  id: 2
+  isComplete: 0
 --- !u!4 &740985250 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e80177aa2f8c1024196fb846b95babdc, type: 3}
@@ -3049,6 +3051,8 @@ MonoBehaviour:
     m_Bits: 1024
   playerHiding: {fileID: 1000703532}
   repairingAudio: {fileID: 190225485}
+  id: 1
+  isComplete: 0
 --- !u!4 &1275085177 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e80177aa2f8c1024196fb846b95babdc, type: 3}
@@ -4400,6 +4404,8 @@ MonoBehaviour:
     m_Bits: 1024
   playerHiding: {fileID: 1000703532}
   repairingAudio: {fileID: 69926549}
+  id: 3
+  isComplete: 0
 --- !u!4 &1550728923 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: -8679921383154817045, guid: e80177aa2f8c1024196fb846b95babdc, type: 3}
