@@ -59,6 +59,7 @@ public class EnemyMove : MonoBehaviour
         anim = GetComponent<Animator>();
 
         playerController = target.GetComponent<PlayerHiding>();//다른 스크립트에서 가져오기
+
         P = FindObjectOfType<PlayerController>();
         
 

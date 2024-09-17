@@ -9,7 +9,7 @@ public class LightController : MonoBehaviour
     private List<Light> pointLights;
     public List<Light> excludedLights;  // Á¦¿ÜÇÒ Point Light ¸®½ºÆ®
 
-    public float blinkInterval = 1.0f; // ±ôºý°Å¸®´Â °£°Ý
+    public float blinkInterval = 0.5f; // ±ôºý°Å¸®´Â °£°Ý
 
 
     void Start()
