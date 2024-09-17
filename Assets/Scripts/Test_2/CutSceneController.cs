@@ -4,6 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Video;
 
+using UnityEngine.SceneManagement;
+
 public class CutSceneController : MonoBehaviour
 {
     public VideoPlayer[] videoPlayers; // VideoPlayer 컴포넌트를 연결합니다.
@@ -12,6 +14,8 @@ public class CutSceneController : MonoBehaviour
 
     public int nowIndex = 0;
     public int previousIndex = 0;
+
+    public bool Scenechange = false;
     void Start()
     {
         foreach (var videoPlayer in videoPlayers)
@@ -24,16 +28,23 @@ public class CutSceneController : MonoBehaviour
 
     void DisablePlayerControl(VideoPlayer vp)
     {
-        playerController.enabled = false;//컷씬 시작하면 player 멈춰주기
+        //playerController.enabled = false;//컷씬 시작하면 player 멈춰주기
     }
 
     void EnablePlayerControl(VideoPlayer vp)
     {
-        playerController.enabled = true;//컷씬 끝나면 player 이동 가능하게 해주기
+        //playerController.enabled = true;//컷씬 끝나면 player 이동 가능하게 해주기
         
         videoPlayers[previousIndex].enabled = false;
 
         Debug.Log(previousIndex + "video end");
+
+        if (Scenechange)
+        {
+            ChangeSceneByName("myproject");
+        }
+
+
     }
 
     public void PlayCutscene()
@@ -48,5 +59,10 @@ public class CutSceneController : MonoBehaviour
             nowIndex++;
 
         }
+    }
+
+    public void ChangeSceneByName(string sceneName)
+    {
+        SceneManager.LoadScene(sceneName);
     }
 }

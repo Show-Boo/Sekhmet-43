@@ -32,10 +32,11 @@ public class LightController : MonoBehaviour
             }
         }
 
-        //ChangeAllPointLightsExceptExcluded(Color.red);
+        ChangeAllPointLightsExceptExcluded(Color.red);
     }
 
-    // 제외된 Point Light를 제외하고 나머지의 색을 변경하는 함수
+    // 제외된 Point Light를 제외하고 나머지의 색을 변경하는 함수 + 깜빡거리게
+
     public void ChangeAllPointLightsExceptExcluded(Color newColor)
     {
         foreach (Light light in pointLights)
