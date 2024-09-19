@@ -38,7 +38,6 @@ public class Q_ParentClass: MonoBehaviour
         isActive = false;
 
         NextQuest();//다음 퀘스트를 위한 오브젝트 활성화
-
         Debug.Log($"{questName} completed!");
     }
 

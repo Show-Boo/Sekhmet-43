@@ -6,7 +6,7 @@ public class DisplayUIOnApproach : MonoBehaviour
     public GameObject textUI;  // 텍스트 UI 오브젝트
     public float triggerDistance = 5.0f;  // UI가 표시될 거리
 
-    public bool isFirst = false;
+    public bool isFirst = false; //처음 player가 닿는 순간 
 
     void Update()
     {
