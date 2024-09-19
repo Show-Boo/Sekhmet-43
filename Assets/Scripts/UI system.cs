@@ -6,6 +6,8 @@ public class DisplayUIOnApproach : MonoBehaviour
     public GameObject textUI;  // 텍스트 UI 오브젝트
     public float triggerDistance = 5.0f;  // UI가 표시될 거리
 
+    public bool isFirst = false;
+
     void Update()
     {
         // 플레이어와 문(이 스크립트가 붙어 있는 오브젝트)의 거리 계산
@@ -15,6 +17,10 @@ public class DisplayUIOnApproach : MonoBehaviour
         if (distance <= triggerDistance)
         {
             textUI.SetActive(true);
+            if (!isFirst)
+            {
+                isFirst = true;
+            }
         }
         else
         {

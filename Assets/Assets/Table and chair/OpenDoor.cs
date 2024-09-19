@@ -16,8 +16,5 @@ public class OpenDoor : MonoBehaviour {
 
         if (Input.GetKey(KeyCode.E))
             hingehere.Play();
-
-    
-        
     }
 }

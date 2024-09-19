@@ -22,7 +22,5 @@ public class PickKeyTries : MonoBehaviour
 
         if (Input.GetKey(KeyCode.E))
             keygone.SetActive(false);
-
-
     }
 }
