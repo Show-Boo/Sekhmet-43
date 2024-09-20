@@ -10,12 +10,16 @@ public class Q_ParentClass: MonoBehaviour
     //parent class
 
     public string questName;  // 퀘스트 이름
-    public virtual bool cutscene { get; set; } = true;  // 퀘스트 완료 시 재생될 컷씬이 있는지 여부. 오버라이드 가능
+
+    [SerializeField] public bool true_cutscene = true;
+    [SerializeField] public bool false_cutscene = false;
+    public virtual bool cutscene { get => true_cutscene; set => true_cutscene = value; }  // 퀘스트 완료 시 재생될 컷씬이 있는지 여부. 오버라이드 가능
 
     public bool isActive = false;  // 퀘스트 활성화 여부
     public bool isCompleted = false;  // 퀘스트 완료 여부
     
     public CutSceneController cutsceneController;
+    public QuestManager QuestManager;
 
     public virtual void UpdateQuest()
     {

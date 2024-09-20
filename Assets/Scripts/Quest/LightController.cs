@@ -74,14 +74,17 @@ public class LightController : MonoBehaviour
             // 강도를 0으로 하여 끔
             foreach (Light light in pointLights)
             {
-                light.intensity = 0;
+                if (!excludedLights.Contains(light))
+                    light.intensity = 0;
+                
             }
             yield return new WaitForSeconds(blinkInterval); // 꺼짐 상태 유지
 
             // 강도를 1로 하여 켬
             foreach (Light light in pointLights)
             {
-                light.intensity = 1;
+                if (!excludedLights.Contains(light))
+                    light.intensity = 1;
             }
             yield return new WaitForSeconds(blinkInterval); //켜짐 상태 유지
         }

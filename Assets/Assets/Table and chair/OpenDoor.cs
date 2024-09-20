@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class OpenDoor : MonoBehaviour {
     public Animation hingehere;
+    public bool isOpen = false;
+
+    
 
     // Start is called before the first frame update
     void Start()
@@ -15,6 +18,11 @@ public class OpenDoor : MonoBehaviour {
     void OnTriggerStay () {
 
         if (Input.GetKey(KeyCode.E))
+        {
             hingehere.Play();
+            isOpen = true;  
+        }
+            
+
     }
 }

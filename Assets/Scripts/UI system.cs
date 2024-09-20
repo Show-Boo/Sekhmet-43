@@ -8,24 +8,34 @@ public class DisplayUIOnApproach : MonoBehaviour
 
     public bool isFirst = false; //처음 player가 닿는 순간 
 
+    public OpenDoor openDoor;
     void Update()
     {
-        // 플레이어와 문(이 스크립트가 붙어 있는 오브젝트)의 거리 계산
-        float distance = Vector3.Distance(player.transform.position, transform.position);
-
-        // 플레이어가 일정 거리 내에 들어오면 UI 활성화
-        if (distance <= triggerDistance)
+        if (!openDoor.isOpen) //열리기 전에만 뜨게
         {
-            textUI.SetActive(true);
-            if (!isFirst)
+            float distance = Vector3.Distance(player.transform.position, transform.position);
+
+            // 플레이어가 일정 거리 내에 들어오면 UI 활성화
+            if (distance <= triggerDistance)
             {
-                isFirst = true;
+                textUI.SetActive(true);
+                if (!isFirst)
+                {
+                    isFirst = true;
+                }
+            }
+            else
+            {
+                textUI.SetActive(false);
             }
         }
-        else
+        else //열리고나서
         {
             textUI.SetActive(false);
         }
+       
+        
+        
     }
 }
 
