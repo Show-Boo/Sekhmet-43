@@ -7,8 +7,7 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
-//요원(agent=enemy)에게 목적지를 알려줘서 목적지로 이동.
-
+//agent=enemy에게 목적지를 알려줘서 목적지로 이동.
 // 적과 player가 일정 거리 안에 들어왔을때 추적. 근데 방이 다를때 숨으면 추적 종료.
 public class EnemyMove : MonoBehaviour
 {
@@ -61,10 +60,10 @@ public class EnemyMove : MonoBehaviour
         playerController = target.GetComponent<PlayerHiding>();//다른 스크립트에서 가져오기
 
         P = FindObjectOfType<PlayerController>();
-        
 
-        Invoke("WanderStart", 2);//chasestart 2초 후에
 
+        //Invoke("WanderStart", 2);//chasestart 2초 후에
+        WanderStart();
         rigid.velocity = Vector3.zero; // 이동속도 멈추기
 
         //timer = minWanderTimer;//gpt

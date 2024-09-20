@@ -31,7 +31,9 @@ public class StartToChase : MonoBehaviour
             anim.SetBool("IsNearBy",true);//일어서기 시작
             anim.SetBool("StartToWalk", true);
 
+            
         }
     }
 
+    
 }
