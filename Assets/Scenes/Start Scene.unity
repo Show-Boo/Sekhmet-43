@@ -7238,7 +7238,7 @@ PlayableDirector:
   m_InitialTime: 0
   m_SceneBindings:
   - key: {fileID: 8908364785114734630, guid: cd39aa1e16bc8ca41adee6748c6b694c, type: 2}
-    value: {fileID: 794852697}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References:
     - 98395d4eb07e7f04eb168481ca43f610: {fileID: 785731379}
@@ -39861,7 +39861,6 @@ GameObject:
   - component: {fileID: 794852693}
   - component: {fileID: 794852692}
   - component: {fileID: 794852691}
-  - component: {fileID: 794852697}
   m_Layer: 9
   m_Name: PlayerCamera
   m_TagString: MainCamera
@@ -40046,48 +40045,14 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 794852689}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.08903492, y: -0.43707162, z: -0.043349445, w: -0.8939587}
-  m_LocalPosition: {x: -0.54460466, y: 0.7713249, z: -3.2269518}
+  m_LocalRotation: {x: 0.029994877, y: -0.4389772, z: -0.014484138, w: -0.8978806}
+  m_LocalPosition: {x: 0.083, y: 0.985, z: -0.181}
   m_LocalScale: {x: 1, y: 0.88259995, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1630705856}
   m_Father: {fileID: 596347474}
-  m_LocalEulerAnglesHint: {x: -0.14, y: -0.121, z: 0.017}
---- !u!114 &794852697
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 794852689}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 72ece51f2901e7445ab60da3685d6b5f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_ShowDebugText: 0
-  m_ShowCameraFrustum: 1
-  m_IgnoreTimeScale: 0
-  m_WorldUpOverride: {fileID: 0}
-  m_UpdateMethod: 2
-  m_BlendUpdateMethod: 1
-  m_DefaultBlend:
-    m_Style: 1
-    m_Time: 2
-    m_CustomCurve:
-      serializedVersion: 2
-      m_Curve: []
-      m_PreInfinity: 2
-      m_PostInfinity: 2
-      m_RotationOrder: 4
-  m_CustomBlends: {fileID: 0}
-  m_CameraCutEvent:
-    m_PersistentCalls:
-      m_Calls: []
-  m_CameraActivatedEvent:
-    m_PersistentCalls:
-      m_Calls: []
+  m_LocalEulerAnglesHint: {x: -3.818, y: 52.109, z: -0.019}
 --- !u!1 &799878411
 GameObject:
   m_ObjectHideFlags: 0
@@ -40223,9 +40188,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questName: 2
+  true_cutscene: 1
+  false_cutscene: 0
   isActive: 0
   isCompleted: 0
   cutsceneController: {fileID: 1864641879}
+  QuestManager: {fileID: 0}
   Q_2_trigger: {fileID: 939717605}
   Q_3_trigger: {fileID: 1186610326}
   light_end: {fileID: 1479134947}
@@ -88265,9 +88233,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questName: 3
+  true_cutscene: 1
+  false_cutscene: 0
   isActive: 0
   isCompleted: 0
   cutsceneController: {fileID: 1864641879}
+  QuestManager: {fileID: 0}
   Q_3_trigger: {fileID: 1186610326}
 --- !u!1001 &1682294390
 PrefabInstance:
@@ -109326,9 +109297,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   questName: 1
+  true_cutscene: 1
+  false_cutscene: 0
   isActive: 0
   isCompleted: 0
   cutsceneController: {fileID: 1864641879}
+  QuestManager: {fileID: 0}
   Q_1_trigger: {fileID: 1787073638}
   Q_2_trigger: {fileID: 939717605}
 --- !u!4 &2093746443
