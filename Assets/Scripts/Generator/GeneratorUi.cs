@@ -78,38 +78,36 @@ public class GeneratorController : MonoBehaviour
                         Cursor.lockState = CursorLockMode.Locked;
                         Cursor.visible = false;
 
+                        // 경과 시간 증가
                         elapsedTime += Time.deltaTime;
 
+                        // 사운드가 재생 중이 아니면 재생
                         if (!soundPlaying && repairingAudioSource != null)
                         {
                             repairingAudioSource.Play();
                             soundPlaying = true;
                         }
 
+                        // 경과 시간이 지정된 지속 시간 이상일 경우 수리 완료 처리
                         if (elapsedTime >= duration)
                         {
-                            elapsedTime = duration;
-                            isProgressing = false;
-                            HideBars();
-                            CompleteProgress();
-
-                            // 수리 완료 시 메서드 호출
-                            GeneratorManager.Instance.RepairGenerator(id);
-                            if (repairingAudioSource != null)
-                            {
-                                repairingAudioSource.Stop();
-                            }
+                            elapsedTime = duration; // 경과 시간을 지속 시간으로 고정
+                            isProgressing = false;  // 진행 상태 해제
+                            HideBars();             // 진행 UI 숨기기
+                            CompleteProgress();     // 수리 완료 처리
                         }
                         else
                         {
-                            isProgressing = true;
+                            isProgressing = true; // 진행 상태 유지
                         }
 
+                        // 진행 바의 크기 조정
                         float width = Mathf.Lerp(0, 600, elapsedTime / duration);
                         redBar.sizeDelta = new Vector2(width, redBar.sizeDelta.y);
                     }
                     else
                     {
+                        // 수리 중단 시 초기화
                         if (isHolding)
                         {
                             HideBars();
@@ -133,6 +131,7 @@ public class GeneratorController : MonoBehaviour
             isHoveringGenerator = false;
             crosshair.color = crosshairNormalColor;
 
+            // 수리 중단 시 초기화
             if (isHolding)
             {
                 HideBars();
@@ -149,11 +148,13 @@ public class GeneratorController : MonoBehaviour
         }
     }
 
+
     private void CompleteProgress()
     {
         progressComplete = true;
         isHolding = false;
 
+        // completeText가 할당되지 않았을 경우 에러 메시지 출력
         if (completeText != null)
         {
             completeText.enabled = true;
@@ -166,15 +167,24 @@ public class GeneratorController : MonoBehaviour
             Debug.LogError("CompleteText is not assigned!");
         }
 
+        // GeneratorManager.Instance가 null인지 확인
+        if (GeneratorManager.Instance != null)
+        {
+            // GeneratorManager에 발전기 수리 완료를 알림
+            GeneratorManager.Instance.RepairGenerator(id);
+            Debug.Log("발전기 " + id + "가 수리되었습니다.");
+        }
+        else
+        {
+            Debug.LogError("GeneratorManager.Instance is not assigned!");
+        }
+
         // 마우스 커서 다시 보이도록 설정
         Cursor.lockState = CursorLockMode.None;
         Cursor.visible = true;
-
-        // GeneratorManager에 발전기 수리 완료를 알림
-        GeneratorManager.Instance.RepairGenerator(id);
-
-        Debug.Log("발전기 " + id + "가 수리되었습니다.");
     }
+
+
 
     private void HideCompleteMessage()
     {

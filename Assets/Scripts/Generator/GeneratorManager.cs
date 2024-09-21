@@ -41,6 +41,9 @@ public class GeneratorManager : MonoBehaviour
 
     public void RepairGenerator(int generatorId)
     {
+        // 함수 호출 여부 확인
+        Debug.Log("RepairGenerator 함수가 호출되었습니다. ID: " + generatorId);
+
         // 이미 완료된 발전기라면 무시
         if (completedGenerators.Contains(generatorId))
         {
@@ -52,7 +55,9 @@ public class GeneratorManager : MonoBehaviour
         completedGenerators.Add(generatorId);
         fixedGeneratorCount++;
 
+        // HashSet 업데이트 확인
         Debug.Log("발전기 " + generatorId + " 완료 (" + fixedGeneratorCount + "/" + totalGenerators + ")");
+        Debug.Log("완료된 발전기 ID 목록: " + string.Join(", ", completedGenerators));
 
         // 모든 발전기가 완료되었는지 확인
         if (fixedGeneratorCount >= totalGenerators)
@@ -61,6 +66,9 @@ public class GeneratorManager : MonoBehaviour
             OnAllGeneratorsFixed();
         }
     }
+
+
+
 
     private void OnAllGeneratorsFixed()
     {
@@ -121,4 +129,6 @@ private void Update()
             Debug.LogError("Hangar light object is not assigned in the Inspector.");
         }
     }
+
+
 }
