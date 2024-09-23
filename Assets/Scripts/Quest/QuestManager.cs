@@ -38,7 +38,7 @@ public class QuestManager : MonoBehaviour
     {
         if (Quest[currentQuestIndex].isActive)
         {
-            Quest[currentQuestIndex].CompleteQuest();//퀘스트 속 completeQuest 실행...
+            Quest[currentQuestIndex].CompleteQuest();//퀘스트 속 completeQuest 실행...&Next실행
             currentQuestIndex++;
 
             // 다음 퀘스트가 있다면 시작
