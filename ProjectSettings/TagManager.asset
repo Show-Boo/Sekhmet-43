@@ -12,6 +12,7 @@ TagManager:
   - AttackZone
   - HidingSpot
   - ExcludeLight
+  - Engine
   layers:
   - Default
   - TransparentFX
