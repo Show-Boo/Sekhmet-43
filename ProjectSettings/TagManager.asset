@@ -13,6 +13,7 @@ TagManager:
   - HidingSpot
   - ExcludeLight
   - Engine
+  - Spaceship
   layers:
   - Default
   - TransparentFX
