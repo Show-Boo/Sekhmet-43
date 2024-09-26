@@ -76284,10 +76284,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bd86efefa93f66243a4dbf4ea0e65158, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  hangarLightsOn: 0
   hangarLight: {fileID: 0}
   targetObject: {fileID: 0}
   rotationSpeed: 100
   audioPlayer: {fileID: 0}
+  engineIsAllFixed: 0
 --- !u!1 &1552985953
 GameObject:
   m_ObjectHideFlags: 0
