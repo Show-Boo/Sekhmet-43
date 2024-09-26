@@ -7,6 +7,7 @@ public class Q_6_trigger : MonoBehaviour
     // Start is called before the first frame update
     public Q_6 q_6;
     public Q_7 q_7;
+    public Q_8 q_8;
     public GeneratorManager generatorManager;
     //public QuestManager QuestManager;
     void Start()
@@ -47,9 +48,10 @@ public class Q_6_trigger : MonoBehaviour
                 }
                 else if (hit.collider.CompareTag("Spaceship"))
                 {
+                    Debug.Log("Spaceship hit");
                     if (q_6.Quest6_clear && q_7.q_7_done)//퀘스트 7까지 성공한 경우
                     {
-
+                        q_8.q_8_done = true;
                     }
                 }
             }

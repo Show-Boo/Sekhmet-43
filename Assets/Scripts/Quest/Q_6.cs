@@ -6,7 +6,7 @@ public class Q_6 : Q_ParentClass
 {
     // Start is called before the first frame update
     //그 ray를..끄고싶은데..
-    public bool Quest6_clear = false;
+    public bool Quest6_clear = true;//일시적으로 바꾸는게 왜 안통하지,,,,
 
     public override bool cutscene { get => false_cutscene; set => false_cutscene = value; }
     public Q_5 q_5;
