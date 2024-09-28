@@ -23,7 +23,8 @@ public class EnemyMove : MonoBehaviour
     public bool isAttack;
     public bool isDead = true;
 
-    public BoxCollider meleeArea;
+    public Collider meleeArea;
+    public GameObject deathCutscene;
 
     //gpt
     public float chaseRange = 15f;//플레이어를 쫓기 시작할 거리
@@ -45,9 +46,14 @@ public class EnemyMove : MonoBehaviour
     private AudioSource audioSource;
 
     public bool playedSound = false;//소리를 울렸었는지
+    public bool isPlayerDead = false;
 
     void Awake()//시작할때 처음만
     {
+        meleeArea.GetComponent<Collider>().isTrigger = true;
+        meleeArea.enabled = false;
+        deathCutscene.SetActive(false);
+
         target = player.transform;
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
@@ -121,9 +127,9 @@ public class EnemyMove : MonoBehaviour
         {
             if (isDead == false)
             {
-                if (playerController.isPlayer1Active)
+                if (playerController.isPlayer1Active)//숨지 않음
                 {
-                    isDead = true;//isDead 돌리는 case
+                    isDead = true;//isDead 돌리는 case. 계속 olayer와의 거리 계산
                 }
             }
             else
@@ -137,7 +143,7 @@ public class EnemyMove : MonoBehaviour
         //Debug.Log("isDead : " + isDead);
 
         //-----------------------------------------------------------------------------------------------------------------------------------
-        //쫓는 거리보다 작아질때&&1일때 -> 쫓기. 2면 쫓기 멈춤.. 근데 일정거리보다 가까워진다? 2여도 죽음
+        //쫓는 거리보다 작아질때&&1일때 -> 쫓기. 2면(숨으면) 쫓기 멈춤.. 근데 같은방이다? 2여도 죽음
         //if (distanceToPlayer <= 16.0f ) //직선거리가 얼마 이하일때 거리 계산 시작..근데 이러면 다른 층일때 문제가..
         //{
             //경로계산시작
@@ -160,20 +166,20 @@ public class EnemyMove : MonoBehaviour
 
                 nav.SetDestination(target.position);
                 isChase = true;
-                anim.SetBool("IsWalk", true);
+                anim.SetBool("IsWalk", true); 
 
                 Targerting();//쫓기
                 FreezeVelocity();
                 PlaySound();//한 번만 울리게
 
             }
-            else//isDead가 false인 경우, player가 유효한 길 위에 있는 경우
+            else//isDead가 false인 경우, 추적범위 이내가 아닌 경우
             {
                 Wandering();
             }
         //}
         
-        if (distanceToPlayer<= 10.0f)
+        if (distanceToPlayer<= 10.0f)//근방에 enemy있을때 심장소리
         {
             //if (playerController.HeartBeatPlaying == false){
                 playerController.HeartBeatPlaying = true;
@@ -201,19 +207,16 @@ public class EnemyMove : MonoBehaviour
 
     void Wandering()
     {
-         //그냥 배회 로직. 랜덤 위치 설정 -> 이동 반복 isDead가 false인 경우..
+         //그냥 배회 로직. 랜덤 위치 설정 -> 이동 반복
         
-            //Debug.Log("Is wander");
-            // 배회 로직
-            //timer += Time.deltaTime;
+         
 
             //isChase = false; -> 밑 로직을 한 번만 수행하려는 노력
 
             anim.SetBool("IsWalk", false);
         playedSound = false;
 
-            //Debug.Log("2");
-            //Debug.Log(isChase);
+            
             nav.speed = 1.5f;//걷는 속도 바꿔주기
 
 
@@ -307,11 +310,11 @@ public class EnemyMove : MonoBehaviour
         //animation 호출
         anim.SetBool("IsAttack",true);
         //delay 주기
-        yield return new WaitForSeconds(1.0f); // 0.2엿음
+        yield return new WaitForSeconds(0.2f); // 1.0엿음
         Debug.Log("meleeArea enabled");
         //공격범위활성화
         meleeArea.enabled = true;
-
+        
         //delay 주기
         yield return new WaitForSeconds(2.0f);
         //공격범위비활성화
@@ -328,7 +331,25 @@ public class EnemyMove : MonoBehaviour
 
         Debug.Log("end Attack");
     }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("Player") && !isPlayerDead)
+        {
+            // 플레이어가 공격에 맞았을 때 죽는 컷신 재생
+            TriggerDeathCutscene();
+        }
+    }
 
+    void TriggerDeathCutscene()
+    {
+        // 플레이어 사망 처리
+        isPlayerDead = true;
+
+        // 죽는 컷신 실행
+        deathCutscene.SetActive(true);
+
+        // 게임 오버 처리 등을 추가할 수 있음
+    }
     void PlaySound()
     {
         // 소리가 틀어진 적 없다면 틀어짐
