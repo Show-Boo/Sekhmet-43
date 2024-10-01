@@ -7,6 +7,11 @@ using UnityEngine;
 using UnityEngine.AI;
 using UnityEngine.UI;
 
+using UnityEngine.Video;
+using UnityEngine.SceneManagement;
+using UnityEngine.Rendering.PostProcessing;
+
+
 //agent=enemy에게 목적지를 알려줘서 목적지로 이동.
 // 적과 player가 일정 거리 안에 들어왔을때 추적. 근데 방이 다를때 숨으면 추적 종료.
 public class EnemyMove : MonoBehaviour
@@ -48,6 +53,8 @@ public class EnemyMove : MonoBehaviour
     public bool playedSound = false;//소리를 울렸었는지
     public bool isPlayerDead = false;
 
+    public VideoPlayer DeadCutScene;//죽는 컷씻
+
     void Awake()//시작할때 처음만
     {
         meleeArea.GetComponent<Collider>().isTrigger = true;
@@ -85,6 +92,18 @@ public class EnemyMove : MonoBehaviour
         // Play On Awake 옵션을 끕니다 (게임 시작 시 자동 재생 방지)
         audioSource.playOnAwake = false;
 
+        DeadCutScene.started += CutSceneStart;
+        DeadCutScene.loopPointReached += CutSceneEnd;
+
+    }
+    void CutSceneStart(VideoPlayer vp)
+    {
+        
+    }
+
+    void CutSceneEnd(VideoPlayer vp)
+    {
+        deathCutscene.SetActive(false);
     }
 
     void FreezeVelocity()//1
@@ -344,10 +363,18 @@ public class EnemyMove : MonoBehaviour
     {
         // 플레이어 사망 처리
         isPlayerDead = true;
-
+        //틀어지는 카메라 바꿔줘야함
+        DeadCutScene.targetCamera = ActivatedCamera;//이 코드가 맞는지는 모르것음
         // 죽는 컷신 실행
-        deathCutscene.SetActive(true);
-
+        if (ActivatedCamera.isActiveAndEnabled)
+        {
+            deathCutscene.SetActive(true);
+        }
+        else
+        {
+            Debug.LogError("카메라 비활성화");
+        }
+        
         // 게임 오버 처리 등을 추가할 수 있음
     }
     void PlaySound()
