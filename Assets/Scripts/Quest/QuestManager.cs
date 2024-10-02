@@ -8,7 +8,7 @@ public class QuestManager : MonoBehaviour
     
     public Q_ParentClass[] Quest;//퀘스트배열
     private int currentQuestIndex = 0;//현재 진행중인 퀘스트 인덱스
-
+    public QuestUI questUI;
     
     void Start()
     {
@@ -31,6 +31,11 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log($"Starting Quest: {Quest[questIndex].questName}");
             Quest[questIndex].isActive = true;
+
+            if (questUI != null)
+            {
+                questUI.SetCurrentQuest(questIndex);
+            }
         }
     }
 
