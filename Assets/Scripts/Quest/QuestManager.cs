@@ -31,11 +31,9 @@ public class QuestManager : MonoBehaviour
         {
             Debug.Log($"Starting Quest: {Quest[questIndex].questName}");
             Quest[questIndex].isActive = true;
+            questUI.SetCurrentQuest(questIndex);
+            Debug.Log("Quest UI Updated: " + questIndex);
 
-            if (questUI != null)
-            {
-                questUI.SetCurrentQuest(questIndex);
-            }
         }
     }
 
@@ -43,9 +41,11 @@ public class QuestManager : MonoBehaviour
     {
         if (Quest[currentQuestIndex].isActive)
         {
-            Debug.Log(currentQuestIndex);
+            
             Quest[currentQuestIndex].CompleteQuest();//퀘스트 속 completeQuest 실행...&Next실행
             currentQuestIndex++;
+            Debug.Log("Current Quest Index: " + currentQuestIndex);
+
 
             // 다음 퀘스트가 있다면 시작
             if (currentQuestIndex < Quest.Length)

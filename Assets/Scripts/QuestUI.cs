@@ -1,4 +1,5 @@
 using System.Collections;
+using System.Diagnostics;
 using UnityEngine;
 
 public class QuestUI : MonoBehaviour
@@ -29,6 +30,7 @@ public class QuestUI : MonoBehaviour
 
             // 새로운 코루틴 시작
             currentCoroutine = StartCoroutine(DisplayQuestUIForTime(3f)); // 3초 동안 UI 활성화
+            
         }
     }
 
@@ -36,20 +38,24 @@ public class QuestUI : MonoBehaviour
     public void SetCurrentQuest(int questNumber)
     {
         currentQuest = questNumber;
-    }
+       
 
+    }
+   
     // 현재 퀘스트에 맞는 UI를 3초 동안 활성화하는 코루틴
     IEnumerator DisplayQuestUIForTime(float duration)
     {
+        
         // 모든 UI 비활성화
         foreach (GameObject ui in questUIs)
         {
             ui.SetActive(false);
         }
-
+        
         // 현재 퀘스트 UI만 활성화
         if (currentQuest >= 0 && currentQuest < questUIs.Length)
         {
+            
             questUIs[currentQuest].SetActive(true);
         }
 

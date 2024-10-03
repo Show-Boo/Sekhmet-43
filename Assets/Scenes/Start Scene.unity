@@ -82917,7 +82917,7 @@ MonoBehaviour:
   - {fileID: 642761693}
   - {fileID: 86174814}
   - {fileID: 642761693}
-  questUI: {fileID: 0}
+  questUI: {fileID: 419025640}
 --- !u!4 &1616010685
 Transform:
   m_ObjectHideFlags: 0
