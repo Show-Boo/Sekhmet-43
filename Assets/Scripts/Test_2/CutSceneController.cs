@@ -16,6 +16,7 @@ public class CutSceneController : MonoBehaviour
     public int previousIndex = 0;
 
     public bool Scenechange = false;
+    public GameObject SceneChange;
     void Start()
     {
         foreach (var videoPlayer in videoPlayers)
@@ -43,9 +44,9 @@ public class CutSceneController : MonoBehaviour
 
         if (Scenechange)
         {
-            ChangeSceneByName("myproject");
+            //ChangeSceneByName("myproject");
 
-            
+            SceneChange.SetActive(true);//활성화
         }
         // 컷씬이 끝났을 때 PostProcessing Volume 다시 활성화
         postProcessVolume.enabled = true; // Volume 자체를 다시 활성화
@@ -67,8 +68,5 @@ public class CutSceneController : MonoBehaviour
         }
     }
 
-    public void ChangeSceneByName(string sceneName)
-    {
-        SceneManager.LoadScene(sceneName);
-    }
+    
 }

@@ -5776,6 +5776,51 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 102416938}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &102866514
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 102866516}
+  - component: {fileID: 102866515}
+  m_Layer: 0
+  m_Name: LoadingScreenController
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &102866515
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102866514}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: df24c1dc1a33c6c46936858438dd3504, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  blackScreen: {fileID: 499012950}
+--- !u!4 &102866516
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 102866514}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.05445, y: -6.055469, z: 58.327927}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &106344127
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -10145,6 +10190,7 @@ MonoBehaviour:
   isAttack: 0
   isDead: 1
   meleeArea: {fileID: 1607048599}
+  deathCutscene: {fileID: 0}
   chaseRange: 10
   wanderRadius: 20
   EnemyRoomID: -1
@@ -10152,6 +10198,9 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   soundClip: {fileID: 0}
   playedSound: 0
+  isPlayerDead: 0
+  DeadCutScene: {fileID: 0}
+  navMeshAreaNames: []
 --- !u!54 &201970524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15437,6 +15486,7 @@ MonoBehaviour:
   isAttack: 0
   isDead: 1
   meleeArea: {fileID: 890897759}
+  deathCutscene: {fileID: 0}
   chaseRange: 15
   wanderRadius: 20
   EnemyRoomID: -1
@@ -15444,6 +15494,9 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   soundClip: {fileID: 0}
   playedSound: 0
+  isPlayerDead: 0
+  DeadCutScene: {fileID: 0}
+  navMeshAreaNames: []
 --- !u!95 &302844480
 Animator:
   serializedVersion: 5
@@ -26218,6 +26271,81 @@ Transform:
   - {fileID: 260310621}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &499012950
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 499012953}
+  - component: {fileID: 499012952}
+  - component: {fileID: 499012951}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &499012951
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499012950}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &499012952
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499012950}
+  m_CullTransparentMesh: 1
+--- !u!224 &499012953
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 499012950}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 708518887}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 3.6149902, y: 0}
+  m_SizeDelta: {x: -1827.23, y: -2844}
+  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &501500374
 GameObject:
   m_ObjectHideFlags: 0
@@ -27068,6 +27196,7 @@ MonoBehaviour:
   isAttack: 0
   isDead: 1
   meleeArea: {fileID: 890897759}
+  deathCutscene: {fileID: 0}
   chaseRange: 10
   wanderRadius: 20
   EnemyRoomID: -1
@@ -27075,6 +27204,9 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   soundClip: {fileID: 0}
   playedSound: 0
+  isPlayerDead: 0
+  DeadCutScene: {fileID: 0}
+  navMeshAreaNames: []
 --- !u!136 &510906250
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -36523,6 +36655,7 @@ RectTransform:
   - {fileID: 2107775602}
   - {fileID: 40330944}
   - {fileID: 843882590}
+  - {fileID: 499012953}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -49818,6 +49951,7 @@ MonoBehaviour:
   - {fileID: 1580065413}
   - {fileID: 643553326}
   - {fileID: 1283434332}
+  SceneChange: {fileID: 2113715333}
 --- !u!1001 &1005100154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -66815,6 +66949,7 @@ MonoBehaviour:
   isAttack: 0
   isDead: 1
   meleeArea: {fileID: 890897759}
+  deathCutscene: {fileID: 0}
   chaseRange: 15
   wanderRadius: 20
   EnemyRoomID: -1
@@ -66822,6 +66957,9 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   soundClip: {fileID: 8300000, guid: c6a8cfaa6480acd44ad605521e31ef85, type: 3}
   playedSound: 0
+  isPlayerDead: 0
+  DeadCutScene: {fileID: 0}
+  navMeshAreaNames: []
 --- !u!95 &1346360483
 Animator:
   serializedVersion: 5
@@ -78148,6 +78286,7 @@ MonoBehaviour:
   isAttack: 0
   isDead: 1
   meleeArea: {fileID: 890897759}
+  deathCutscene: {fileID: 0}
   chaseRange: 15
   wanderRadius: 20
   EnemyRoomID: -1
@@ -78155,6 +78294,9 @@ MonoBehaviour:
   destination: {x: 0, y: 0, z: 0}
   soundClip: {fileID: 0}
   playedSound: 0
+  isPlayerDead: 0
+  DeadCutScene: {fileID: 0}
+  navMeshAreaNames: []
 --- !u!95 &1561514933
 Animator:
   serializedVersion: 5
@@ -80616,6 +80758,7 @@ MonoBehaviour:
   nowIndex: 0
   previousIndex: 0
   Scenechange: 0
+  SceneChange: {fileID: 2113715333}
 --- !u!4 &1592768189
 Transform:
   m_ObjectHideFlags: 0
@@ -82085,6 +82228,7 @@ MonoBehaviour:
   - {fileID: 642761693}
   - {fileID: 86174814}
   - {fileID: 642761693}
+  questUI: {fileID: 0}
 --- !u!4 &1616010685
 Transform:
   m_ObjectHideFlags: 0
@@ -110067,6 +110211,51 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2107775601}
   m_CullTransparentMesh: 1
+--- !u!1 &2113715333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2113715335}
+  - component: {fileID: 2113715334}
+  m_Layer: 0
+  m_Name: SceneChange
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &2113715334
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113715333}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9c9ad18b0849741499fcbf60673a6281, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingScreenController: {fileID: 102866515}
+--- !u!4 &2113715335
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2113715333}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 34.05445, y: -6.055469, z: 58.327927}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &2116606167
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -111463,3 +111652,5 @@ SceneRoots:
   - {fileID: 1807490608}
   - {fileID: 13185129}
   - {fileID: 495129164}
+  - {fileID: 2113715335}
+  - {fileID: 102866516}
