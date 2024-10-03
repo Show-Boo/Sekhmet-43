@@ -43,6 +43,7 @@ public class QuestManager : MonoBehaviour
     {
         if (Quest[currentQuestIndex].isActive)
         {
+            Debug.Log(currentQuestIndex);
             Quest[currentQuestIndex].CompleteQuest();//퀘스트 속 completeQuest 실행...&Next실행
             currentQuestIndex++;
 
