@@ -39,7 +39,6 @@ public class QuestUI : MonoBehaviour
     {
         currentQuest = questNumber;
        
-
     }
    
     // 현재 퀘스트에 맞는 UI를 3초 동안 활성화하는 코루틴
