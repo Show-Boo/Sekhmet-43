@@ -355,7 +355,7 @@ public class EnemyMove : MonoBehaviour
         //animation 호출
         anim.SetBool("IsAttack",true);
         //delay 주기
-        yield return new WaitForSeconds(0.2f); // 1.0엿음
+        yield return new WaitForSeconds(0.5f); // 1.0엿음
         Debug.Log("meleeArea enabled");
         //공격범위활성화
         meleeArea.enabled = true;
