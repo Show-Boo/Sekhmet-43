@@ -52,7 +52,7 @@ public class EnemyMove : MonoBehaviour
 
     public bool playedSound = false;//¼Ò¸®¸¦ ¿ï·È¾ú´ÂÁö
     public bool isPlayerDead = false;
-    public PostProcessVolume postProcessVolume;
+    //public PostProcessVolume postProcessVolume;
 
     public VideoPlayer DeadCutScene;//Á×´Â ÄÆ¾Ä
 
