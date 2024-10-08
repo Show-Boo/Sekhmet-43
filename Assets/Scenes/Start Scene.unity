@@ -31073,6 +31073,7 @@ GameObject:
   - component: {fileID: 596347478}
   - component: {fileID: 596347477}
   - component: {fileID: 596347476}
+  - component: {fileID: 596347480}
   m_Layer: 9
   m_Name: Player1
   m_TagString: Player
@@ -31147,6 +31148,7 @@ MonoBehaviour:
   defaultHeight: 2
   crouchHeight: 1
   crouchSpeed: 3
+  _staminaController: {fileID: 0}
 --- !u!114 &596347476
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -31304,6 +31306,26 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!114 &596347480
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 596347472}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 467b14d91d6695942a95c4d0168d4c97, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerStamina: 100
+  jumpCost: 20
+  hasRegenerated: 1
+  weAreSprinting: 0
+  staminaDrain: 29.6
+  staminaRegen: 16.5
+  staminaProgressUI: {fileID: 0}
+  sliderCanvasGroup: {fileID: 0}
 --- !u!1 &601963875
 GameObject:
   m_ObjectHideFlags: 0
