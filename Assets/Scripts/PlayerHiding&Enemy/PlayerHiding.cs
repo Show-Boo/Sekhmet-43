@@ -20,6 +20,7 @@ public class PlayerHiding : MonoBehaviour
 {
 
     public int playerRoomID = -1;
+    
 
     private Camera CurrentCamera;
     private Camera previousCamera; // 이전 카메라를 저장할 변수
@@ -142,6 +143,7 @@ public class PlayerHiding : MonoBehaviour
 
     }
 
+    
     void SwitchCamera()
     {
         if (CurrentCamera == null)
