@@ -14,6 +14,7 @@ TagManager:
   - ExcludeLight
   - Engine
   - Spaceship
+  - Checkpoint
   layers:
   - Default
   - TransparentFX

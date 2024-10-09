@@ -357,7 +357,7 @@ public class EnemyMove : MonoBehaviour
         anim.SetBool("IsAttack",true);
         //delay 주기
         yield return new WaitForSeconds(0.5f); // 1.0엿음
-        Debug.Log("meleeArea enabled");
+        //Debug.Log("meleeArea enabled");
         //공격범위활성화
         meleeArea.enabled = true;
         
@@ -365,7 +365,7 @@ public class EnemyMove : MonoBehaviour
         yield return new WaitForSeconds(2.0f);
         //공격범위비활성화
         meleeArea.enabled = false;
-        Debug.Log("meleeArea unabled");
+        //Debug.Log("meleeArea unabled");
 
         //정지풀기
         isChase = true;
@@ -375,7 +375,7 @@ public class EnemyMove : MonoBehaviour
         //animation 호출
         anim.SetBool("IsAttack", false);
 
-        Debug.Log("end Attack");
+        //Debug.Log("end Attack");
     }
     private void OnTriggerEnter(Collider other)
     {
