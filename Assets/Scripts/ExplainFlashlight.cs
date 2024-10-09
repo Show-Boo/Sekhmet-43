@@ -9,6 +9,9 @@ public class TriggerBox : MonoBehaviour
     public float displayTime = 3f; // 텍스트가 보이는 시간
     private Coroutine fadeCoroutine;
 
+    public Vector3 allowedDirection = Vector3.forward; // 허용된 진입 방향
+    public float directionThreshold = 2f; // 진입 방향의 내적 계산 임계값
+
     void Start()
     {
         messageText.alpha = 0; // 텍스트의 투명도를 0으로 설정해 처음에 보이지 않게 함
@@ -18,15 +21,25 @@ public class TriggerBox : MonoBehaviour
     {
         if (other.CompareTag("Player")) // 플레이어와 충돌할 경우
         {
-            // 이전에 실행 중이던 코루틴이 있으면 중지
-            if (fadeCoroutine != null)
-            {
-                StopCoroutine(fadeCoroutine);
-            }
+            // 플레이어가 트리거 박스로 진입한 방향 계산
+            Vector3 enteringDirection = (transform.position - other.transform.position).normalized;
 
-            // 텍스트를 완전히 표시한 후 페이드아웃 시작
-            messageText.alpha = 1; // 텍스트를 완전히 보이게 설정
-            fadeCoroutine = StartCoroutine(FadeOutText()); // 페이드아웃 코루틴 시작
+            // 진입 방향과 허용된 방향의 내적 계산
+            float dotProduct = Vector3.Dot(enteringDirection, allowedDirection.normalized);
+
+            // 진입 방향이 허용된 방향과 일치하는지 확인
+            if (dotProduct >= directionThreshold)
+            {
+                // 이전에 실행 중이던 코루틴이 있으면 중지
+                if (fadeCoroutine != null)
+                {
+                    StopCoroutine(fadeCoroutine);
+                }
+
+                // 텍스트를 완전히 표시한 후 페이드아웃 시작
+                messageText.alpha = 1; // 텍스트를 완전히 보이게 설정
+                fadeCoroutine = StartCoroutine(FadeOutText()); // 페이드아웃 코루틴 시작
+            }
         }
     }
 

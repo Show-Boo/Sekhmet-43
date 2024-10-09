@@ -7,12 +7,12 @@ public class StaminaController : MonoBehaviour
 {
     [Header("Stamina Main Parameters")]
     public float playerStamina = 100.0f;
-    [SerializeField] public float jumpCost = 20f;  // jumpCost를 public으로 변경
+    [SerializeField] public float jumpCost = 20f;
     [HideInInspector] public bool hasRegenerated = true;
     [HideInInspector] public bool weAreSprinting = false;
 
     [Header("Stamina Regen Parameters")]
-    [Range(0, 50)][SerializeField] private float staminaDrain = 0.5f;
+    [Range(0, 50)][SerializeField] private float staminaDrain = 0.3f;
     [Range(0, 50)][SerializeField] private float staminaRegen = 0.5f;
 
     [Header("Stamina UI Elements")]
@@ -32,7 +32,7 @@ public class StaminaController : MonoBehaviour
                 {
                     playerStamina = 100.0f;
                     sliderCanvasGroup.alpha = 0;
-                    hasRegenerated = true;
+                    hasRegenerated = true;  // 스태미너가 완전히 회복되면 hasRegenerated를 true로 설정
                 }
             }
         }
@@ -40,7 +40,7 @@ public class StaminaController : MonoBehaviour
 
     public void Sprinting()
     {
-        if (hasRegenerated)
+        if (hasRegenerated)  // 스태미너가 회복된 후에만 달리기 가능
         {
             weAreSprinting = true;
             playerStamina -= staminaDrain * Time.deltaTime;
@@ -49,20 +49,19 @@ public class StaminaController : MonoBehaviour
             if (playerStamina <= 0)
             {
                 playerStamina = 0;
-                hasRegenerated = false;
+                hasRegenerated = false;  // 스태미너가 바닥나면 달리기 중지
                 sliderCanvasGroup.alpha = 0;
+                weAreSprinting = false;
             }
         }
     }
 
-    public void StaminaJump()
+    public void StopSprinting()
     {
-        if (playerStamina >= jumpCost)
-        {
-            playerStamina -= jumpCost;
-            UpdateStamina(1);
-        }
+        weAreSprinting = false;
     }
+
+
 
     void UpdateStamina(int value)
     {
