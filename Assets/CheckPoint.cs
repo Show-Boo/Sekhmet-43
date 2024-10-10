@@ -18,16 +18,23 @@ public class CheckPoint : MonoBehaviour
 
     public bool restart = false;
 
+    private PlayerHiding PlayerHiding;
+
+    private void Start()
+    {
+        PlayerHiding = GetComponent<PlayerHiding>();//player에서 가져오기,,얘 안쓸듯
+    }
 
     void Update()
     {
-        if (restart)//돌아가는 지점.
+        if (restart)//돌아가는 지점. 컷씬 시작하자마자.
         {
             //player.transform.position = vectorPoint;//돌아감
             player.transform.position = vectorPoint;
             restart = false;
-            Debug.Log("move player");//얘도 되는데..
+            Debug.Log("move player");
         }
+        
     }
 
     private void OnTriggerEnter(Collider other)

@@ -390,12 +390,27 @@ public class EnemyMove : MonoBehaviour
     {
         // 플레이어 사망 처리
         isPlayerDead = true;
-        //틀어지는 카메라 바꿔줘야함
-        DeadCutScene.targetCamera = ActivatedCamera;//이 코드가 맞는지는 모르것음
-        // 죽는 컷신 실행
+        //틀어지는 카메라 바꿔줘야함-> 그냥 player 위치 옮겨주는게 나을지도..
+        //DeadCutScene.targetCamera = ActivatedCamera;//player로 고정해주기
+        if (!playerController.isPlayer1Active)
+        {
+            //숨었을때 먼저 플레이어1 활성화.
+            playerController.playerCamera.gameObject.SetActive(true);
+            AudioListener newListener = playerController.playerCamera.GetComponent<AudioListener>();//리스너
+            newListener.enabled = true;
+
+            playerController.previousCamera.gameObject.SetActive(false);
+            AudioListener Listener = playerController.previousCamera.GetComponent<AudioListener>();//리스너
+            newListener.enabled = false;
+
+            playerController.isPlayer1Active = true;
+        }
+        
+        // 플레이어1죽는 컷신 실행
         if (ActivatedCamera.isActiveAndEnabled)
         {
             deathCutscene.SetActive(true);
+            isPlayerDead = false;//추가
         }
         else
         {

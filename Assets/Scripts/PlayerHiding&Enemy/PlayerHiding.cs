@@ -8,7 +8,7 @@ using UnityEngine.UI;
 //Todo 2. 숨었다가 복귀 -> done
 //3. 근거리에서는 숨어도 공격 -> done 근데 player 공격중일때는 숨은 쪽으로 안옴
 //3-2 공격중일때도 player 위치로 오게
-//4. 좀비 시작 직후에는 움직이지 않게
+//4. 좀비 시작 직후에는 움직이지 않게 done
 //5. 같은 위치로 두번 이상 숨을 수 있게 : 카메라 비활성화 되어도 접근하게 or 비활성화 안되게,,,,,,,,,,,,,,,,,, -> done
 
 
@@ -23,7 +23,7 @@ public class PlayerHiding : MonoBehaviour
     
 
     private Camera CurrentCamera;
-    private Camera previousCamera; // 이전 카메라를 저장할 변수
+    public Camera previousCamera; // 이전 카메라를 저장할 변수
 
     public bool isPlayer1Active = true; // 현재 활성화된 플레이어 여부
 
@@ -86,7 +86,7 @@ public class PlayerHiding : MonoBehaviour
                     {
                         //Debug.Log("CurrentCamera: " + CurrentCamera.name);
 
-                        if (Input.GetKeyDown(KeyCode.Q))
+                        if (Input.GetKeyDown(KeyCode.E))
                         {
                             // Q키가 눌리면 카메라 전환
                             SwitchCamera();
@@ -110,7 +110,7 @@ public class PlayerHiding : MonoBehaviour
         }
         else//숨고나서
         {
-            if (Input.GetKeyDown(KeyCode.Q))
+            if (Input.GetKeyDown(KeyCode.E))
             {
                 if (previousCamera != null)
                 {
@@ -165,19 +165,17 @@ public class PlayerHiding : MonoBehaviour
             AudioListener nowListener = playerCamera.GetComponent<AudioListener>();
             playerCamera.gameObject.SetActive(false);
             player.SetActive(false);
-            nowListener.enabled = false;
-            
-            
+            nowListener.enabled = false;//리스너 하나만 유지
+
+
             foreach (var enemyMoveScript in enemyMove)
             {
-
                 enemyMoveScript.ActivatedCamera = CurrentCamera;
-
             }
             
 
             
-            previousCamera = CurrentCamera;
+            previousCamera = CurrentCamera;//옮기고 나서 다음을 위헤 현재 카메라를 previous에 넣어줌
 
         }
         else//숨었을때Q가 눌리면
