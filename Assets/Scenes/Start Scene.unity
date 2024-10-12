@@ -5286,7 +5286,7 @@ MonoBehaviour:
   isActive: 0
   isCompleted: 0
   cutsceneController: {fileID: 1592768188}
-  QuestManager: {fileID: 0}
+  QuestManager: {fileID: 1616010684}
   Q_3_trigger: {fileID: 643553326}
 --- !u!1 &86680393
 GameObject:
@@ -10396,7 +10396,6 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 794852690}
   destination: {x: 0, y: 0, z: 0}
-  soundClip: {fileID: 0}
   playedSound: 0
   isPlayerDead: 0
   DeadCutScene: {fileID: 0}
@@ -16024,7 +16023,6 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  soundClip: {fileID: 0}
   playedSound: 0
   isPlayerDead: 0
   DeadCutScene: {fileID: 0}
@@ -27131,7 +27129,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &499012951
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -27186,8 +27184,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 3.6149902, y: 0}
-  m_SizeDelta: {x: -1827.23, y: -2844}
+  m_AnchoredPosition: {x: 13.434937, y: 0}
+  m_SizeDelta: {x: -1846.87, y: -2844}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &501500374
 GameObject:
@@ -28045,7 +28043,6 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 794852690}
   destination: {x: 0, y: 0, z: 0}
-  soundClip: {fileID: 0}
   playedSound: 0
   isPlayerDead: 0
   DeadCutScene: {fileID: 0}
@@ -31733,7 +31730,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerRoomID: -1
+  previousCamera: {fileID: 0}
   isPlayer1Active: 1
+  enemyMove: []
   player: {fileID: 368333734}
   playerCamera: {fileID: 794852690}
   checkDistance: 3
@@ -34416,7 +34415,7 @@ MonoBehaviour:
   isActive: 0
   isCompleted: 0
   cutsceneController: {fileID: 1592768188}
-  QuestManager: {fileID: 0}
+  QuestManager: {fileID: 1616010684}
   Q_2_trigger: {fileID: 1580065413}
   Q_3_trigger: {fileID: 643553326}
   light_end: {fileID: 1283434332}
@@ -68726,7 +68725,6 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  soundClip: {fileID: 8300000, guid: c6a8cfaa6480acd44ad605521e31ef85, type: 3}
   playedSound: 0
   isPlayerDead: 0
   DeadCutScene: {fileID: 0}
@@ -80197,7 +80195,6 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  soundClip: {fileID: 0}
   playedSound: 0
   isPlayerDead: 0
   DeadCutScene: {fileID: 0}

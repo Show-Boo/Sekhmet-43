@@ -18,7 +18,7 @@ public class ActionController : MonoBehaviour
     private void Start()
     {
         if (actionText == null)
-            Debug.LogError("ActionText가 설정되지 않았습니다.");
+            Debug.Log("ActionText가 설정되지 않았습니다.");
 
         if (theInventory == null)
             Debug.LogError("Inventory가 설정되지 않았습니다.");

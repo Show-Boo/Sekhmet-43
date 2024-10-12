@@ -10,7 +10,7 @@ public class CheckPoint : MonoBehaviour
 
     [SerializeField] GameObject player;
 
-    [SerializeField] List<GameObject> checkPoints;//이게 왜 필요하지?
+    //[SerializeField] List<GameObject> checkPoints;//이게 왜 필요하지?
 
     [SerializeField] Vector3 vectorPoint;
 
@@ -19,6 +19,8 @@ public class CheckPoint : MonoBehaviour
     public bool restart = false;
 
     private PlayerHiding PlayerHiding;
+    public EnemyMove EnemyMove;//enemy가 여러갠데..
+
 
     private void Start()
     {
@@ -27,12 +29,13 @@ public class CheckPoint : MonoBehaviour
 
     void Update()
     {
-        if (restart)//돌아가는 지점. 컷씬 시작하자마자.
+        if (restart)//돌아가는 지점.
         {
             //player.transform.position = vectorPoint;//돌아감
             player.transform.position = vectorPoint;
             restart = false;
             Debug.Log("move player");
+            EnemyMove.isPlayerDead = false;
         }
         
     }
@@ -41,8 +44,8 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.CompareTag("Checkpoint"))
         {
-            vectorPoint = other.transform.position;//그냥 tranform하면 플레이어의 위치 반영됨.,.
-            Destroy(other.gameObject);//이걸 재원이가 왜 적었지..
+            vectorPoint = other.transform.position;
+            Destroy(other.gameObject);
         }
     }
 }

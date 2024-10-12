@@ -44,8 +44,6 @@ public class CutSceneController : MonoBehaviour
 
         if (Scenechange)
         {
-            //ChangeSceneByName("myproject");
-
             SceneChange.SetActive(true);//활성화
         }
         // 컷씬이 끝났을 때 PostProcessing Volume 다시 활성화
