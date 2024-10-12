@@ -47,8 +47,8 @@ public class EnemyMove : MonoBehaviour
 
     public Vector3 destination;
 
-    public AudioClip soundClip; // 재생할 소리 받아옴
-    private AudioSource audioSource;
+    //public AudioClip soundClip; // 재생할 소리 받아옴
+    //private AudioSource audioSource;
 
     public bool playedSound = false;//소리를 울렸었는지
     public bool isPlayerDead = false;
@@ -93,14 +93,14 @@ public class EnemyMove : MonoBehaviour
         destination = target.position; //걍 초기값 설정
 
         ActivatedCamera =  player.GetComponentInChildren<Camera>();
-
+        /*
         // AudioSource 컴포넌트를 가져옵니다.
         audioSource = GetComponent<AudioSource>();
         // 소리 클립을 설정합니다.
         audioSource.clip = soundClip;
         // Play On Awake 옵션을 끕니다 (게임 시작 시 자동 재생 방지)
         audioSource.playOnAwake = false;
-
+        */
         DeadCutScene.started += CutSceneStart;
         DeadCutScene.loopPointReached += CutSceneEnd;
 
@@ -153,9 +153,11 @@ public class EnemyMove : MonoBehaviour
         }//->wandering만 함ㅁ..
         else//일반적인 경우 -> 걍 active된 애 찾아서 죽임
         {
-            if (isDead == false)
+            
+            
+            if (isDead == false)//숨어있는 상황
             {
-                if (playerController.isPlayer1Active)//숨지 않음
+                if (playerController.isPlayer1Active)//숨지 않음. 같은 방에 있게 되더라도 isDead false 유지
                 {
                     isDead = true;//isDead 돌리는 case. 계속 olayer와의 거리 계산
                 }
@@ -164,6 +166,7 @@ public class EnemyMove : MonoBehaviour
             {
                 isDead = true;
             }
+            
             
             //target = player.transform;
         }
@@ -188,17 +191,17 @@ public class EnemyMove : MonoBehaviour
             float pathLength = GetPathLength(path);//player가 다른 층에 있는 경우 이게 0으로 반환됨..
 
             // 경로 길이가 추적 범위 이내라면 플레이어를 쫓아감
-            if (pathLength <= chaseRange && isDead)//player1을 쫓는 경우
+            if (pathLength <= chaseRange && isDead && !isPlayerDead)//player1을 쫓는 경우
             {
                 // 플레이어 추적->chase
-
+                //target = ActivatedCamera.transform;
                 nav.SetDestination(target.position);
                 isChase = true;
                 anim.SetBool("IsWalk", true);//쫓는 액션
 
                 Targerting();//쫓기
                 FreezeVelocity();
-                PlaySound();//한 번만 울리게
+                //PlaySound();//한 번만 울리게
 
             }
             else//isDead가 false인 경우(숨은 경우), 추적범위 이내가 아닌 경우
@@ -271,9 +274,6 @@ public class EnemyMove : MonoBehaviour
             }
 
             //Debug.Log(Vector3.Distance(destination, transform.position));
-
-
-        
     }
 
 
@@ -333,9 +333,9 @@ public class EnemyMove : MonoBehaviour
 
         //RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player")); //Player 객체에 속하는 애들까지의 거리 측정
         //객체가 여러개라면 []여기에 정보저장 
-        target = ActivatedCamera.transform;
+        //target = ActivatedCamera.transform;
       
-        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);
+        float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);//원래 target이엇음
 
         playerController.isBeating = true;
         
@@ -391,7 +391,8 @@ public class EnemyMove : MonoBehaviour
         // 플레이어 사망 처리
         isPlayerDead = true;
         //틀어지는 카메라 바꿔줘야함-> 그냥 player 위치 옮겨주는게 나을지도..
-        //DeadCutScene.targetCamera = ActivatedCamera;//player로 고정해주기
+        DeadCutScene.targetCamera = target.GetComponent<Camera>();//player로 고정해주기
+        /*
         if (!playerController.isPlayer1Active)
         {
             //숨었을때 먼저 플레이어1 활성화.
@@ -405,12 +406,13 @@ public class EnemyMove : MonoBehaviour
 
             playerController.isPlayer1Active = true;
         }
+        */
         
         // 플레이어1죽는 컷신 실행
         if (ActivatedCamera.isActiveAndEnabled)
         {
             deathCutscene.SetActive(true);
-            isPlayerDead = false;//추가
+            //isPlayerDead = false;//추가
         }
         else
         {
@@ -419,6 +421,7 @@ public class EnemyMove : MonoBehaviour
         
         // 게임 오버 처리 등을 추가할 수 있음
     }
+    /*
     void PlaySound()
     {
         // 소리가 틀어진 적 없다면 틀어짐
@@ -432,6 +435,7 @@ public class EnemyMove : MonoBehaviour
     {
         audioSource.Stop();
     }
+    */
 
 }
 

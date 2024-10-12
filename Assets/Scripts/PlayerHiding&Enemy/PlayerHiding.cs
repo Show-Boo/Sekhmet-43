@@ -29,7 +29,7 @@ public class PlayerHiding : MonoBehaviour
 
     public Ray playerRay; //player에서 나오는 Ray
 
-    private EnemyMove[] enemyMove;
+    public EnemyMove[] enemyMove;
 
     public GameObject player;
 
@@ -152,6 +152,7 @@ public class PlayerHiding : MonoBehaviour
             return;
         }
 
+
         if (isPlayer1Active)//숨기전
         {
             // 다른 오브젝트의 카메라를 활성화하고 플레이어 카메라를 비활성화
@@ -170,11 +171,10 @@ public class PlayerHiding : MonoBehaviour
 
             foreach (var enemyMoveScript in enemyMove)
             {
-                enemyMoveScript.ActivatedCamera = CurrentCamera;
+                //enemyMoveScript.ActivatedCamera = CurrentCamera;//항상 current camera로 바꿔줬음..
+                enemyMoveScript.target = CurrentCamera.transform;
             }
-            
-
-            
+      
             previousCamera = CurrentCamera;//옮기고 나서 다음을 위헤 현재 카메라를 previous에 넣어줌
 
         }
@@ -199,7 +199,7 @@ public class PlayerHiding : MonoBehaviour
             
             foreach (var enemyMoveScript in enemyMove)
             {
-                enemyMoveScript.ActivatedCamera = playerCamera;
+                enemyMoveScript.target = playerCamera.transform;
             }
             
 

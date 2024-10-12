@@ -8,6 +8,7 @@ public class DeadCutScene : MonoBehaviour
 {
     // Start is called before the first frame update
     public CheckPoint checkPoint;
+    
    
     void Start()
     {
@@ -20,12 +21,22 @@ public class DeadCutScene : MonoBehaviour
     // Update is called once per frame
     void StartControl(VideoPlayer vp)
     {
-        checkPoint.restart = true;
-        Debug.Log("checkpoint");//디버그 되는데..
+        
     }
 
     void EndControl(VideoPlayer vp)
     {
+        checkPoint.restart = true;//컷씬 끝나고 돌아가기
+        Debug.Log("checkpoint");//디버그 되는데..
+
         
+        gameObject.SetActive(false);//자체 비활성화
+
+
+    }
+
+    void restart()
+    {
+
     }
 }
