@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class LoadingScreenController : MonoBehaviour
 {
+    /*
     // Start is called before the first frame update
     public GameObject blackScreen;  // 검은 화면 오브젝트
 
@@ -23,4 +24,5 @@ public class LoadingScreenController : MonoBehaviour
     {
         blackScreen.SetActive(false);
     }
+    */
 }

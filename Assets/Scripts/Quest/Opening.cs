@@ -13,7 +13,7 @@ public class Opening : MonoBehaviour
 
     public BoxCollider[] boxColliders;
 
-    public GameObject SceneChange;
+    //public GameObject SceneChange;
 
     // Start is called before the first frame update
     void Start()
@@ -30,7 +30,7 @@ public class Opening : MonoBehaviour
                 B.enabled = false;  //박스들 비활성화
             }
         }
-        SceneChange.SetActive(false);//활성화
+        //SceneChange.SetActive(false);//활성화
     }
 
     // Update is called once per frame

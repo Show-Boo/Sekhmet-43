@@ -31,9 +31,6 @@ public class Q_2 : Q_ParentClass
 
         light_end.enabled = true;
         */
-
-        
-
         cutSceneController.Scenechange = true;
     }
 
