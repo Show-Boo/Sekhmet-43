@@ -22,8 +22,11 @@ public class PlayerHiding : MonoBehaviour
     public int playerRoomID = -1;
     
 
-    private Camera CurrentCamera;
+    public Camera CurrentCamera;
     public Camera previousCamera; // 이전 카메라를 저장할 변수
+
+    //private GameObject hideplayerObject;//숨어있는 오브젝트를 받아올 변수
+    //private GameObject playerObject;
 
     public bool isPlayer1Active = true; // 현재 활성화된 플레이어 여부
 
@@ -45,7 +48,7 @@ public class PlayerHiding : MonoBehaviour
     public Color crosshairHoverColor = Color.red;
 
     public AudioClip soundClip; // 재생할 소리 받아옴
-    private AudioSource audioSource;
+    public AudioSource audioSource;
 
     public bool isBeating = false;
 
@@ -80,6 +83,7 @@ public class PlayerHiding : MonoBehaviour
                     Debug.Log("Interactable object within range: " + hit.collider.name);
 
                     CurrentCamera = hit.collider.GetComponentInChildren<Camera>(true); // true 설정하면 비활성화된 객체도 감지
+
                     crosshair.color = crosshairHoverColor;
 
                     if (CurrentCamera != null)
@@ -144,7 +148,7 @@ public class PlayerHiding : MonoBehaviour
     }
 
     
-    void SwitchCamera()
+    public void SwitchCamera()
     {
         if (CurrentCamera == null)
         {
@@ -165,6 +169,7 @@ public class PlayerHiding : MonoBehaviour
             }
             AudioListener nowListener = playerCamera.GetComponent<AudioListener>();
             playerCamera.gameObject.SetActive(false);
+            
             player.SetActive(false);
             nowListener.enabled = false;//리스너 하나만 유지
 
@@ -172,7 +177,7 @@ public class PlayerHiding : MonoBehaviour
             foreach (var enemyMoveScript in enemyMove)
             {
                 //enemyMoveScript.ActivatedCamera = CurrentCamera;//항상 current camera로 바꿔줬음..
-                enemyMoveScript.target = CurrentCamera.transform;
+                enemyMoveScript.target = CurrentCamera.transform;//카메라 위치받아옴
             }
       
             previousCamera = CurrentCamera;//옮기고 나서 다음을 위헤 현재 카메라를 previous에 넣어줌

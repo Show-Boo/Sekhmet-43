@@ -8,8 +8,6 @@ public class DeadCutScene : MonoBehaviour
 {
     // Start is called before the first frame update
     public CheckPoint checkPoint;
-    
-   
     void Start()
     {
         VideoPlayer videoPlayer = GetComponent<VideoPlayer>();//자체 오브젝트에서 가져오기

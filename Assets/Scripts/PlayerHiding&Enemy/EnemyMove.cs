@@ -14,6 +14,11 @@ using UnityEngine.Rendering.PostProcessing;
 
 //agent=enemy에게 목적지를 알려줘서 목적지로 이동.
 // 적과 player가 일정 거리 안에 들어왔을때 추적. 근데 방이 다를때 숨으면 추적 종료.
+
+
+//문제 1. 숨으면 다닐 수 없는 길 위에 있다고 생각함. -> 일단 옮겨둠
+//문제 2. 카메라 렌더링 문제 -> 부성쓰 말대로 하니까 성공
+//문제 3. 숨고나서 돌아가기
 public class EnemyMove : MonoBehaviour
 {
     Rigidbody rigid;
@@ -40,6 +45,7 @@ public class EnemyMove : MonoBehaviour
     public int EnemyRoomID = -1; //적이 있는 방의 id. room 스크립트에서 update할거임
 
     private PlayerHiding playerController; // 스크립트 받아오기
+
     private PlayerController playerC;
     private PlayerController P;
 
@@ -60,11 +66,12 @@ public class EnemyMove : MonoBehaviour
     private int combinedAreaMask;//area여러개를 합치는..? 그런 int
     void Awake()//시작할때 처음만
     {
-        meleeArea.GetComponent<Collider>().isTrigger = true;
+       // meleeArea.GetComponent<Collider>().isTrigger = true;
         meleeArea.enabled = false;
+
         deathCutscene.SetActive(false);
 
-        target = player.transform;
+        target = player.GetComponentInChildren<Camera>().transform;
         rigid = GetComponent<Rigidbody>();
         boxCollider = GetComponent<BoxCollider>();
         mat = GetComponentInChildren<MeshRenderer>().material;
@@ -73,7 +80,7 @@ public class EnemyMove : MonoBehaviour
         
         anim = GetComponent<Animator>();
 
-        playerController = target.GetComponent<PlayerHiding>();//다른 스크립트에서 가져오기
+        playerController = player.GetComponent<PlayerHiding>();//다른 스크립트에서 가져오기
 
         P = FindObjectOfType<PlayerController>();
 
@@ -215,7 +222,7 @@ public class EnemyMove : MonoBehaviour
                 playerController.HeartBeatPlaying = true;
 
 
-                Debug.Log("distance to player is less then 10.0");
+                //Debug.Log("distance to player is less then 10.0");
             }
             else
             {
@@ -224,7 +231,7 @@ public class EnemyMove : MonoBehaviour
                 playerController.HeartBeatPlaying = false;
 
 
-                Debug.Log("distance to player is more then 10.0");
+                //Debug.Log("distance to player is more then 10.0");
             }
         }
         else//player가 다른 층에 있는 경우
@@ -379,7 +386,9 @@ public class EnemyMove : MonoBehaviour
     }
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Player") && !isPlayerDead)
+        //Debug.Log(other.GetComponentInChildren<Camera>()==target);//여기서 false찍힘 -> 타겟은 transform이니까!!!!!!!!!!!!!!
+
+        if ((other.GetComponentInChildren<Camera>() == target.GetComponentInChildren<Camera>()) && !isPlayerDead)//원래는 compare tag엿음
         {
             // 플레이어가 공격에 맞았을 때 죽는 컷신 재생
             TriggerDeathCutscene();
@@ -388,10 +397,11 @@ public class EnemyMove : MonoBehaviour
 
     void TriggerDeathCutscene()
     {
+        Debug.Log("DeaeCutScene");
         // 플레이어 사망 처리
         isPlayerDead = true;
         //틀어지는 카메라 바꿔줘야함-> 그냥 player 위치 옮겨주는게 나을지도..
-        DeadCutScene.targetCamera = target.GetComponent<Camera>();//player로 고정해주기
+        DeadCutScene.targetCamera = target.GetComponentInChildren<Camera>();//player로 고정해주기..
         /*
         if (!playerController.isPlayer1Active)
         {
@@ -409,8 +419,10 @@ public class EnemyMove : MonoBehaviour
         */
         
         // 플레이어1죽는 컷신 실행
-        if (ActivatedCamera.isActiveAndEnabled)
+        if (DeadCutScene.targetCamera.isActiveAndEnabled)
         {
+            Debug.Log(DeadCutScene.targetCamera);
+
             deathCutscene.SetActive(true);
             //isPlayerDead = false;//추가
         }
