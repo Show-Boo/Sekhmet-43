@@ -19,6 +19,20 @@ public class StaminaController : MonoBehaviour
     [SerializeField] private Image staminaProgressUI = null;
     [SerializeField] private CanvasGroup sliderCanvasGroup = null;
 
+
+    // 스태미너 UI 비활성화
+    public void DisableStaminaUI()
+    {
+        sliderCanvasGroup.alpha = 0; // UI를 숨깁니다.
+    }
+
+    // 스태미너 UI 활성화
+    public void EnableStaminaUI()
+    {
+        sliderCanvasGroup.alpha = 1; // UI를 다시 보이게 합니다.
+    }
+
+
     private void Update()
     {
         if (!weAreSprinting)

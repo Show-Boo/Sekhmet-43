@@ -4,22 +4,29 @@ using UnityEngine;
 
 public class Q_1 : Q_ParentClass
 {
-
-    //public override bool cutscene { get; set; } = true;//컷씬이 있다 -> 부모 class에서 true이므로 이 코드를 또 써주면 오류가 나는듯
-
     public BoxCollider Q_1_trigger;
     public BoxCollider Q_2_trigger;
+    public GameObject questUI; // 퀘스트 UI를 나타내는 GameObject 추가
+
+
     public override void UpdateQuest()
     {
-        
+
     }
 
     public override void NextQuest()
     {
-        //Q_1_trigger = GetComponent<BoxCollider>();
-        //Q_2_trigger = GetComponent<BoxCollider>();
-
         Q_1_trigger.enabled = false;
         Q_2_trigger.enabled = true;
+
+        // 퀘스트 UI를 3초간 표시
+        StartCoroutine(ShowQuestUI());
+    }
+
+    private IEnumerator ShowQuestUI()
+    {
+        questUI.SetActive(true); // UI 활성화
+        yield return new WaitForSeconds(3); // 3초 대기
+        questUI.SetActive(false); // UI 비활성화
     }
 }

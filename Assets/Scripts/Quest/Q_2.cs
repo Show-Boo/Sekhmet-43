@@ -16,6 +16,9 @@ public class Q_2 : Q_ParentClass
     public LightController lightController;
     
     public CutSceneController cutSceneController;
+
+    public GameObject questUI; // 퀘스트 UI를 나타내는 GameObject 추가
+
     public override void UpdateQuest()
     {
 
@@ -32,8 +35,16 @@ public class Q_2 : Q_ParentClass
         light_end.enabled = true;
         */
         cutSceneController.Scenechange = true;
+
+        // 퀘스트 UI를 3초간 표시
+        StartCoroutine(ShowQuestUI());
     }
 
-    
+    private IEnumerator ShowQuestUI()
+    {
+        questUI.SetActive(true); // UI 활성화
+        yield return new WaitForSeconds(3); // 3초 대기
+        questUI.SetActive(false); // UI 비활성화
+    }
 
 }

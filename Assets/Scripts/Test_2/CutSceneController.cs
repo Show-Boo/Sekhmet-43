@@ -11,6 +11,9 @@ public class CutSceneController : MonoBehaviour
     public VideoPlayer[] videoPlayers; // VideoPlayer 컴포넌트를 연결합니다.
     public PlayerMovement playerController; // PlayerMovement와 같은 플레이어 컨트롤러 스크립트를 연결합니다.
     public PostProcessVolume postProcessVolume;
+    public StaminaController staminaController;
+
+
 
     public int nowIndex = 0;
     public int previousIndex = 0;
@@ -29,27 +32,30 @@ public class CutSceneController : MonoBehaviour
 
     void DisablePlayerControl(VideoPlayer vp)
     {
-        //playerController.enabled = false;//컷씬 시작하면 player 멈춰주기
-        postProcessVolume.enabled = false; // Volume 자체를 비활성화
+        staminaController.enabled = false; // 스태미너 기능 비활성화
+        staminaController.DisableStaminaUI(); // 스태미너 UI 비활성화
+        playerController.enabled = false; // 컷씬 시작하면 플레이어 멈춤
+        postProcessVolume.enabled = false; // PostProcess 비활성화
+
         Debug.Log("PostProcess Volume Disabled");
     }
 
     void EnablePlayerControl(VideoPlayer vp)
     {
-        //playerController.enabled = true;//컷씬 끝나면 player 이동 가능하게 해주기
-        
+        playerController.enabled = true; // 컷씬 끝나면 플레이어 이동 가능
+        postProcessVolume.enabled = true; // PostProcess 활성화
+        staminaController.enabled = true; // 스태미너 기능 다시 활성화
+        staminaController.EnableStaminaUI(); // 스태미너 UI 다시 활성화
+
+        Debug.Log("PostProcess Volume Enabled");
         videoPlayers[previousIndex].enabled = false;
 
         Debug.Log(previousIndex + "video end");
 
         if (Scenechange)
         {
-            changeTheScene.StartLoadingScene("myproject");//활성화
+            changeTheScene.StartLoadingScene("myproject"); // 씬 전환
         }
-        // 컷씬이 끝났을 때 PostProcessing Volume 다시 활성화
-        postProcessVolume.enabled = true; // Volume 자체를 다시 활성화
-        Debug.Log("PostProcess Volume Enabled");
-
     }
 
     public void PlayCutscene()
