@@ -9,6 +9,8 @@ public class ActionController : MonoBehaviour
     [SerializeField] private LayerMask layerMask; // 아이템 레이어에만 반응
     [SerializeField] private Text actionText;
     [SerializeField] private Inventory theInventory;
+    [SerializeField] private AudioClip pickUpSound; // 추가: 아이템 습득 효과음
+    private AudioSource audioSource; // 추가: AudioSource 컴포넌트
 
     private bool pickupActivated = false; // 습득 가능할 시 true
     private RaycastHit hitInfo; // 충돌체 정보 저장
@@ -22,6 +24,13 @@ public class ActionController : MonoBehaviour
 
         if (theInventory == null)
             Debug.LogError("Inventory가 설정되지 않았습니다.");
+
+        // 추가: AudioSource 컴포넌트를 가져옴
+        audioSource = GetComponent<AudioSource>();
+        if (audioSource == null)
+        {
+            Debug.LogError("AudioSource가 없습니다. 컴포넌트를 추가하세요.");
+        }
     }
 
     private void Update()
@@ -52,6 +61,9 @@ public class ActionController : MonoBehaviour
                 // 태그가 "Item"인 오브젝트를 획득하면 문을 열 수 있도록 설정
                 hasKeyCard = true;
                 Debug.Log("아이템을 획득했으므로 문을 열 수 있습니다.");
+
+                // 추가: 효과음 재생
+                PlayPickUpSound();
 
                 theInventory.AcquireItem(itemPickUp.item);
                 Destroy(hitInfo.transform.gameObject);
@@ -100,6 +112,15 @@ public class ActionController : MonoBehaviour
         if (actionText != null)
         {
             actionText.gameObject.SetActive(false);
+        }
+    }
+
+    // 추가: 아이템 습득 시 효과음을 재생하는 메서드
+    private void PlayPickUpSound()
+    {
+        if (audioSource != null && pickUpSound != null)
+        {
+            audioSource.PlayOneShot(pickUpSound);
         }
     }
 
