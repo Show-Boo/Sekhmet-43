@@ -10,6 +10,8 @@ public class ActionController : MonoBehaviour
     [SerializeField] private Text actionText;
     [SerializeField] private Inventory theInventory;
     [SerializeField] private AudioClip pickUpSound; // 추가: 아이템 습득 효과음
+    [SerializeField] private QuestManager questManager; // 퀘스트 매니저 참조
+
     private AudioSource audioSource; // 추가: AudioSource 컴포넌트
 
     private bool pickupActivated = false; // 습득 가능할 시 true
@@ -62,15 +64,22 @@ public class ActionController : MonoBehaviour
                 hasKeyCard = true;
                 Debug.Log("아이템을 획득했으므로 문을 열 수 있습니다.");
 
-                // 추가: 효과음 재생
+                // 효과음 재생
                 PlayPickUpSound();
 
+                // 아이템을 인벤토리에 추가
                 theInventory.AcquireItem(itemPickUp.item);
                 Destroy(hitInfo.transform.gameObject);
+
+                // 퀘스트 완료 처리
+                questManager.CompleteObjective(); // 인스턴스를 통해 호출
+
                 InfoDisappear();
             }
         }
     }
+
+
 
     // 레이캐스트로 아이템을 감지
     private void CheckItem()
