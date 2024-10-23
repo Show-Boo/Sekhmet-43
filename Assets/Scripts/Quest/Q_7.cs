@@ -10,10 +10,11 @@ public class Q_7 : Q_ParentClass
     public override bool cutscene { get => false_cutscene; set => false_cutscene = value; }
     public override void UpdateQuest()
     {
-        if (q_7_done)
+        // 발전기 수리 완료 상태 확인
+        if (GeneratorManager.Instance != null && GeneratorManager.Instance.engineIsAllFixed)
         {
-            QuestManager.CompleteObjective();
-            
+            // 모든 발전기가 완료되었으면 퀘스트 완료
+            QuestManager.Instance.CompleteObjective();
         }
     }
 
@@ -29,4 +30,5 @@ public class Q_7 : Q_ParentClass
         yield return new WaitForSeconds(3); // 3초 대기
         questUI.SetActive(false); // UI 비활성화
     }
+
 }

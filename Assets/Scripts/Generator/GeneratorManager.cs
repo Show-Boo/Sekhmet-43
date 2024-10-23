@@ -75,10 +75,14 @@ public class GeneratorManager : MonoBehaviour
 
     private void OnAllGeneratorsFixed()
     {
-        // 여기서 모든 발전기 완료 시 수행할 동작을 정의
+        // 모든 발전기 완료 시 수행할 동작
         Debug.Log("모든 발전기 수리가 완료되었습니다. 작업이 끝났습니다.");
-        //q_7.q_7_done = true;//여기서 퀘스트 성공
-        engineIsAllFixed = true;//엔진 다 고쳐짐!
+
+        // 엔진 완료 상태 설정
+        engineIsAllFixed = true;
+
+        // QuestManager에 모든 발전기가 수리 완료되었다고 알림
+        QuestManager.Instance.CompleteObjective();  // QuestManager의 CompleteObjective 호출
     }
 
 

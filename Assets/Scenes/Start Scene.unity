@@ -22841,6 +22841,7 @@ MonoBehaviour:
   - {fileID: 493400979}
   - {fileID: 273314057}
   - {fileID: 540662126}
+  questSound: {fileID: 0}
 --- !u!4 &419025641
 Transform:
   m_ObjectHideFlags: 0
@@ -31483,9 +31484,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 794852696}
   breathingSound: {fileID: 8300000, guid: e8748c6c4662d324c8e1f0d6e1844571, type: 3}
   shakeAmount: 0.03
-  shakeSpeed: 2
+  shakeSpeed: 5
   breathingInterval: 5
-  breathingVolume: 0.4
+  breathingVolume: 0.3
 --- !u!82 &596347477
 AudioSource:
   m_ObjectHideFlags: 0
@@ -31496,7 +31497,7 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: 16b2d3ea84c9d6443be38b0995d0625c, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 0.077
   m_Pitch: 1
@@ -33936,7 +33937,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 0.47
+  - 0.2
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
@@ -40950,6 +40951,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   FlashlightLight: {fileID: 1630705854}
+  flashlightOnSound: {fileID: 0}
+  flashlightOffSound: {fileID: 0}
 --- !u!114 &794852694
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -40968,6 +40971,8 @@ MonoBehaviour:
     m_Bits: 64
   actionText: {fileID: 0}
   theInventory: {fileID: 0}
+  pickUpSound: {fileID: 0}
+  questManager: {fileID: 0}
 --- !u!114 &794852695
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -58591,7 +58596,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 0.25
+  - 0.08
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
@@ -101464,7 +101469,7 @@ VideoPlayer:
   m_TargetAudioSources:
   - {fileID: 0}
   m_DirectAudioVolumes:
-  - 0.47
+  - 0.43
   m_Url: 
   m_EnabledAudioTracks: 01
   m_DirectAudioMutes: 00
@@ -105559,7 +105564,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: fc0200e682e76e347ba5c0c59e8a8a51, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: 0.08
   m_Pitch: 1
   Loop: 1
   Mute: 0
