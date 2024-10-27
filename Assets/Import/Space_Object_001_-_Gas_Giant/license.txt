@@ -1,0 +1,8 @@
+Model Information:
+* title:	Space Object 001 - Gas Giant
+* source:	https://sketchfab.com/3d-models/space-object-001-gas-giant-aef853cc6a2a4f11ad32f0eee6fd044d
+* author:	Vaclav Marena (https://sketchfab.com/vaclavmarena)
+
+Model License:
+* license type:	SKETCHFAB Standard (https://sketchfab.com/licenses)
+* requirements:	Under basic restrictions, use worldwide, on all types of media, commercially or not, and in all types of derivative works
