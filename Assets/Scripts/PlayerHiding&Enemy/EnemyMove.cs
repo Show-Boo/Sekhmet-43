@@ -57,7 +57,7 @@ public class EnemyMove : MonoBehaviour
     //private AudioSource audioSource;
 
     public bool playedSound = false;//소리를 울렸었는지
-    public bool isPlayerDead = false;
+    public bool PlayerDead = false;
     //public PostProcessVolume postProcessVolume;
 
     public VideoPlayer DeadCutScene;//죽는 컷씻
@@ -198,7 +198,7 @@ public class EnemyMove : MonoBehaviour
             float pathLength = GetPathLength(path);//player가 다른 층에 있는 경우 이게 0으로 반환됨..
 
             // 경로 길이가 추적 범위 이내라면 플레이어를 쫓아감
-            if (pathLength <= chaseRange && isDead && !isPlayerDead)//player1을 쫓는 경우
+            if (pathLength <= chaseRange && isDead && !PlayerDead)//player1을 쫓는 경우. isDead = 같은 방에 있는지 여부/isPlayerDead  죽엇는지
             {
                 // 플레이어 추적->chase
                 //target = ActivatedCamera.transform;
@@ -388,9 +388,10 @@ public class EnemyMove : MonoBehaviour
     {
         //Debug.Log(other.GetComponentInChildren<Camera>()==target);//여기서 false찍힘 -> 타겟은 transform이니까!!!!!!!!!!!!!!
 
-        if ((other.GetComponentInChildren<Camera>() == target.GetComponentInChildren<Camera>()) && !isPlayerDead)//원래는 compare tag엿음
+        if ((other.GetComponentInChildren<Camera>() == target.GetComponentInChildren<Camera>()) && !PlayerDead)//원래는 compare tag엿음
         {
             // 플레이어가 공격에 맞았을 때 죽는 컷신 재생
+            PlayerDead = true;
             TriggerDeathCutscene();
         }
     }
@@ -399,7 +400,7 @@ public class EnemyMove : MonoBehaviour
     {
         Debug.Log("DeaeCutScene");
         // 플레이어 사망 처리
-        isPlayerDead = true;
+        
         //틀어지는 카메라 바꿔줘야함-> 그냥 player 위치 옮겨주는게 나을지도..
         DeadCutScene.targetCamera = target.GetComponentInChildren<Camera>();//player로 고정해주기..
         /*

@@ -20,7 +20,7 @@ public class CheckPoint : MonoBehaviour
 
     private PlayerHiding PlayerHiding;
     //public EnemyMove EnemyMove;//enemy가 여러갠데..
-    public EnemyMove[] EnemyMove;
+    
 
     private void Start()
     {
@@ -36,17 +36,18 @@ public class CheckPoint : MonoBehaviour
 
             if (!PlayerHiding.isPlayer1Active)
             {
-                PlayerHiding.SwitchCamera();//제바루ㅜㅠ
+                PlayerHiding.SwitchCamera();//제바루ㅜㅠ -> 성공!
             }
 
             restart = false;
             
             Debug.Log("move player");
-
+            /*
             foreach (var enemyMoveScript in EnemyMove)
             {
                 enemyMoveScript.isPlayerDead = false;//다시 공격 재개
             }
+            */
             
         }
         

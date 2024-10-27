@@ -15,6 +15,7 @@ public class DeadCutScene : MonoBehaviour
     public GameObject blackOut;
     void Start()
     {
+        //blackOut.SetActive(false);이 스크립트는 죽고 나서 활성화 되므로 이 코드는 무의미함
         VideoPlayer videoPlayer = GetComponent<VideoPlayer>();//자체 오브젝트에서 가져오기
 
         videoPlayer.started += StartControl;
@@ -39,8 +40,5 @@ public class DeadCutScene : MonoBehaviour
 
     }
 
-    void restart()
-    {
-
-    }
+    
 }
