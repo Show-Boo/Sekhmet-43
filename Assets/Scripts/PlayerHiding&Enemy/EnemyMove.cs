@@ -64,6 +64,8 @@ public class EnemyMove : MonoBehaviour
 
     public string[] navMeshAreaNames;//enemy가 돌아다닐 수 있는 범위
     private int combinedAreaMask;//area여러개를 합치는..? 그런 int
+
+    public bool restart = false;
     void Awake()//시작할때 처음만
     {
        // meleeArea.GetComponent<Collider>().isTrigger = true;
@@ -191,53 +193,61 @@ public class EnemyMove : MonoBehaviour
         NavMeshPath path = new NavMeshPath();//새로운 객체 생성
         nav.CalculatePath(target.position, path);
 
-        if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. 또는 player가 다른 층에 있는 경우
-        {
-
-            // 경로 길이 계산
-            float pathLength = GetPathLength(path);//player가 다른 층에 있는 경우 이게 0으로 반환됨..
-
-            // 경로 길이가 추적 범위 이내라면 플레이어를 쫓아감
-            if (pathLength <= chaseRange && isDead && !PlayerDead)//player1을 쫓는 경우. isDead = 같은 방에 있는지 여부/isPlayerDead  죽엇는지
+        //if (!restart)
+        //{
+            if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. 또는 player가 다른 층에 있는 경우
             {
-                // 플레이어 추적->chase
-                //target = ActivatedCamera.transform;
-                nav.SetDestination(target.position);
-                isChase = true;
-                anim.SetBool("IsWalk", true);//쫓는 액션
+                // 경로 길이 계산
+                float pathLength = GetPathLength(path);//player가 다른 층에 있는 경우 이게 0으로 반환됨..
 
-                Targerting();//쫓기
-                FreezeVelocity();
-                //PlaySound();//한 번만 울리게
+                // 경로 길이가 추적 범위 이내라면 플레이어를 쫓아감
+                if (pathLength <= chaseRange && isDead && !PlayerDead)//player1을 쫓는 경우. isDead = 같은 방에 있는지 여부/isPlayerDead  죽엇는지
+                {
+                    // 플레이어 추적->chase
+                    //target = ActivatedCamera.transform;
+                    nav.SetDestination(target.position);
+                    isChase = true;
+                    anim.SetBool("IsWalk", true);//쫓는 액션
 
+                    Targerting();//쫓기
+                    FreezeVelocity();
+                    //PlaySound();//한 번만 울리게
+
+                }
+                else//isDead가 false인 경우(숨은 경우), 추적범위 이내가 아닌 경우
+                {
+                    Wandering();
+                }
+
+                if (distanceToPlayer <= 10.0f)//근방에 enemy있을때 심장소리
+                {
+                    //if (playerController.HeartBeatPlaying == false){
+                    playerController.HeartBeatPlaying = true;
+
+
+                    //Debug.Log("distance to player is less then 10.0");
+                }
+                else
+                {
+                    //if (playerController.HeartBeatPlaying == true)
+
+                    playerController.HeartBeatPlaying = false;
+
+
+                    //Debug.Log("distance to player is more then 10.0");
+                }
             }
-            else//isDead가 false인 경우(숨은 경우), 추적범위 이내가 아닌 경우
+            else//player가 다른 층에 있는 경우
             {
                 Wandering();
             }
+        //}
+        //else
+        //{
+            //가만히 있어야 함
+        //}
 
-            if (distanceToPlayer <= 10.0f)//근방에 enemy있을때 심장소리
-            {
-                //if (playerController.HeartBeatPlaying == false){
-                playerController.HeartBeatPlaying = true;
-
-
-                //Debug.Log("distance to player is less then 10.0");
-            }
-            else
-            {
-                //if (playerController.HeartBeatPlaying == true)
-
-                playerController.HeartBeatPlaying = false;
-
-
-                //Debug.Log("distance to player is more then 10.0");
-            }
-        }
-        else//player가 다른 층에 있는 경우
-        {
-            Wandering();
-        }
+        
         
     }
 

@@ -8,6 +8,7 @@ public class Q_3 : Q_ParentClass
     public BoxCollider Q_3_trigger;
     //public BoxCollider Q_4_trigger;
     public GameObject questUI; // 퀘스트 UI를 나타내는 GameObject 추가
+    public BoxCollider checkpoint1;
     public override void UpdateQuest()
     {
 
@@ -21,6 +22,7 @@ public class Q_3 : Q_ParentClass
         Q_3_trigger.enabled = false;
         cutsceneController.Scenechange = true;//여기가 맞나..
                                               //Q_3_trigger.enabled = true;
+        checkpoint1.enabled = true;
 
         // 퀘스트 UI를 3초간 표시
         StartCoroutine(ShowQuestUI());

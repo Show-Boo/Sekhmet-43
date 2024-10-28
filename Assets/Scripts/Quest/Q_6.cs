@@ -12,7 +12,10 @@ public class Q_6 : Q_ParentClass
 
     public override bool cutscene { get => false_cutscene; set => false_cutscene = value; }
     public Q_5 q_5;
-    
+
+    public BoxCollider checkpoint2;
+    public BoxCollider checkpoint3;
+    public BoxCollider checkpoint4;
 
     public override void UpdateQuest()
     {
@@ -26,6 +29,10 @@ public class Q_6 : Q_ParentClass
     {
         q_5.Quest_6_Text.SetActive(false);//ui 비활성화
         StartCoroutine(ShowQuestUI());
+
+        checkpoint2.enabled = true;
+        checkpoint3.enabled = true;
+        checkpoint4.enabled = true;
     }
 
 

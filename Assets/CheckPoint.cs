@@ -58,7 +58,7 @@ public class CheckPoint : MonoBehaviour
         if (other.CompareTag("Checkpoint"))
         {
             vectorPoint = other.transform.position;
-            Destroy(other.gameObject);
+            //Destroy(other.gameObject);
         }
     }
 }
