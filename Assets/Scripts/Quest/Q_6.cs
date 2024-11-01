@@ -10,7 +10,7 @@ public class Q_6 : Q_ParentClass
     public GameObject questUI; // 퀘스트 UI를 나타내는 GameObject 추가
 
 
-    public override bool cutscene { get => false_cutscene; set => false_cutscene = value; }
+    //public override bool cutscene { get => false_cutscene; set => false_cutscene = value; }
     public Q_5 q_5;
 
     public BoxCollider checkpoint2;

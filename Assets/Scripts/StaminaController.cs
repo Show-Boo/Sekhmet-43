@@ -19,33 +19,32 @@ public class StaminaController : MonoBehaviour
     [SerializeField] private Image staminaProgressUI = null;
     [SerializeField] private CanvasGroup sliderCanvasGroup = null;
 
-
     // 스태미너 UI 비활성화
     public void DisableStaminaUI()
     {
-        sliderCanvasGroup.alpha = 0; // UI를 숨깁니다.
+        sliderCanvasGroup.alpha = 0;
     }
 
     // 스태미너 UI 활성화
     public void EnableStaminaUI()
     {
-        sliderCanvasGroup.alpha = 1; // UI를 다시 보이게 합니다.
+        sliderCanvasGroup.alpha = 1;
     }
-
 
     private void Update()
     {
         if (!weAreSprinting)
         {
-            if (playerStamina <= 100.0f - 0.01f)
+            // 스태미너가 최대치에 도달하지 않은 경우 회복 진행
+            if (playerStamina < 100.0f)
             {
                 playerStamina += staminaRegen * Time.deltaTime;
-                UpdateStamina(1);
+                UpdateStaminaUI(1);
 
+                // 스태미너가 완전히 회복된 경우
                 if (playerStamina >= 100.0f)
                 {
                     playerStamina = 100.0f;
-                    sliderCanvasGroup.alpha = 0;
                     hasRegenerated = true;  // 스태미너가 완전히 회복되면 hasRegenerated를 true로 설정
                 }
             }
@@ -54,18 +53,20 @@ public class StaminaController : MonoBehaviour
 
     public void Sprinting()
     {
-        if (hasRegenerated)  // 스태미너가 회복된 후에만 달리기 가능
+        // 스태미너가 충분히 회복된 경우에만 실행
+        if (hasRegenerated)
         {
             weAreSprinting = true;
             playerStamina -= staminaDrain * Time.deltaTime;
-            UpdateStamina(1);
+            UpdateStaminaUI(1);
 
+            // 스태미너가 바닥나면 달리기를 중지하고 회복 상태 업데이트
             if (playerStamina <= 0)
             {
                 playerStamina = 0;
-                hasRegenerated = false;  // 스태미너가 바닥나면 달리기 중지
-                sliderCanvasGroup.alpha = 0;
+                hasRegenerated = false;  // 스태미너가 바닥나면 hasRegenerated를 false로 설정
                 weAreSprinting = false;
+                UpdateStaminaUI(0);      // UI를 숨기도록 설정
             }
         }
     }
@@ -75,19 +76,11 @@ public class StaminaController : MonoBehaviour
         weAreSprinting = false;
     }
 
-
-
-    void UpdateStamina(int value)
+    private void UpdateStaminaUI(int value)
     {
         staminaProgressUI.fillAmount = playerStamina / 100.0f;
 
-        if (value == 0)
-        {
-            sliderCanvasGroup.alpha = 0;
-        }
-        else
-        {
-            sliderCanvasGroup.alpha = 1;
-        }
+        // 스태미너 UI를 필요에 따라 숨기거나 보이도록 설정
+        sliderCanvasGroup.alpha = value == 1 ? 1 : 0;
     }
 }

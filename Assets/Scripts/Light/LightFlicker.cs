@@ -11,8 +11,7 @@ public class LightFlicker : MonoBehaviour
     public float MaxTime;
     public float Timer;
 
-    public AudioSource AS;
-    public AudioClip LightAudio;
+
 
 
     // Start is called before the first frame update
@@ -35,7 +34,7 @@ public class LightFlicker : MonoBehaviour
         {
             _Light.enabled = !_Light.enabled;
             Timer = Random.Range(MinTime, MaxTime);
-            AS.PlayOneShot(LightAudio);
+
         }
     }
 

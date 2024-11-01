@@ -123,7 +123,7 @@ public class PlayerHiding : MonoBehaviour
                 }
                 else
                 {
-                    Debug.LogError("Previous camera is null!");
+                    //Debug.LogError("Previous camera is null!");
                 }
             }
         }
@@ -136,13 +136,13 @@ public class PlayerHiding : MonoBehaviour
         if (HeartBeatPlaying)
         {
             PlaySound();
-            Debug.Log("Play");
+            //Debug.Log("Play");
         }
         else
         {
             endSound();
 
-            Debug.Log("end");
+            //Debug.Log("end");
         }
 
     }
@@ -152,7 +152,7 @@ public class PlayerHiding : MonoBehaviour
     {
         if (CurrentCamera == null)
         {
-            Debug.LogError("CurrentCamera component is null! Make sure cameras are assigned.");
+            //Debug.LogError("CurrentCamera component is null! Make sure cameras are assigned.");
             return;
         }
 

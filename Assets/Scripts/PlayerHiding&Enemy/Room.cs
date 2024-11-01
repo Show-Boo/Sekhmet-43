@@ -27,7 +27,7 @@ public class Room : MonoBehaviour
                 enemy.EnemyRoomID = roomID;
             }
 
-            Debug.Log("EnemyTag");
+            //Debug.Log("EnemyTag");
         }
     }
 }

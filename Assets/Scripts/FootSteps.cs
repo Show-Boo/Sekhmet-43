@@ -72,7 +72,6 @@ public class FootstepScript : MonoBehaviour
 
     void PlayFootstep()
     {
-        Debug.Log("발소리 재생");
         footstepSource.PlayOneShot(footstepClip,footstepVolume);
     }
 }

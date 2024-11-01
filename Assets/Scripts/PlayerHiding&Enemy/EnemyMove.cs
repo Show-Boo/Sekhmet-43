@@ -365,7 +365,7 @@ public class EnemyMove : MonoBehaviour
     IEnumerator Attack()
     {
 
-        Debug.Log("Attack");
+        
         //정지
         isChase =false;
         isAttack = true;
@@ -408,7 +408,7 @@ public class EnemyMove : MonoBehaviour
 
     void TriggerDeathCutscene()
     {
-        Debug.Log("DeaeCutScene");
+        
         // 플레이어 사망 처리
         
         //틀어지는 카메라 바꿔줘야함-> 그냥 player 위치 옮겨주는게 나을지도..
@@ -432,7 +432,7 @@ public class EnemyMove : MonoBehaviour
         // 플레이어1죽는 컷신 실행
         if (DeadCutScene.targetCamera.isActiveAndEnabled)
         {
-            Debug.Log(DeadCutScene.targetCamera);
+            
 
             deathCutscene.SetActive(true);
             //isPlayerDead = false;//추가

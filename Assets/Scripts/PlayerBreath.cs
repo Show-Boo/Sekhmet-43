@@ -103,7 +103,7 @@ public class PlayerBreath : MonoBehaviour
         // 숨소리 오디오 클립이 할당되지 않은 경우 경고 메시지 출력
         if (breathingSound == null)
         {
-            Debug.LogError("Breathing sound is not assigned in the inspector!");
+            //Debug.LogError("Breathing sound is not assigned in the inspector!");
         }
     }
 
@@ -126,12 +126,12 @@ public class PlayerBreath : MonoBehaviour
     {
         if (breathingSound != null)
         {
-            Debug.Log("Playing breathing sound");
+
             breathingSource.PlayOneShot(breathingSound, breathingVolume);
         }
         else
         {
-            Debug.LogError("Breathing sound is not assigned!");
+            //Debug.LogError("Breathing sound is not assigned!");
         }
     }
 }
