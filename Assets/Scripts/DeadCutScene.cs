@@ -20,6 +20,7 @@ public class DeadCutScene : MonoBehaviour
 
         videoPlayer.started += StartControl;
         videoPlayer.loopPointReached += EndControl;//함수등록
+
     }
 
     // Update is called once per frame
@@ -33,7 +34,7 @@ public class DeadCutScene : MonoBehaviour
         checkPoint.restart = true;//컷씬 끝나고 돌아가기
         Debug.Log("checkpoint");//디버그 되는데..
 
-        blackOut.SetActive(true);
+        blackOut.SetActive(true);//검은화면
 
         gameObject.SetActive(false);//자체 비활성화
 

@@ -21,6 +21,7 @@ public class Start_myproject : MonoBehaviour
     private NavMeshAgent navMeshAgent2;
     private NavMeshAgent navMeshAgent3;
 
+    public CutSceneController CutSceneController;
     void Start()
     {
         //Text t = Quest_6_Text.GetComponent<Text>();
@@ -40,6 +41,7 @@ public class Start_myproject : MonoBehaviour
         enemy2.SetActive(false);    
         enemy3.SetActive(false);
         
+        CutSceneController.isMyproject = true;
 
         foreach (var cp in checkpoint)
         {

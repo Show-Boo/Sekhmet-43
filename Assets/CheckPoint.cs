@@ -29,26 +29,17 @@ public class CheckPoint : MonoBehaviour
 
     void Update()
     {
-        if (restart)//돌아가는 지점.
+        if (restart)
         {
-            //player.transform.position = vectorPoint;//돌아감
             player.transform.position = vectorPoint;
 
             if (!PlayerHiding.isPlayer1Active)
             {
                 PlayerHiding.SwitchCamera();//제바루ㅜㅠ -> 성공!
             }
-
             restart = false;
-            
             Debug.Log("move player");
-            /*
-            foreach (var enemyMoveScript in EnemyMove)
-            {
-                enemyMoveScript.isPlayerDead = false;//다시 공격 재개
-            }
-            */
-            
+            Debug.Log(player.transform.position);
         }
         
     }
@@ -58,7 +49,7 @@ public class CheckPoint : MonoBehaviour
         if (other.CompareTag("Checkpoint"))
         {
             vectorPoint = other.transform.position;
-            //Destroy(other.gameObject);
+            
         }
     }
 }

@@ -80,7 +80,7 @@ public class PlayerHiding : MonoBehaviour
                 // 일정 거리 내로 들어오는 객체가 감지되면
                 if (hit.collider.CompareTag(interactableTag))
                 {
-                    Debug.Log("Interactable object within range: " + hit.collider.name);
+                    //Debug.Log("Interactable object within range: " + hit.collider.name);
 
                     CurrentCamera = hit.collider.GetComponentInChildren<Camera>(true); // true 설정하면 비활성화된 객체도 감지
 

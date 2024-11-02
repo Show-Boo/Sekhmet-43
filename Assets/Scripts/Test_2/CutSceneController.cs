@@ -13,6 +13,7 @@ public class CutSceneController : MonoBehaviour
     public PostProcessVolume postProcessVolume;
     public StaminaController staminaController;
 
+    public bool isMyproject=false;
 
 
     public int nowIndex = 0;
@@ -52,7 +53,7 @@ public class CutSceneController : MonoBehaviour
 
         Debug.Log(previousIndex + "video end");
 
-        if (Scenechange)
+        if (Scenechange&&!isMyproject)
         {
             changeTheScene.StartLoadingScene("myproject"); // ¾À ÀüÈ¯
         }

@@ -65,6 +65,8 @@ public class EnemyMove : MonoBehaviour
     public string[] navMeshAreaNames;//enemy가 돌아다닐 수 있는 범위
     private int combinedAreaMask;//area여러개를 합치는..? 그런 int
 
+    private NavMeshPath path;
+
     public bool restart = false;
     void Awake()//시작할때 처음만
     {
@@ -92,7 +94,6 @@ public class EnemyMove : MonoBehaviour
         {
             combinedAreaMask |= 1 << NavMesh.GetAreaFromName(areaName);
         }
-
         //Invoke("WanderStart", 2);//chasestart 2초 후에
         WanderStart();
         rigid.velocity = Vector3.zero; // 이동속도 멈추기
@@ -102,16 +103,11 @@ public class EnemyMove : MonoBehaviour
         destination = target.position; //걍 초기값 설정
 
         ActivatedCamera =  player.GetComponentInChildren<Camera>();
-        /*
-        // AudioSource 컴포넌트를 가져옵니다.
-        audioSource = GetComponent<AudioSource>();
-        // 소리 클립을 설정합니다.
-        audioSource.clip = soundClip;
-        // Play On Awake 옵션을 끕니다 (게임 시작 시 자동 재생 방지)
-        audioSource.playOnAwake = false;
-        */
+        
         DeadCutScene.started += CutSceneStart;
         DeadCutScene.loopPointReached += CutSceneEnd;
+
+        path = new NavMeshPath();//new 부담이 커서 한 번만 계산
 
     }
     void CutSceneStart(VideoPlayer vp)
@@ -182,15 +178,9 @@ public class EnemyMove : MonoBehaviour
 
         //Debug.Log("isDead : " + isDead);
 
-        //-----------------------------------------------------------------------------------------------------------------------------------
-        //쫓는 거리보다 작아질때&&1일때 -> 쫓기. 2면(숨으면) 쫓기 멈춤.. 근데 같은방이다? 2여도 죽음
-        //if (distanceToPlayer <= 16.0f ) //직선거리가 얼마 이하일때 거리 계산 시작..근데 이러면 다른 층일때 문제가..
-        //{
-            //경로계산시작
+       
 
-            //Debug.Log("1");
-
-        NavMeshPath path = new NavMeshPath();//새로운 객체 생성
+        //NavMeshPath path = new NavMeshPath();//새로운 객체 생성->전역변수로 설정해줌
         nav.CalculatePath(target.position, path);
 
         //if (!restart)
@@ -303,26 +293,7 @@ public class EnemyMove : MonoBehaviour
         }
         return length;
     }
-    /*
-    void SetRandomWanderTimer()
-    {
-        wanderTimer = UnityEngine.Random.Range(minWanderTimer, maxWanderTimer);
-    }
-    */
-
-    /*public static Vector3 RandomNavSphere(Vector3 origin, float dist, int layermask)
-    {
-        Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
-        randDirection += origin;
-
-        NavMeshHit navHit;
-        NavMesh.SamplePosition(randDirection, out navHit, dist, layermask);
-
-        return navHit.position;
-    }
-    */
-
-    //특정 area에사민 random한 위치를 찍는 함수
+    
     public static Vector3 RandomNavSphere(Vector3 origin, float dist, int areaMask)
     {
         Vector3 randDirection = UnityEngine.Random.insideUnitSphere * dist;
@@ -411,29 +382,13 @@ public class EnemyMove : MonoBehaviour
         
         // 플레이어 사망 처리
         
-        //틀어지는 카메라 바꿔줘야함-> 그냥 player 위치 옮겨주는게 나을지도..
+        //틀어지는 카메라 바꿔줘야함
         DeadCutScene.targetCamera = target.GetComponentInChildren<Camera>();//player로 고정해주기..
-        /*
-        if (!playerController.isPlayer1Active)
-        {
-            //숨었을때 먼저 플레이어1 활성화.
-            playerController.playerCamera.gameObject.SetActive(true);
-            AudioListener newListener = playerController.playerCamera.GetComponent<AudioListener>();//리스너
-            newListener.enabled = true;
-
-            playerController.previousCamera.gameObject.SetActive(false);
-            AudioListener Listener = playerController.previousCamera.GetComponent<AudioListener>();//리스너
-            newListener.enabled = false;
-
-            playerController.isPlayer1Active = true;
-        }
-        */
+        
         
         // 플레이어1죽는 컷신 실행
         if (DeadCutScene.targetCamera.isActiveAndEnabled)
         {
-            
-
             deathCutscene.SetActive(true);
             //isPlayerDead = false;//추가
         }
