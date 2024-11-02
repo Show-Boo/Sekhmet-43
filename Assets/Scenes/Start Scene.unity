@@ -61966,8 +61966,6 @@ MonoBehaviour:
   MinTime: 0.5
   MaxTime: 1
   Timer: 0
-  AS: {fileID: 0}
-  LightAudio: {fileID: 0}
 --- !u!108 &1234321362
 Light:
   m_ObjectHideFlags: 0
@@ -78426,8 +78424,6 @@ MonoBehaviour:
   MinTime: 0.5
   MaxTime: 1
   Timer: 0
-  AS: {fileID: 0}
-  LightAudio: {fileID: 0}
 --- !u!108 &1557036704
 Light:
   m_ObjectHideFlags: 0
@@ -82382,6 +82378,7 @@ MonoBehaviour:
   playerController: {fileID: 596347475}
   postProcessVolume: {fileID: 1522109032}
   staminaController: {fileID: 596347480}
+  isMyproject: 0
   nowIndex: 0
   previousIndex: 0
   Scenechange: 0
@@ -102388,7 +102385,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013981340}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: df08701acbc4e514e9ec6a6fdb4b569f, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 92b2748d18d8dda42adad4cf2500b7d6, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 794852690}
