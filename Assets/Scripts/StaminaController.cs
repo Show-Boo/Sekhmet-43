@@ -19,6 +19,8 @@ public class StaminaController : MonoBehaviour
     [SerializeField] private Image staminaProgressUI = null;
     [SerializeField] private CanvasGroup sliderCanvasGroup = null;
 
+    private bool isCutsceneActive = false; // 컷씬 중 여부를 확인할 변수
+
     // 스태미너 UI 비활성화
     public void DisableStaminaUI()
     {
@@ -31,21 +33,33 @@ public class StaminaController : MonoBehaviour
         sliderCanvasGroup.alpha = 1;
     }
 
+    // 컷씬 중 스태미너 UI 비활성화
+    public void DisableForCutscene()
+    {
+        isCutsceneActive = true;
+        DisableStaminaUI();
+    }
+
+    // 컷씬 종료 후 스태미너 UI 활성화
+    public void EnableAfterCutscene()
+    {
+        isCutsceneActive = false;
+        EnableStaminaUI();
+    }
+
     private void Update()
     {
-        if (!weAreSprinting)
+        if (!weAreSprinting && !isCutsceneActive)
         {
-            // 스태미너가 최대치에 도달하지 않은 경우 회복 진행
             if (playerStamina < 100.0f)
             {
                 playerStamina += staminaRegen * Time.deltaTime;
                 UpdateStaminaUI(1);
 
-                // 스태미너가 완전히 회복된 경우
                 if (playerStamina >= 100.0f)
                 {
                     playerStamina = 100.0f;
-                    hasRegenerated = true;  // 스태미너가 완전히 회복되면 hasRegenerated를 true로 설정
+                    hasRegenerated = true;
                 }
             }
         }
@@ -53,20 +67,18 @@ public class StaminaController : MonoBehaviour
 
     public void Sprinting()
     {
-        // 스태미너가 충분히 회복된 경우에만 실행
         if (hasRegenerated)
         {
             weAreSprinting = true;
             playerStamina -= staminaDrain * Time.deltaTime;
             UpdateStaminaUI(1);
 
-            // 스태미너가 바닥나면 달리기를 중지하고 회복 상태 업데이트
             if (playerStamina <= 0)
             {
                 playerStamina = 0;
-                hasRegenerated = false;  // 스태미너가 바닥나면 hasRegenerated를 false로 설정
+                hasRegenerated = false;
                 weAreSprinting = false;
-                UpdateStaminaUI(0);      // UI를 숨기도록 설정
+                UpdateStaminaUI(0);
             }
         }
     }
@@ -78,9 +90,9 @@ public class StaminaController : MonoBehaviour
 
     private void UpdateStaminaUI(int value)
     {
-        staminaProgressUI.fillAmount = playerStamina / 100.0f;
+        if (isCutsceneActive) return;
 
-        // 스태미너 UI를 필요에 따라 숨기거나 보이도록 설정
+        staminaProgressUI.fillAmount = playerStamina / 100.0f;
         sliderCanvasGroup.alpha = value == 1 ? 1 : 0;
     }
 }
