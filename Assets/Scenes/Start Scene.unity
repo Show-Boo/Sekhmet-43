@@ -10213,11 +10213,10 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 794852690}
   destination: {x: 0, y: 0, z: 0}
-  playedSound: 0
   PlayerDead: 0
   DeadCutScene: {fileID: 0}
   navMeshAreaNames: []
-  restart: 0
+  retry: 0
 --- !u!54 &201970524
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -15881,11 +15880,10 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  playedSound: 0
   PlayerDead: 0
   DeadCutScene: {fileID: 0}
   navMeshAreaNames: []
-  restart: 0
+  retry: 0
 --- !u!95 &302844480
 Animator:
   serializedVersion: 5
@@ -28036,11 +28034,10 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 794852690}
   destination: {x: 0, y: 0, z: 0}
-  playedSound: 0
   PlayerDead: 0
   DeadCutScene: {fileID: 0}
   navMeshAreaNames: []
-  restart: 0
+  retry: 0
 --- !u!136 &510906250
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -68294,11 +68291,10 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  playedSound: 0
   PlayerDead: 0
   DeadCutScene: {fileID: 0}
   navMeshAreaNames: []
-  restart: 0
+  retry: 0
 --- !u!95 &1346360483
 Animator:
   serializedVersion: 5
@@ -79487,11 +79483,10 @@ MonoBehaviour:
   EnemyRoomID: -1
   ActivatedCamera: {fileID: 0}
   destination: {x: 0, y: 0, z: 0}
-  playedSound: 0
   PlayerDead: 0
   DeadCutScene: {fileID: 0}
   navMeshAreaNames: []
-  restart: 0
+  retry: 0
 --- !u!95 &1561514933
 Animator:
   serializedVersion: 5
@@ -102385,7 +102380,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013981340}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 92b2748d18d8dda42adad4cf2500b7d6, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: df70160bec4c044498ea4551f8d46acd, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 794852690}

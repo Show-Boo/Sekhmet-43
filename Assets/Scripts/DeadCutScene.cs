@@ -9,7 +9,7 @@ public class DeadCutScene : MonoBehaviour
 {
     // Start is called before the first frame update
     public CheckPoint checkPoint;
-
+    public PlayerMovement playerController;
     //컷씬 끝나면 검은 화면 활성화+죽는 컷씬 비활성화 -> text 깜빡임 구현 -> 엔터키or버튼누르기 -> 검은화면 사라짐 + 화면 비활성화.
 
     public GameObject blackOut;
@@ -26,7 +26,7 @@ public class DeadCutScene : MonoBehaviour
     // Update is called once per frame
     void StartControl(VideoPlayer vp)
     {
-        
+        playerController.enabled = false;
     }
 
     void EndControl(VideoPlayer vp)
