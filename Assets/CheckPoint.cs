@@ -31,7 +31,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (restart)
         {
-            player.transform.position = vectorPoint;
+            //player.transform.position = vectorPoint;
 
             if (!PlayerHiding.isPlayer1Active)
             {

@@ -61,9 +61,9 @@ public class Q_4 : Q_ParentClass
         enemy3.SetActive(true);
         checkpoint1.enabled = false;
 
-        animator1.Play("Walk");
-        animator2.Play("Walk");
-        animator3.Play("Walk");
+        animator1.SetBool("IsWander",true);
+        animator2.SetBool("IsWander", true);
+        animator3.SetBool("IsWander", true);
 
         eating_enemy.SetActive(false);
         //coworker.SetActive(false);

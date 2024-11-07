@@ -37,6 +37,7 @@ public class Start_myproject : MonoBehaviour
 
 
         Quest_6_Text.SetActive(false);
+
         enemy1.SetActive(false);
         enemy2.SetActive(false);    
         enemy3.SetActive(false);

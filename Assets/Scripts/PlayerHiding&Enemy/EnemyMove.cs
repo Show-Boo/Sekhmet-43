@@ -10,6 +10,7 @@ using UnityEngine.UI;
 using UnityEngine.Video;
 using UnityEngine.SceneManagement;
 using UnityEngine.Rendering.PostProcessing;
+using UnityEngine.Rendering;
 
 
 //agent=enemy에게 목적지를 알려줘서 목적지로 이동.
@@ -53,7 +54,7 @@ public class EnemyMove : MonoBehaviour
 
     public Vector3 destination;
 
-    public bool playedSound = false;//소리를 울렸었는지
+    //public bool playedSound = false;//소리를 울렸었는지
     public bool PlayerDead = false;
     
     public VideoPlayer DeadCutScene;//죽는 컷씻
@@ -88,10 +89,13 @@ public class EnemyMove : MonoBehaviour
         //area여러개 합치기
         foreach (string areaName in navMeshAreaNames)
         {
-            combinedAreaMask |= 1 << NavMesh.GetAreaFromName(areaName);
+            combinedAreaMask |= 1 << NavMesh.GetAreaFromName(areaName);//돌아다닐 수 있는 구역 설정
         }
-        //Invoke("WanderStart", 2);//chasestart 2초 후에
-        WanderStart();
+
+        //WanderStart();
+        
+        //wanderStart의 내용
+
         rigid.velocity = Vector3.zero; // 이동속도 멈추기
 
 
@@ -99,16 +103,24 @@ public class EnemyMove : MonoBehaviour
 
         ActivatedCamera =  player.GetComponentInChildren<Camera>();
         
-        DeadCutScene.started += CutSceneStart;
+        //DeadCutScene.started += CutSceneStart;
         DeadCutScene.loopPointReached += CutSceneEnd;
 
         path = new NavMeshPath();
 
     }
+    /*
+    private void Start()
+    {
+        //WanderStart();//이걸 awake에 해도, start에 박아도 안먹힘.. 근데 enemy 자체를 활성화하는 코드 이후에 직접 불값을 바꿔주니 또 먹힘,, 이유를 모르겟어요
+
+    }
+    
     void CutSceneStart(VideoPlayer vp)
     {
         
     }
+    */
 
     void CutSceneEnd(VideoPlayer vp)
     {
@@ -126,16 +138,17 @@ public class EnemyMove : MonoBehaviour
         
     }
 
+    /*
     void WanderStart()//첫 실행
     {
+        //->wander 동작 실행
         isWander = true;
 
-        //FreezeVelocity();
-        
-        
-        anim.SetBool("IsWander", true);//->wander 동작 실행
+        anim.SetBool("IsWander", true);
 
     }
+    */
+    
 
     void Update()
     {
@@ -245,7 +258,7 @@ public class EnemyMove : MonoBehaviour
             //isChase = false; -> 밑 로직을 한 번만 수행하려는 노력
 
             anim.SetBool("IsWalk", false);
-        playedSound = false;
+        //playedSound = false;
 
             
             nav.speed = 1.5f;//걷는 속도 바꿔주기
