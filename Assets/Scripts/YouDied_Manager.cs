@@ -67,7 +67,7 @@ public class YouDied_Manager : MonoBehaviour
         foreach (var enemyMoveScript in EnemyMove)
         {
             enemyMoveScript.PlayerDead = false;//다시 공격 재개
-            enemyMoveScript.restart = false;//위치조정 끝
+            enemyMoveScript.retry = false;//위치조정 끝
         }
 
         gameObject.SetActive(false);

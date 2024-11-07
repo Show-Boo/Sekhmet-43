@@ -41,7 +41,7 @@ public class EnemyMove : MonoBehaviour
 
     public float wanderRadius = 20f;//배회할 반경
 
-    private float deadRange = 8f; // 숨어도 쫓는 거리->같은 방에 있는지 여부로 update
+    //private float deadRange = 8f; // 숨어도 쫓는 거리->같은 방에 있는지 여부로 update
     public int EnemyRoomID = -1; //적이 있는 방의 id. room 스크립트에서 update할거임
 
     private PlayerHiding playerController; // 스크립트 받아오기
@@ -53,13 +53,9 @@ public class EnemyMove : MonoBehaviour
 
     public Vector3 destination;
 
-    //public AudioClip soundClip; // 재생할 소리 받아옴
-    //private AudioSource audioSource;
-
     public bool playedSound = false;//소리를 울렸었는지
     public bool PlayerDead = false;
-    //public PostProcessVolume postProcessVolume;
-
+    
     public VideoPlayer DeadCutScene;//죽는 컷씻
 
     public string[] navMeshAreaNames;//enemy가 돌아다닐 수 있는 범위
@@ -67,7 +63,7 @@ public class EnemyMove : MonoBehaviour
 
     private NavMeshPath path;
 
-    public bool restart = false;
+    public bool retry = false;
     void Awake()//시작할때 처음만
     {
        // meleeArea.GetComponent<Collider>().isTrigger = true;
@@ -98,7 +94,6 @@ public class EnemyMove : MonoBehaviour
         WanderStart();
         rigid.velocity = Vector3.zero; // 이동속도 멈추기
 
-        //timer = minWanderTimer;//gpt
 
         destination = target.position; //걍 초기값 설정
 
@@ -107,7 +102,7 @@ public class EnemyMove : MonoBehaviour
         DeadCutScene.started += CutSceneStart;
         DeadCutScene.loopPointReached += CutSceneEnd;
 
-        path = new NavMeshPath();//new 부담이 커서 한 번만 계산
+        path = new NavMeshPath();
 
     }
     void CutSceneStart(VideoPlayer vp)
@@ -183,8 +178,8 @@ public class EnemyMove : MonoBehaviour
         //NavMeshPath path = new NavMeshPath();//새로운 객체 생성->전역변수로 설정해줌
         nav.CalculatePath(target.position, path);
 
-        //if (!restart)
-        //{
+        if (!retry)
+        {
             if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. 또는 player가 다른 층에 있는 경우
             {
                 // 경로 길이 계산
@@ -231,11 +226,11 @@ public class EnemyMove : MonoBehaviour
             {
                 Wandering();
             }
-        //}
-        //else
-        //{
-            //가만히 있어야 함
-        //}
+        }
+        else
+        {
+            //가만히 있어야 함. 이제 움직이지 않음
+        }
 
         
         
