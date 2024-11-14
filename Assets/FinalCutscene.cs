@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Video;
+using System.Collections;
 
 public class FinalCutscene : MonoBehaviour
 {
@@ -33,5 +34,17 @@ public class FinalCutscene : MonoBehaviour
         {
             audio.enabled = true;  // AudioSource 활성화
         }
+
+    }
+
+    public IEnumerator OnEndingCutsceneComplete()
+    {
+        yield return new WaitForSeconds(5); // 엔딩시 5초 대기
+        Application.Quit(); //바로 종료
+
+        // 에디터에서 테스트할 때는 EditorApplication 종료...
+#if UNITY_EDITOR
+        UnityEditor.EditorApplication.isPlaying = false;
+#endif
     }
 }
