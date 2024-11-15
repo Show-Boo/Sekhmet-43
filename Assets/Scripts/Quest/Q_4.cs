@@ -26,9 +26,10 @@ public class Q_4 : Q_ParentClass
     private NavMeshAgent navMeshAgent3;
 
     public GameObject eating_enemy;
-    //public GameObject coworker;
+    public GameObject coworker;
 
     public BoxCollider checkpoint1;
+    public BoxCollider Deadpoint;
 
     private void Start()
     {
@@ -66,7 +67,8 @@ public class Q_4 : Q_ParentClass
         animator3.SetBool("IsWander", true);
 
         eating_enemy.SetActive(false);
-        //coworker.SetActive(false);
+        coworker.SetActive(false);
+        Deadpoint.enabled = false;
     }
     
     private IEnumerator ShowQuestUI()
