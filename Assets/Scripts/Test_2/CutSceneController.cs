@@ -19,6 +19,8 @@ public class CutSceneController : MonoBehaviour
     public bool Scenechange = false;
     public ChangeTheScene changeTheScene;
 
+    public EnemyMove[] EnemyMove;
+
     void Start()
     {
         foreach (var videoPlayer in videoPlayers)
@@ -33,6 +35,11 @@ public class CutSceneController : MonoBehaviour
         staminaController.DisableForCutscene(); // 컷씬 중 스태미너 UI 비활성화
         playerController.enabled = false;
         postProcessVolume.enabled = false;
+        foreach (var enemyMoveScript in EnemyMove)
+        {
+            enemyMoveScript.PlayerDead = true;//공격멈춤
+            
+        }
 
         Debug.Log("PostProcess Volume Disabled");
     }
@@ -51,6 +58,12 @@ public class CutSceneController : MonoBehaviour
         if (Scenechange && !isMyproject)
         {
             changeTheScene.StartLoadingScene("myproject");
+        }
+
+        foreach (var enemyMoveScript in EnemyMove)
+        {
+            enemyMoveScript.PlayerDead = false;//다시 공격 재개
+
         }
     }
 
