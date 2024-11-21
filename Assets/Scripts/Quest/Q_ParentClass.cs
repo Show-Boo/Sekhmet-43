@@ -23,9 +23,8 @@ public class Q_ParentClass: MonoBehaviour
 
     public virtual void UpdateQuest()
     {
-        // 이 함수는 특정 퀘스트가 활성화된 동안 매 프레임마다 호출됩니다.
-        // 필요한 경우 각 퀘스트에서 이 메서드를 오버라이드하여 사용할 수 있습니다.
-
+        // 이 함수는 특정 퀘스트가 활성화된 동안 매 프레임마다 호출
+        // 필요한 경우 각 퀘스트에서 이 메서드를 오버라이드하여 사용할 수 있음.
     }
     
 
@@ -46,7 +45,7 @@ public class Q_ParentClass: MonoBehaviour
         Debug.Log($"{questName} completed!");
     }
 
-    public virtual void NextQuest()//다음 퀘스트를 위해 오브젝트들 활성화/비활성화하는 코드!! 오버라이드 가능
+    public virtual void NextQuest()//다음 퀘스트를 위해 오브젝트들 활성화/비활성화하는 코드! 오버라이드 가능
     {
         
     }

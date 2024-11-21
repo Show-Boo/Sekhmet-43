@@ -37,8 +37,7 @@ public class CutSceneController : MonoBehaviour
         postProcessVolume.enabled = false;
         foreach (var enemyMoveScript in EnemyMove)
         {
-            enemyMoveScript.PlayerDead = true;//공격멈춤
-            
+            enemyMoveScript.retry = true;//공격멈춤
         }
 
         Debug.Log("PostProcess Volume Disabled");
@@ -62,7 +61,7 @@ public class CutSceneController : MonoBehaviour
 
         foreach (var enemyMoveScript in EnemyMove)
         {
-            enemyMoveScript.PlayerDead = false;//다시 공격 재개
+            enemyMoveScript.retry = false;//다시 공격 재개
 
         }
     }

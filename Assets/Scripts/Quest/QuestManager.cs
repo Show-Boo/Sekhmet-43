@@ -5,6 +5,7 @@ public class QuestManager : MonoBehaviour
     public static QuestManager Instance { get; private set; }
 
     public Q_ParentClass[] Quest; // 퀘스트 배열
+
     private int currentQuestIndex = 0; // 현재 진행 중인 퀘스트 인덱스
     public QuestUI questUI;
 
