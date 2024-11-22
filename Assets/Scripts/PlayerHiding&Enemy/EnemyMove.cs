@@ -63,6 +63,7 @@ public class EnemyMove : MonoBehaviour
     private int combinedAreaMask;//area여러개를 합치는..? 그런 int
 
     private NavMeshPath path;
+    private bool Chase = false;
 
     public bool retry = false;
     void Awake()//시작할때 처음만
@@ -193,7 +194,8 @@ public class EnemyMove : MonoBehaviour
 
         if (!retry)
         {
-            if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. 또는 player가 다른 층에 있는 경우
+            
+            if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. 또는 player가 다른 층에 있는 경우/옷상에 obstacle추가하면 여기서 막힘
             {
                 // 경로 길이 계산
                 float pathLength = GetPathLength(path);//player가 다른 층에 있는 경우 이게 0으로 반환됨..
@@ -208,6 +210,8 @@ public class EnemyMove : MonoBehaviour
                     anim.SetBool("IsWalk", true);//쫓는 액션
 
                     Targerting();//쫓기
+                    isChase = true;
+
                     FreezeVelocity();
                     //PlaySound();//한 번만 울리게
 
@@ -215,6 +219,7 @@ public class EnemyMove : MonoBehaviour
                 else//isDead가 false인 경우(숨은 경우), 추적범위 이내가 아닌 경우
                 {
                     Wandering();
+                    Chase = false;
                 }
 
                 if (distanceToPlayer <= 10.0f)//근방에 enemy있을때 심장소리
@@ -237,7 +242,16 @@ public class EnemyMove : MonoBehaviour
             }
             else//player가 다른 층에 있는 경우
             {
-                Wandering();
+                if (Chase && EnemyRoomID == playerController.playerRoomID)//같은 방에서 숨은 경우
+                {
+                    nav.SetDestination(target.position);
+                    //target = ActivatedCamera
+                    Targerting();
+                }
+                else
+                {
+                    Wandering();
+                }
             }
         }
         else
