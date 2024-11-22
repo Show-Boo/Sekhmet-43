@@ -8,6 +8,7 @@ public class TriggerCutscene : MonoBehaviour
     public PlayerMovement playerController;
     public PostProcessVolume postProcessVolume;
     public StaminaController staminaController;
+    public GameObject crosshair;
 
     void Start()
     {
@@ -21,6 +22,7 @@ public class TriggerCutscene : MonoBehaviour
         staminaController.DisableForCutscene(); // 컷씬 중 스태미너 UI 비활성화
         playerController.enabled = false;
         postProcessVolume.enabled = false;
+        crosshair.SetActive(false);
 
     }
 
@@ -29,7 +31,7 @@ public class TriggerCutscene : MonoBehaviour
         playerController.enabled = true;
         postProcessVolume.enabled = true;
         staminaController.EnableAfterCutscene(); // 컷씬 종료 후 스태미너 UI 활성화
-
+        crosshair.SetActive(true);
         videoPlayer.enabled = false;
     }
 

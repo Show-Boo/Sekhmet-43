@@ -18,7 +18,7 @@ public class CutSceneController : MonoBehaviour
     public int previousIndex = 0;
     public bool Scenechange = false;
     public ChangeTheScene changeTheScene;
-
+    public GameObject crosshair;
     public EnemyMove[] EnemyMove;
 
     void Start()
@@ -27,6 +27,7 @@ public class CutSceneController : MonoBehaviour
         {
             videoPlayer.started += DisablePlayerControl;
             videoPlayer.loopPointReached += EnablePlayerControl;
+
         }
     }
 
@@ -35,6 +36,7 @@ public class CutSceneController : MonoBehaviour
         staminaController.DisableForCutscene(); // ÄÆ¾À Áß ½ºÅÂ¹Ì³Ê UI ºñÈ°¼ºÈ­
         playerController.enabled = false;
         postProcessVolume.enabled = false;
+        crosshair.SetActive(false);
         foreach (var enemyMoveScript in EnemyMove)
         {
             enemyMoveScript.retry = true;//°ø°Ý¸ØÃã
@@ -47,6 +49,7 @@ public class CutSceneController : MonoBehaviour
     {
         playerController.enabled = true;
         postProcessVolume.enabled = true;
+        crosshair.SetActive(true);
         staminaController.EnableAfterCutscene(); // ÄÆ¾À Á¾·á ÈÄ ½ºÅÂ¹Ì³Ê UI È°¼ºÈ­
 
         Debug.Log("PostProcess Volume Enabled");

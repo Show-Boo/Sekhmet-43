@@ -11,6 +11,7 @@ public class DeadCutScene : MonoBehaviour
     public PlayerMovement playerController;
     public StaminaController staminaController;
     public GameObject blackOut;
+    public GameObject crosshair;
 
     void Start()
     {
@@ -29,6 +30,9 @@ public class DeadCutScene : MonoBehaviour
 
         // 플레이어 컨트롤 비활성화
         playerController.enabled = false;
+
+        //크로스헤어 비활성화
+        crosshair.SetActive(false);
     }
 
     void EndControl(VideoPlayer vp)
@@ -38,6 +42,9 @@ public class DeadCutScene : MonoBehaviour
 
         // 플레이어 컨트롤 다시 활성화
         playerController.enabled = true;
+
+        //크로스헤어 활성화
+        crosshair.SetActive(true);
 
         // 체크포인트 리스타트
         checkPoint.restart = true;

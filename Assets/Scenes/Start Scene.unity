@@ -82378,6 +82378,8 @@ MonoBehaviour:
   previousIndex: 0
   Scenechange: 0
   changeTheScene: {fileID: 2113715334}
+  crosshair: {fileID: 144721714}
+  EnemyMove: []
 --- !u!4 &1592768189
 Transform:
   m_ObjectHideFlags: 0
