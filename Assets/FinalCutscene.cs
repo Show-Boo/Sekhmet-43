@@ -47,6 +47,7 @@ public class FinalCutscene : MonoBehaviour
         {
             crosshair.SetActive(false);
         }
+        StartCoroutine(OnEndingCutsceneComplete());
     }
 
     // 크로스헤어를 다시 표시하는 함수
@@ -60,7 +61,7 @@ public class FinalCutscene : MonoBehaviour
 
     public IEnumerator OnEndingCutsceneComplete()
     {
-        yield return new WaitForSeconds(5); // 엔딩시 5초 대기
+        yield return new WaitForSeconds(3); // 엔딩시 5초 대기
         Application.Quit(); // 바로 종료
 
         // 에디터에서 테스트할 때는 EditorApplication 종료...
