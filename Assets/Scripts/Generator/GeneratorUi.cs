@@ -179,9 +179,7 @@ public class GeneratorController : MonoBehaviour
             Debug.LogError("GeneratorManager.Instance is not assigned!");
         }
 
-        // 마우스 커서 다시 보이도록 설정
-        Cursor.lockState = CursorLockMode.None;
-        Cursor.visible = true;
+
     }
 
 
