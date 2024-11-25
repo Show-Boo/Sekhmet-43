@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class DeadCutScene : MonoBehaviour
 {
-    public CheckPoint checkPoint;
+    //public CheckPoint checkPoint;
     public PlayerMovement playerController;
     public StaminaController staminaController;
     public GameObject blackOut;
@@ -47,9 +47,9 @@ public class DeadCutScene : MonoBehaviour
         crosshair.SetActive(true);
 
         // 체크포인트 리스타트
-        checkPoint.restart = true;
+        //checkPoint.restart = true;
 
-        Debug.Log("checkpoint");
+        //Debug.Log("checkpoint");
 
         // 검은 화면 활성화
         blackOut.SetActive(true);

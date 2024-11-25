@@ -411,7 +411,7 @@ public class EnemyMove : MonoBehaviour
         
         
         // 플레이어1죽는 컷신 실행
-        if (DeadCutScene.targetCamera.isActiveAndEnabled)
+        if (DeadCutScene.targetCamera.isActiveAndEnabled)//카메라가 잘 켜져 있을 때
         {
             deathCutscene.SetActive(true);
             //isPlayerDead = false;//추가
