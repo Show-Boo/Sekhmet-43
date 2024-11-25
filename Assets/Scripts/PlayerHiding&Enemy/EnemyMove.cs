@@ -40,7 +40,7 @@ public class EnemyMove : MonoBehaviour
     //gpt
     public float chaseRange = 15f;//플레이어를 쫓기 시작할 거리
 
-    public float wanderRadius = 20f;//배회할 반경
+    public float wanderRadius = 15f;//배회할 반경
 
     //private float deadRange = 8f; // 숨어도 쫓는 거리->같은 방에 있는지 여부로 update
     public int EnemyRoomID = -1; //적이 있는 방의 id. room 스크립트에서 update할거임
@@ -108,6 +108,8 @@ public class EnemyMove : MonoBehaviour
         DeadCutScene.loopPointReached += CutSceneEnd;
 
         path = new NavMeshPath();
+
+        nav.updateRotation = true; // agemt가 회전 제어
 
     }
     /*

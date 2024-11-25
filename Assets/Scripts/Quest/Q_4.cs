@@ -31,6 +31,8 @@ public class Q_4 : Q_ParentClass
     public BoxCollider checkpoint1;
     public BoxCollider Deadpoint;
 
+    public BoxCollider Block;//막는 블럭
+
     private void Start()
     {
         animator1 = enemy1.GetComponent<Animator>();
@@ -69,6 +71,7 @@ public class Q_4 : Q_ParentClass
         eating_enemy.SetActive(false);
         coworker.SetActive(false);
         Deadpoint.enabled = false;
+        Block.enabled = false;
     }
     
     private IEnumerator ShowQuestUI()

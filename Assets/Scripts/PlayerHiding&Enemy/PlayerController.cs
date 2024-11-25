@@ -14,11 +14,13 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         // 플레이어 이동 처리
+        /*
         float moveHorizontal = Input.GetAxis("Horizontal");
         float moveVertical = Input.GetAxis("Vertical");
 
         Vector3 movement = new Vector3(moveHorizontal, 0.0f, moveVertical);
         transform.Translate(movement * speed * Time.deltaTime, Space.World);
+        */
 
         // R 키를 누르기 시작할 때
         if (Input.GetKeyDown(KeyCode.R))

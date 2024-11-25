@@ -16,6 +16,8 @@ public class YouDied_Manager : MonoBehaviour
 
     public EnemyMove[] EnemyMove;
 
+    public PlayerHiding PlayerHiding;
+
     void Start()
     {
         if (first)
@@ -63,6 +65,11 @@ public class YouDied_Manager : MonoBehaviour
     public void HideImage()
     {
         Debug.Log("button");
+
+        if (!PlayerHiding.isPlayer1Active)
+        {
+            PlayerHiding.SwitchCamera();
+        }
 
         foreach (var enemyMoveScript in EnemyMove)
         {
