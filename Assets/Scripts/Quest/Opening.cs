@@ -47,7 +47,7 @@ public class Opening : MonoBehaviour
         postProcessVolume.enabled = true; // PostProcess 다시 활성화
         staminaController.enabled = true; // 스태미너 기능 다시 활성화
         staminaController.EnableStaminaUI(); // 스태미너 UI 다시 활성화
-        crosshair?.SetActive(true);
+        crosshair.SetActive(true);
 
         Debug.Log("Player Control Enabled and Stamina UI Shown");
     }

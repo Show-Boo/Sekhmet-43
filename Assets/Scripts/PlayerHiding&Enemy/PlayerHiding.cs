@@ -40,6 +40,7 @@ public class PlayerHiding : MonoBehaviour
     public Camera playerCamera; // 플레이어의 카메라
     public float checkDistance = 0.5f; // 체크할 거리
     public LayerMask layerMask; // 충돌을 감지할 레이어 마스크
+    public LayerMask layerMask2;
     public string interactableTag = "InteractiveObject"; // 상호작용할 태그
 
     public Image crosshair;
@@ -75,7 +76,7 @@ public class PlayerHiding : MonoBehaviour
 
             RaycastHit hit;
 
-            if (Physics.Raycast(playerRay, out hit, checkDistance, layerMask))
+            if (Physics.Raycast(playerRay, out hit, checkDistance, layerMask))//Interact랑 닿는 경우
             {
                 // 일정 거리 내로 들어오는 객체가 감지되면
                 if (hit.collider.CompareTag(interactableTag))
@@ -103,14 +104,15 @@ public class PlayerHiding : MonoBehaviour
                         //Debug.Log("There is no Camera on the interactable object.");
                     }
                 }
-                else if(hit.collider.CompareTag("Engine") || hit.collider.CompareTag("Spaceship")||hit.collider.CompareTag("Item"))
-                {
-                    crosshair.color = crosshairHoverColor;
-                }
+                
                 
 
             }
-
+            else if (Physics.Raycast(playerRay, out hit, checkDistance, layerMask2))//아이템-커두키
+            {
+                //(hit.collider.CompareTag("Engine") || hit.collider.CompareTag("Spaceship") || hit.collider.CompareTag("Item"))
+                crosshair.color = crosshairHoverColor;
+            }
             else
             {
                 CurrentCamera = null;

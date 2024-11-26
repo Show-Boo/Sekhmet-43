@@ -51831,7 +51831,7 @@ MonoBehaviour:
   - {fileID: 1580065413}
   - {fileID: 643553326}
   - {fileID: 1283434332}
-  crosshair: {fileID: 0}
+  crosshair: {fileID: 144721714}
 --- !u!1001 &1005100154
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -103551,7 +103551,7 @@ VideoPlayer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2013981340}
   m_Enabled: 1
-  m_VideoClip: {fileID: 32900000, guid: 6a927373e3ba71542a5c05b1c880c205, type: 3}
+  m_VideoClip: {fileID: 32900000, guid: 3455605a91897bf46b81337bd5b4c6f1, type: 3}
   m_TargetCameraAlpha: 1
   m_TargetCamera3DLayout: 0
   m_TargetCamera: {fileID: 794852690}
@@ -108549,7 +108549,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   loadingScreen: {fileID: 1907139516}
   loadingSpinner: {fileID: 384412008}
-  crosshair: {fileID: 0}
+  crosshair: {fileID: 144721716}
 --- !u!4 &2113715335
 Transform:
   m_ObjectHideFlags: 0

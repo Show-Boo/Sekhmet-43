@@ -16,6 +16,7 @@ public class YouDied_Manager : MonoBehaviour
 
     public EnemyMove[] EnemyMove;
 
+
     public PlayerHiding PlayerHiding;
     public PlayerMovement playerController;
 

@@ -21,6 +21,8 @@ public class CutSceneController : MonoBehaviour
     public GameObject crosshair;
     public EnemyMove[] EnemyMove;
 
+    public bool final = false;
+
     void Start()
     {
         foreach (var videoPlayer in videoPlayers)

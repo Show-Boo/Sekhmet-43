@@ -7,6 +7,8 @@ public class FinalCutscene : MonoBehaviour
     private AudioSource[] audioSources;  // 모든 오디오 소스를 저장할 배열
     public GameObject crosshair;  // 크로스헤어 UI 오브젝트
 
+    public GameObject Black;
+
     void Start()
     {
         VideoPlayer cutscenePlayer = GetComponent<VideoPlayer>();
@@ -34,10 +36,14 @@ public class FinalCutscene : MonoBehaviour
     // 모든 오디오 소스를 활성화하는 함수
     void UnmuteAllAudioSources(VideoPlayer vp)
     {
+        /*
         foreach (AudioSource audio in audioSources)
         {
             audio.enabled = true;  // AudioSource 활성화
         }
+        */
+
+        Black.SetActive(true);
     }
 
     // 크로스헤어를 숨기는 함수
@@ -47,16 +53,18 @@ public class FinalCutscene : MonoBehaviour
         {
             crosshair.SetActive(false);
         }
-        
+
     }
 
     // 크로스헤어를 다시 표시하는 함수
     void ShowCrosshair(VideoPlayer vp)
     {
+        /*
         if (crosshair != null)
         {
             crosshair.SetActive(true);
         }
+        */
 
         OnEndingCutsceneComplete();
     }
