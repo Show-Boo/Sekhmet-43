@@ -7,6 +7,7 @@ public class ChangeTheScene : MonoBehaviour
 {
     public GameObject loadingScreen; // 검은 배경의 로딩 화면 오브젝트
     public Image loadingSpinner; // 하얀색 선이 원형으로 빙글빙글 도는 로딩 스피너 이미지
+    public Image crosshair;
 
     private void Start()
     {
@@ -36,16 +37,17 @@ public class ChangeTheScene : MonoBehaviour
         {
             // 로딩 스피너 회전
             loadingSpinner.transform.Rotate(0f, 0f, -200f * Time.deltaTime); // 빙글빙글 돌게 설정
-
+            crosshair.enabled = false;
             // 로딩이 완료되면 씬 전환
             if (operation.progress >= 0.9f)
             {
                 // 로딩이 완료되면 씬 활성화
                 operation.allowSceneActivation = true;
+                
             }
             yield return null;
         }
-
+        crosshair.enabled = true;
         // 로딩 완료 후 로딩 화면 비활성화
         loadingScreen.SetActive(false);
     }

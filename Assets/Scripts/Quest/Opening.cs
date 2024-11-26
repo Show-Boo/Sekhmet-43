@@ -11,6 +11,7 @@ public class Opening : MonoBehaviour
     public PostProcessVolume postProcessVolume;
     public StaminaController staminaController;
     public BoxCollider[] boxColliders;
+    public GameObject crosshair;
 
     void Start()
     {
@@ -34,6 +35,7 @@ public class Opening : MonoBehaviour
         postProcessVolume.enabled = false; // PostProcess 비활성화
         staminaController.enabled = false; // 스태미너 기능 비활성화
         staminaController.DisableStaminaUI(); // 스태미너 UI 비활성화
+        crosshair.SetActive(false);
 
         Debug.Log("Player Control Disabled and Stamina UI Hidden");
     }
@@ -45,6 +47,7 @@ public class Opening : MonoBehaviour
         postProcessVolume.enabled = true; // PostProcess 다시 활성화
         staminaController.enabled = true; // 스태미너 기능 다시 활성화
         staminaController.EnableStaminaUI(); // 스태미너 UI 다시 활성화
+        crosshair?.SetActive(true);
 
         Debug.Log("Player Control Enabled and Stamina UI Shown");
     }

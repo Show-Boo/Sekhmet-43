@@ -103,6 +103,12 @@ public class PlayerHiding : MonoBehaviour
                         //Debug.Log("There is no Camera on the interactable object.");
                     }
                 }
+                else if(hit.collider.CompareTag("Engine") || hit.collider.CompareTag("Spaceship")||hit.collider.CompareTag("Item"))
+                {
+                    crosshair.color = crosshairHoverColor;
+                }
+                
+
             }
 
             else
@@ -127,23 +133,18 @@ public class PlayerHiding : MonoBehaviour
                 }
             }
         }
-
-        if (isBeating)
-        {
-            //PlaySound();
-        }
-
         if (HeartBeatPlaying)
         {
             PlaySound();
-            //Debug.Log("Play");
+            
         }
         else
         {
             endSound();
 
-            //Debug.Log("end");
         }
+
+
 
     }
 

@@ -58,12 +58,12 @@ public class FinalCutscene : MonoBehaviour
             crosshair.SetActive(true);
         }
 
-        StartCoroutine(OnEndingCutsceneComplete());
+        OnEndingCutsceneComplete();
     }
 
-    public IEnumerator OnEndingCutsceneComplete()
+    void OnEndingCutsceneComplete()
     {
-        yield return new WaitForSeconds(0.001f); // 엔딩시 잠시 대기
+        //yield return new WaitForSeconds(0.001f); // 엔딩시 잠시 대기 -> 그냥 제거
         Application.Quit(); // 바로 종료
 
         // 에디터에서 테스트할 때는 EditorApplication 종료...

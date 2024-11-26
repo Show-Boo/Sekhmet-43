@@ -338,15 +338,15 @@ public class EnemyMove : MonoBehaviour
 
     void Targerting()//1->반복
     {
-       // float targetRadius = 1.0f;
+        //float targetRadius = 1.0f;
         //float targetRange = 1.5f;
 
-        nav.speed = 3f; // 쫓는 속도 6이면 player보다 빠름
+        nav.speed = 4f; // 쫓는 속도 6이면 player보다 빠름 - player 걷는 속도 3, 뛰는 속도 6
 
         //RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player")); //Player 객체에 속하는 애들까지의 거리 측정
         //객체가 여러개라면 []여기에 정보저장 
         //target = ActivatedCamera.transform;
-      
+        
         float distanceToTarget = Vector3.Distance(transform.position, target.transform.position);//원래 target이엇음
 
         playerController.isBeating = true;
@@ -359,8 +359,6 @@ public class EnemyMove : MonoBehaviour
 
     IEnumerator Attack()
     {
-
-        
         //정지
         isChase =false;
         isAttack = true;
@@ -423,21 +421,7 @@ public class EnemyMove : MonoBehaviour
         
         // 게임 오버 처리 등을 추가할 수 있음
     }
-    /*
-    void PlaySound()
-    {
-        // 소리가 틀어진 적 없다면 틀어짐
-        if (!playedSound)
-        {
-            audioSource.Play();
-        }
-    }
-
-    void endSound()
-    {
-        audioSource.Stop();
-    }
-    */
+    
 
 }
 
