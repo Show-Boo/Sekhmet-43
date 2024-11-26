@@ -40,7 +40,7 @@ public class EnemyMove : MonoBehaviour
     //gpt
     public float chaseRange = 15f;//플레이어를 쫓기 시작할 거리
 
-    public float wanderRadius = 15f;//배회할 반경
+    public float wanderRadius = 10f;//배회할 반경
 
     //private float deadRange = 8f; // 숨어도 쫓는 거리->같은 방에 있는지 여부로 update
     public int EnemyRoomID = -1; //적이 있는 방의 id. room 스크립트에서 update할거임
@@ -64,6 +64,8 @@ public class EnemyMove : MonoBehaviour
 
     private NavMeshPath path;
     private bool Chase = false;
+
+    private NavMeshPath pathToDestination;
 
     public bool retry = false;
     void Awake()//시작할때 처음만
@@ -108,6 +110,7 @@ public class EnemyMove : MonoBehaviour
         DeadCutScene.loopPointReached += CutSceneEnd;
 
         path = new NavMeshPath();
+        pathToDestination = new NavMeshPath();
 
         nav.updateRotation = true; // agemt가 회전 제어
 
@@ -200,14 +203,14 @@ public class EnemyMove : MonoBehaviour
             if (path.status == NavMeshPathStatus.PathComplete) // 이게 안되면 유효한 길이 없는거임. 또는 player가 다른 층에 있는 경우/옷상에 obstacle추가하면 여기서 막힘
             {
                 // 경로 길이 계산
-                float pathLength = GetPathLength(path);//player가 다른 층에 있는 경우 이게 0으로 반환됨..
+                float pathLength = GetPathLength(path);//player가 다른 층에 있는 경우 이게 0으로 반환됨..ㅁ
 
                 // 경로 길이가 추적 범위 이내라면 플레이어를 쫓아감
                 if (pathLength <= chaseRange && isDead && !PlayerDead)//player1을 쫓는 경우. isDead = 같은 방에 있는지 여부/isPlayerDead  죽엇는지
                 {
                     // 플레이어 추적->chase
                     //target = ActivatedCamera.transform;
-                    nav.SetDestination(target.position);
+                    nav.SetDestination(target.position);//추적 시작
                     isChase = true;
                     anim.SetBool("IsWalk", true);//쫓는 액션
 
@@ -258,6 +261,7 @@ public class EnemyMove : MonoBehaviour
         }
         else
         {
+            Debug.Log("stop");
             //가만히 있어야 함. 이제 움직이지 않음
         }
 
@@ -277,7 +281,7 @@ public class EnemyMove : MonoBehaviour
         //playedSound = false;
 
             
-            nav.speed = 1.5f;//걷는 속도 바꿔주기
+            nav.speed = 1.7f;//걷는 속도 바꿔주기
 
 
             float distanceThreshold = 3.0f; //근방에 도달하면 complete
@@ -285,24 +289,37 @@ public class EnemyMove : MonoBehaviour
             //if (timer >= wanderTimer)
             if (isChase)//처음 돌아다니기 시작하는 경우
             {
-                isChase = false;
-                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, combinedAreaMask);
-                destination = newPos;
-                nav.SetDestination(destination);
-
-                //SetRandomWanderTimer(); // 새로운 타이머 설정
-                //timer = 0;
+                //isChase = false;
+                Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, combinedAreaMask);//특정 area에서만 돌아당기도록
+                //NavMeshPath pathToDestination = new NavMeshPath();
+                //nav.CalculatePath(newPos, pathToDestination);
+                
+                    destination = newPos;
+                    nav.SetDestination(destination);
+                    isChase = false;
+                
             }
-
+            /*
             NavMeshPath pathToDestination = new NavMeshPath();
-            nav.CalculatePath(target.position, pathToDestination);
+            nav.CalculatePath(target.position, pathToDestination);//경로계산?
+            */
+
+
 
             if ((Vector3.Distance(destination, transform.position) <= distanceThreshold) /*|| (pathToDestination.status != NavMeshPathStatus.PathComplete)*/)//근방에 도달했는지? 또는 destination이 bake된 길 위에 있는지?
             {
                 Vector3 newPos = RandomNavSphere(transform.position, wanderRadius, combinedAreaMask);
-                destination = newPos;
-                nav.SetDestination(destination);
+                //NavMeshPath pathToDestination = new NavMeshPath();
+                nav.CalculatePath(newPos, pathToDestination);//경로생성
+                if (pathToDestination.status == NavMeshPathStatus.PathComplete)
+                {
+                    destination = newPos;
+                    nav.SetDestination(destination);
+                }
+                
+            
             }
+            
 
             //Debug.Log(Vector3.Distance(destination, transform.position));
     }
@@ -341,7 +358,7 @@ public class EnemyMove : MonoBehaviour
         //float targetRadius = 1.0f;
         //float targetRange = 1.5f;
 
-        nav.speed = 4f; // 쫓는 속도 6이면 player보다 빠름 - player 걷는 속도 3, 뛰는 속도 6
+        nav.speed = 3.1f; // 쫓는 속도 6이면 player보다 빠름 - player 걷는 속도 3, 뛰는 속도 6
 
         //RaycastHit[] rayHits = Physics.SphereCastAll(transform.position, targetRadius, transform.forward, targetRange, LayerMask.GetMask("Player")); //Player 객체에 속하는 애들까지의 거리 측정
         //객체가 여러개라면 []여기에 정보저장 
