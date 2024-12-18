@@ -1,13 +1,14 @@
 # Sekhmet-43
 <img width="600" alt="sekmet" src="https://github.com/user-attachments/assets/8e1e34b7-389e-4aa0-8a9e-a6ef16b2cbd2" />
 
-
+---
 ## 💾다운로드(Download)
 https://drive.google.com/file/d/14xUpXlf7uzTX8Jx5PamKsvX9I7l3BIxF/view?usp=sharing
-
+---
 ## 개요(Overview)
 어드벤처 요소와 공포 요소가 가미된 스토리 중심의 게임
 
+---
 ### 풀 플레이 영상(Full-Play Video)
 >https://youtu.be/BD4wU6VDPYs?si=ec9Dcx6XKuE4uMkB
 ---
@@ -52,6 +53,7 @@ https://drive.google.com/file/d/14xUpXlf7uzTX8Jx5PamKsvX9I7l3BIxF/view?usp=shari
 **손전등(FlashLight)**: `F`<br>
 
 **퀘스트(Quest)**: `Q`<br>
+
 ---
 ## 🛠 개발(Developement)
 ![Unity](https://img.shields.io/badge/unity-%23000000.svg?style=for-the-badge&logo=unity&logoColor=white)
