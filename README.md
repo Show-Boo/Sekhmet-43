@@ -1,5 +1,5 @@
 # Sekhmet-43
-<img width="800" alt="sddefault" src="https://github.com/user-attachments/assets/512dff39-95c7-4f37-8e99-7b362e46a336">
+<img width="600" alt="sddefault" src="https://github.com/user-attachments/assets/512dff39-95c7-4f37-8e99-7b362e46a336">
 
 ## 💾다운로드(Download)
 https://drive.google.com/file/d/14xUpXlf7uzTX8Jx5PamKsvX9I7l3BIxF/view?usp=sharing
