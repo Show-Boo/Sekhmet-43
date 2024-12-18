@@ -27,6 +27,12 @@ https://drive.google.com/file/d/14xUpXlf7uzTX8Jx5PamKsvX9I7l3BIxF/view?usp=shari
 
 
 ### 플레이(Play)
+<div style="display: flex; flex-wrap: wrap; gap: 10px; justify-content: center;">
+  <img width="400" alt="Screenshot 1" src="https://github.com/user-attachments/assets/3554a868-814e-4070-bc42-009b473fd1f2" />
+  <img width="400" alt="Screenshot 2" src="https://github.com/user-attachments/assets/8825395e-369e-43dc-9815-e7133294bac5" />
+  <img width="400" alt="Screenshot 3" src="https://github.com/user-attachments/assets/cef50684-fced-4878-88f1-e7471d7cf684" />
+  <img width="400" alt="Screenshot 4" src="https://github.com/user-attachments/assets/c291645a-0578-4f1e-9e97-4a21754d8aba" />
+</div>
 
 
 
