@@ -4,6 +4,7 @@
 ---
 ## 💾다운로드(Download)
 https://drive.google.com/file/d/14xUpXlf7uzTX8Jx5PamKsvX9I7l3BIxF/view?usp=sharing
+
 ---
 ## 개요(Overview)
 어드벤처 요소와 공포 요소가 가미된 스토리 중심의 게임
@@ -11,6 +12,7 @@ https://drive.google.com/file/d/14xUpXlf7uzTX8Jx5PamKsvX9I7l3BIxF/view?usp=shari
 ---
 ### 풀 플레이 영상(Full-Play Video)
 >https://youtu.be/BD4wU6VDPYs?si=ec9Dcx6XKuE4uMkB
+>
 ---
 ### 플랫폼(Platform)
 > 💻 Windows
@@ -63,6 +65,7 @@ https://drive.google.com/file/d/14xUpXlf7uzTX8Jx5PamKsvX9I7l3BIxF/view?usp=shari
 ---
 ### 📆 개발 기간(Period)
 > 2024.03.11 ~ 2024.11.26
+
 ---
 ### 👨‍👩‍👦 개발 인원(Team)
 > 3명
